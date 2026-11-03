@@ -50,11 +50,11 @@ section[id]{scroll-margin-top:84px}
 /* ===== Hero · 杂志报头 ===== */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:120px 24px 90px;overflow:hidden}
-.hero-bg{display:none}
-.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 56%;opacity:.42;
-  filter:sepia(.15) saturate(.92) brightness(1.03)}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg img{width:100%;height:205%;object-fit:cover;object-position:center top;opacity:.92;
+  filter:sepia(.08) saturate(1.02) contrast(1.06) brightness(1.02)}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,var(--bg) 0%,rgba(243,240,233,.94) 30%,rgba(243,240,233,.52) 55%,rgba(243,240,233,.18) 100%)}
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(243,240,233,.94) 24%,rgba(243,240,233,.75) 40%,rgba(243,240,233,.55) 52%,rgba(243,240,233,.38) 64%,rgba(243,240,233,.26) 78%,rgba(243,240,233,.2) 100%)}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
 .mast-rule{width:min(680px,74vw);height:1px;background:var(--ink);transform-origin:center}
 .hero-kicker{font-size:11px;letter-spacing:.4em;color:var(--ink-soft);margin:26px 0 0}
@@ -63,9 +63,6 @@ section[id]{scroll-margin-top:84px}
   font-size:clamp(84px,19vw,210px);line-height:.95;letter-spacing:.015em;color:var(--ink)}
 .hero-name .hl2{display:block;font-family:"Noto Serif SC","Songti SC",serif;font-weight:600;
   font-size:clamp(32px,6.4vw,66px);line-height:1.1;letter-spacing:.58em;padding-left:.58em;margin-top:16px;color:var(--ink)}
-.hero-avatar{display:block;width:112px;height:112px;border-radius:50%;overflow:hidden;margin:28px auto 0;
-  border:1px solid var(--line);box-shadow:0 14px 30px -14px rgba(25,26,28,.32)}
-.hero-avatar img{width:100%;height:100%;object-fit:cover;object-position:center 28%}
 .hero-sub{margin-top:30px;font-size:13px;letter-spacing:.3em;color:var(--ink)}
 .hero-note{margin-top:16px;font-size:15.5px;font-weight:300;color:var(--ink-soft)}
 .hero-note .ac{color:var(--accent);font-weight:400}
@@ -84,7 +81,6 @@ section[id]{scroll-margin-top:84px}
 .hero .a-rule{animation:ruleIn 1.1s cubic-bezier(.22,1,.36,1) .1s forwards}
 .hero .a-kicker{animation:rise .8s cubic-bezier(.22,1,.36,1) .5s forwards}
 .hero .a-name{animation:rise 1s cubic-bezier(.22,1,.36,1) .55s forwards}
-.hero .a-avatar{animation:rise .9s cubic-bezier(.22,1,.36,1) .7s forwards}
 .hero .a-sub{animation:rise .8s cubic-bezier(.22,1,.36,1) .9s forwards}
 .hero .a-note{animation:rise .8s cubic-bezier(.22,1,.36,1) 1.05s forwards}
 .hero .a-subnote{animation:rise .8s cubic-bezier(.22,1,.36,1) 1.2s forwards}
@@ -171,14 +167,20 @@ section[id]{scroll-margin-top:84px}
   .hero-inner{align-items:flex-start;padding-right:44vw}
   .hero-name .hl1{font-size:clamp(72px,13vw,190px)}
   .hero-name .hl2{padding-left:0}
-  .hero-avatar{display:none}
   .mast-rule{transform-origin:left}
+  .hero-cta{position:static;transform:none;margin-top:40px}
   .hero-bg{display:block;position:absolute;inset:auto 2vw auto auto;top:50%;transform:translateY(-50%);
     width:min(33vw,430px);height:min(74vh,600px);
     border:1px solid var(--line);border-radius:2px;overflow:hidden;
     box-shadow:0 34px 70px -34px rgba(25,26,28,.3)}
-  .hero-bg img{opacity:1;object-position:center 50%}
+  .hero-bg img{height:100%;opacity:1;object-position:center 50%}
   .hero-bg::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(243,240,233,.3) 22%,transparent 46%)}
+}
+
+/* ===== 移动端 Hero：内容上移，背景露头 ===== */
+@media (max-width:959px){
+  .hero{justify-content:flex-start;padding-top:96px}
+  .hero-foot{text-shadow:0 1px 10px rgba(243,240,233,.9)}
 }
 
 /* ===== 响应式 ===== */
@@ -238,9 +240,6 @@ section[id]{scroll-margin-top:84px}
       <span class="hl1 latin">JASPER</span>
       <span class="hl2">姚斌</span>
     </h1>
-    <div class="hero-avatar anim a-avatar">
-      <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OCdhbIJj2o1bpZxeMO7cXDjKnAe" alt="姚斌在草原上">
-    </div>
     <div class="mast-rule anim a-rule" style="margin-top:30px" aria-hidden="true"></div>
     <p class="hero-sub anim a-sub">翻译人&nbsp;&nbsp;·&nbsp;&nbsp;市场人&nbsp;&nbsp;·&nbsp;&nbsp;未来的外贸人</p>
     <p class="hero-note anim a-note">线还没画完，<span class="ac">我还在路上</span>。</p>
