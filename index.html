@@ -50,6 +50,12 @@ section[id]{scroll-margin-top:84px}
 /* ===== Hero · 杂志报头 ===== */
 .hero{position:relative;min-height:100svh;display:flex;flex-direction:column;align-items:center;justify-content:center;
   text-align:center;padding:120px 24px 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 56%;opacity:.42;
+  filter:sepia(.15) saturate(.92) brightness(1.03)}
+.hero-bg::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(243,240,233,.94) 30%,rgba(243,240,233,.52) 55%,rgba(243,240,233,.18) 100%)}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
 .mast-rule{width:min(680px,74vw);height:1px;background:var(--ink);transform-origin:center}
 .hero-kicker{font-size:11px;letter-spacing:.4em;color:var(--ink-soft);margin:26px 0 0}
 .hero-name{margin-top:22px}
@@ -60,10 +66,11 @@ section[id]{scroll-margin-top:84px}
 .hero-sub{margin-top:30px;font-size:13px;letter-spacing:.3em;color:var(--ink)}
 .hero-note{margin-top:16px;font-size:15.5px;font-weight:300;color:var(--ink-soft)}
 .hero-note .ac{color:var(--accent);font-weight:400}
+.hero-subnote{margin-top:9px;font-size:13px;font-weight:300;color:var(--ink-soft)}
 .hero-cta{margin-top:40px;font-size:11px;letter-spacing:.3em;color:var(--ink-soft);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
 .hero-cta svg{width:15px;height:15px;animation:drop 1.8s ease-in-out infinite}
 @keyframes drop{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
-.hero-foot{position:absolute;left:0;right:0;bottom:26px;display:flex;justify-content:space-between;
+.hero-foot{position:absolute;left:0;right:0;bottom:26px;z-index:2;display:flex;justify-content:space-between;
   padding:0 28px;font-size:10.5px;letter-spacing:.24em;color:var(--ink-soft)}
 
 /* 开场编排 */
@@ -76,6 +83,7 @@ section[id]{scroll-margin-top:84px}
 .hero .a-name{animation:rise 1s cubic-bezier(.22,1,.36,1) .55s forwards}
 .hero .a-sub{animation:rise .8s cubic-bezier(.22,1,.36,1) .9s forwards}
 .hero .a-note{animation:rise .8s cubic-bezier(.22,1,.36,1) 1.05s forwards}
+.hero .a-subnote{animation:rise .8s cubic-bezier(.22,1,.36,1) 1.2s forwards}
 .hero .a-cta{animation:fade 1s ease 1.2s forwards}
 .hero .a-foot{animation:fade 1.2s ease 1.4s forwards}
 
@@ -153,6 +161,21 @@ section[id]{scroll-margin-top:84px}
 .footer{max-width:1080px;margin:0 auto;padding:30px 24px 46px;display:flex;justify-content:space-between;
   gap:10px;flex-wrap:wrap;border-top:1px solid var(--line);font-size:11.5px;letter-spacing:.14em;color:var(--ink-soft)}
 
+/* ===== Hero 桌面：杂志左右版式 ===== */
+@media (min-width:960px){
+  .hero{text-align:left;padding-right:6vw;padding-left:6vw}
+  .hero-inner{align-items:flex-start;padding-right:44vw}
+  .hero-name .hl1{font-size:clamp(72px,13vw,190px)}
+  .hero-name .hl2{padding-left:0}
+  .mast-rule{transform-origin:left}
+  .hero-bg{inset:auto 2vw auto auto;top:50%;transform:translateY(-50%);
+    width:min(33vw,430px);height:min(74vh,600px);
+    border:1px solid var(--line);border-radius:2px;overflow:hidden;
+    box-shadow:0 34px 70px -34px rgba(25,26,28,.3)}
+  .hero-bg img{opacity:1;object-position:center 50%}
+  .hero-bg::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(243,240,233,.3) 22%,transparent 46%)}
+}
+
 /* ===== 响应式 ===== */
 @media (min-width:720px){
   .int-grid{grid-template-columns:repeat(4,1fr)}
@@ -200,18 +223,24 @@ section[id]{scroll-margin-top:84px}
 
 <!-- ===== 视图：Hero ===== -->
 <header class="hero" id="top">
-  <div class="mast-rule anim a-rule" aria-hidden="true"></div>
-  <p class="hero-kicker anim a-kicker">PERSONAL WEBSITE · 2026</p>
-  <h1 class="hero-name anim a-name">
-    <span class="hl1 latin">JASPER</span>
-    <span class="hl2">姚斌</span>
-  </h1>
-  <div class="mast-rule anim a-rule" style="margin-top:30px" aria-hidden="true"></div>
-  <p class="hero-sub anim a-sub">翻译人&nbsp;&nbsp;·&nbsp;&nbsp;市场人&nbsp;&nbsp;·&nbsp;&nbsp;未来的外贸人</p>
-  <p class="hero-note anim a-note">把经历走成一条<span class="ac">线</span>，而不是一张表格。</p>
-  <a class="hero-cta anim a-cta" href="#journey">SCROLL
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="6 15 12 21 18 15"/></svg>
-  </a>
+  <div class="hero-bg" aria-hidden="true">
+    <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/WaKubiqUboxzBmxiuYmcymd1nQc" alt="">
+  </div>
+  <div class="hero-inner">
+    <div class="mast-rule anim a-rule" aria-hidden="true"></div>
+    <p class="hero-kicker anim a-kicker">PERSONAL WEBSITE · 2026</p>
+    <h1 class="hero-name anim a-name">
+      <span class="hl1 latin">JASPER</span>
+      <span class="hl2">姚斌</span>
+    </h1>
+    <div class="mast-rule anim a-rule" style="margin-top:30px" aria-hidden="true"></div>
+    <p class="hero-sub anim a-sub">翻译人&nbsp;&nbsp;·&nbsp;&nbsp;市场人&nbsp;&nbsp;·&nbsp;&nbsp;未来的外贸人</p>
+    <p class="hero-note anim a-note">线还没画完，<span class="ac">我还在路上</span>。</p>
+    <p class="hero-subnote anim a-subnote">对未知好奇，对新鲜着迷，什么都想试试。</p>
+    <a class="hero-cta anim a-cta" href="#journey">SCROLL
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="6 15 12 21 18 15"/></svg>
+    </a>
+  </div>
   <div class="hero-foot anim a-foot" aria-hidden="true">
     <span>NO.00 — INTRODUCTION</span>
     <span>BEIJING · CN · 2026</span>
