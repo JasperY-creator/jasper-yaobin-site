@@ -177,9 +177,26 @@ section[id]{scroll-margin-top:84px}
   .hero-bg::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(243,240,233,.3) 22%,transparent 46%)}
 }
 
-/* ===== 移动端 Hero：内容上移，背景露头 ===== */
+/* ===== 移动端 Hero：左右分栏，名字在左、照片在右（头完整露出） ===== */
 @media (max-width:959px){
-  .hero{justify-content:flex-start;padding-top:96px}
+  .hero{flex-direction:row;align-items:flex-start;justify-content:space-between;gap:14px;
+    padding:84px 16px 90px;text-align:left}
+  .hero-inner{order:1;flex:1;min-width:0;align-items:flex-start;text-align:left}
+  .hero-bg{order:2;position:relative;inset:auto;display:block;flex:0 0 40%;width:40%;height:min(62vh,560px);
+    margin:0;border:1px solid var(--line);border-radius:2px;overflow:hidden;box-shadow:none;transform:none}
+  .hero-bg img{position:absolute;left:50%;transform:translateX(-50%);width:400%;height:100%;
+    object-fit:cover;object-position:center 35%;opacity:.88;
+    filter:sepia(.08) saturate(1.04) brightness(1.02)}
+  .hero-bg::after{background:linear-gradient(180deg,transparent 45%,rgba(243,240,233,.3) 100%)}
+  .mast-rule{width:100%}
+  .hero-kicker{font-size:9.5px;letter-spacing:.3em;margin-top:16px}
+  .hero-name{margin-top:14px}
+  .hero-name .hl1{font-size:clamp(32px,9vw,40px);line-height:1}
+  .hero-name .hl2{font-size:clamp(17px,4.6vw,22px);letter-spacing:.5em;padding-left:.5em;margin-top:9px}
+  .hero-sub{margin-top:18px;font-size:11px;letter-spacing:.14em}
+  .hero-note{margin-top:13px;font-size:13px}
+  .hero-subnote{margin-top:8px;font-size:11px}
+  .hero-cta{margin-top:26px;font-size:10px}
   .hero-foot{text-shadow:0 1px 10px rgba(243,240,233,.9)}
 }
 
