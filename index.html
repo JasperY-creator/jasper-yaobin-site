@@ -163,14 +163,14 @@ section[id]{scroll-margin-top:84px}
 
 /* ===== Hero 桌面：杂志左右版式 ===== */
 @media (min-width:960px){
-  .hero{text-align:left;padding-right:6vw;padding-left:6vw}
+  .hero{text-align:left;padding-right:6vw;padding-left:9vw}
   .hero-inner{align-items:flex-start;padding-right:44vw}
   .hero-name .hl1{font-size:clamp(72px,13vw,190px)}
   .hero-name .hl2{padding-left:0}
   .mast-rule{transform-origin:left}
   .hero-cta{position:static;transform:none;margin-top:40px}
-  .hero-bg{display:block;position:absolute;inset:auto 2vw auto auto;top:50%;transform:translateY(-50%);
-    width:min(33vw,430px);height:min(74vh,600px);
+  .hero-bg{display:block;position:absolute;inset:auto 1.6vw auto auto;top:50%;transform:translateY(-50%);
+    width:min(31vw,420px);height:min(72vh,590px);
     border:1px solid var(--line);border-radius:2px;overflow:hidden;
     box-shadow:0 34px 70px -34px rgba(25,26,28,.3)}
   .hero-bg img{height:100%;opacity:1;object-position:center 50%}
@@ -180,11 +180,11 @@ section[id]{scroll-margin-top:84px}
 /* ===== 移动端 Hero：整图淡化铺满全屏背景，文字靠左，人物（图中偏右）完整露出 ===== */
 @media (max-width:959px){
   .hero{flex-direction:column;align-items:flex-start;justify-content:center;
-    padding:112px 20px 96px;text-align:left}
-  .hero-inner{order:0;align-items:flex-start;text-align:left;max-width:60%}
+    padding:112px 32px 96px;text-align:left}
+  .hero-inner{order:0;align-items:flex-start;text-align:left;max-width:62%}
   .hero-bg{position:absolute;inset:0;width:100%;height:100%;display:block;
     margin:0;border:none;border-radius:0;overflow:hidden;box-shadow:none;transform:none}
-  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:10% 18%;opacity:.62;
+  .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:4% 18%;opacity:.62;
     filter:sepia(.1) saturate(1.04) brightness(1.03) contrast(1.02)}
   .hero-bg::after{background:linear-gradient(90deg,var(--bg) 0%,rgba(243,240,233,.86) 24%,rgba(243,240,233,.5) 44%,transparent 66%)}
   .mast-rule{width:100%}
@@ -257,7 +257,7 @@ section[id]{scroll-margin-top:84px}
       <span class="hl2">姚斌</span>
     </h1>
     <div class="mast-rule anim a-rule" style="margin-top:30px" aria-hidden="true"></div>
-    <p class="hero-sub anim a-sub">好奇心强的人 · 高精力人群 · 什么都想试试的人</p>
+    <p class="hero-sub anim a-sub">好奇星人 · 精力满格 · 什么都想试试</p>
     <p class="hero-note anim a-note">线还没画完，<span class="ac">我还在路上</span>。</p>
     <a class="hero-cta anim a-cta" href="#journey">SCROLL
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><polyline points="6 15 12 21 18 15"/></svg>
