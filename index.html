@@ -270,7 +270,7 @@ section[id]{scroll-margin-top:84px}
 .iso{margin-top:6px}
 .iso-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .iso-scroll::-webkit-scrollbar{display:none}
-.iso-svg{display:block;width:100%;height:auto;aspect-ratio:1200/400}
+.iso-svg{display:block;width:100%;height:auto;aspect-ratio:1200/320}
 .iso-lines{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);min-height:106px;transition:min-height .4s ease}
 .iso-lines.done{min-height:0;padding-bottom:2px}
 .iso-line{display:none;margin:0}
@@ -294,7 +294,7 @@ section[id]{scroll-margin-top:84px}
 .iso-btn:hover{background:var(--ink);border-color:var(--ink);color:var(--bg)}
 
 @media (max-width:959px){
-  .iso-svg{width:150%;max-width:600px;aspect-ratio:1200/400}
+  .iso-svg{width:100%;max-width:none;aspect-ratio:1200/320}
   .iso-l-t{font-size:17px}
   .iso-l-x{font-size:12.5px}
   .iso-lines{min-height:0}
@@ -364,7 +364,7 @@ section[id]{scroll-margin-top:84px}
   <div class="wrap">
     <div class="iso rv" id="isoBox">
       <div class="iso-scroll" id="isoScroll">
-                                                        <svg class="iso-svg" id="isoSvg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1200 400" role="img" aria-label="人生线动画：一个男孩从西南科大图书馆起身，穿过北交大校门，在字节工位做翻译审校，到飞书商业化办活动，最后站在脚印延伸的路上眺望远方">
+                                                        <svg class="iso-svg" id="isoSvg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 60 1200 320" role="img" aria-label="人生线动画：一个男孩从西南科大图书馆起身，穿过北交大校门，在字节工位做翻译审校，到飞书商业化办活动，最后站在脚印延伸的路上眺望远方">
           <defs>
 
             <pattern id="isoG" width="40" height="20" patternUnits="userSpaceOnUse">
@@ -812,7 +812,7 @@ section[id]{scroll-margin-top:84px}
 
     if(reduce){
       apply(TL[TL.length - 1], 1);
-      if(sites[4]){ sites[4].classList.add('on'); }
+      lightOn(4);
       if(linesBox){ linesBox.classList.add('done'); }
       followX(POS[4][0]);
       if(pauseBtn){ pauseBtn.disabled = true; }
