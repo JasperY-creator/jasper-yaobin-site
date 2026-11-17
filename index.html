@@ -235,22 +235,28 @@ section[id]{scroll-margin-top:84px}
 .site-s{font-family:"Noto Sans SC","PingFang SC",sans-serif;font-size:9.5px;letter-spacing:.08em;fill:var(--ink-soft)}
 .site.on .site-k,.site.on .site-s{fill:var(--accent)}
 .site.on .obj,.site.on .obj-top{stroke:var(--accent)}
-.walker{transition:transform 3s cubic-bezier(.45,.05,.55,.95)}
-.walker.walking .bob{animation:isoBob .62s ease-in-out infinite}
-@keyframes isoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.walker{will-change:transform}
+.walker.walking .bob{animation:isoBob .52s ease-in-out infinite}
+@keyframes isoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2.8px)}}
 .iso{margin-top:6px}
 .iso-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .iso-scroll::-webkit-scrollbar{display:none}
 .iso-svg{display:block;width:100%;height:auto}
-.iso-legend{display:grid;grid-template-columns:repeat(5,1fr);gap:20px;
-  margin-top:26px;padding-top:24px;border-top:1px solid var(--line)}
-.iso-item{opacity:.34;transition:opacity .6s ease}
-.iso-item.on{opacity:1}
-.iso-num{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.2em;color:var(--accent)}
-.iso-site{font-size:10.5px;letter-spacing:.12em;color:var(--ink-soft);margin-top:7px}
-.iso-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:15px;line-height:1.55;margin-top:11px;letter-spacing:.01em}
-.iso-x{font-size:12.5px;font-weight:300;line-height:1.7;color:var(--ink-soft);margin-top:8px}
-.iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:26px}
+.iso-lines{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);min-height:106px;transition:min-height .4s ease}
+.iso-lines.done{min-height:0;padding-bottom:2px}
+.iso-line{display:none;margin:0}
+.iso-line.on{display:block;animation:isoRise .55s cubic-bezier(.2,.7,.2,1) both}
+@keyframes isoRise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.iso-l-k{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.2em;color:var(--accent)}
+.iso-l-site{font-size:10.5px;letter-spacing:.12em;color:var(--ink-soft);margin-left:12px}
+.iso-l-t{display:block;font-family:"Noto Serif SC",serif;font-weight:600;font-size:19px;line-height:1.5;margin-top:9px;letter-spacing:.01em}
+.iso-l-x{display:block;font-style:normal;font-size:13px;font-weight:300;line-height:1.75;color:var(--ink-soft);margin-top:9px}
+.iso-row{display:none}
+.iso-lines.done .iso-line{display:none}
+.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:flex-start;gap:56px;padding-top:6px}
+.iso-row span{font-size:12px;letter-spacing:.06em;color:var(--ink-soft);white-space:nowrap}
+.iso-row b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
+.iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
 .iso-hint{font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);font-weight:300}
 .iso-btns{display:flex;gap:10px;flex-shrink:0}
 .iso-btn{font-family:inherit;font-size:11.5px;letter-spacing:.16em;padding:9px 22px;border-radius:2px;
@@ -260,10 +266,13 @@ section[id]{scroll-margin-top:84px}
 
 @media (max-width:959px){
   .iso-svg{width:900px;max-width:none}
-  .iso-legend{grid-template-columns:repeat(2,1fr);gap:20px 16px}
-  .iso-t{font-size:14px}
-  .iso-x{font-size:12px}
-  .iso-ctrl{flex-direction:column;align-items:flex-start;gap:14px;margin-top:22px}
+  .iso-l-t{font-size:17px}
+  .iso-l-x{font-size:12.5px}
+  .iso-lines{min-height:118px}
+  .iso-lines.done{min-height:0}
+  .iso-lines.done .iso-row{flex-wrap:wrap;gap:9px 22px}
+  .iso-row span{font-size:11.5px}
+  .iso-ctrl{flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px}
 }
 
 /* ===== 低动效 ===== */
@@ -271,7 +280,7 @@ section[id]{scroll-margin-top:84px}
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
   .hero .anim{opacity:1;animation:none}
   .tl-fill{width:100%}
-  .iso-item{opacity:1}
+  .iso-line.on{animation:none}
 }
 </style>
 </head>
@@ -447,125 +456,208 @@ section[id]{scroll-margin-top:84px}
                 <line x1="5" y1="248" x2="21" y2="248" stroke="rgba(25,26,28,.25)"/>
                 <line x1="5" y1="253" x2="17" y2="253" stroke="rgba(25,26,28,.18)"/>
               </g>
-              <rect x="30" y="250" width="18" height="12" fill="#FFFDF7" stroke="rgba(25,26,28,.35)"/>
-              <path d="M30 250 L39 258 L48 250" fill="none" stroke="rgba(25,26,28,.28)"/>
+              <rect x="12" y="250" width="17" height="11" fill="#FFFDF7" stroke="rgba(25,26,28,.35)"/>
+              <path d="M12 250 L20.5 257 L29 250" fill="none" stroke="rgba(25,26,28,.28)"/>
             </g>
           </g>
 
           <!-- 结尾：道路向前延伸 -->
-          <line id="isoSpur" x1="1046" y1="305" x2="1120" y2="305" stroke="#AE3B2C" stroke-width="2" stroke-dasharray="9 9" opacity="0"/>
+          <line id="isoSpur" x1="1086" y1="305" x2="1120" y2="305" stroke="#AE3B2C" stroke-width="2" stroke-dasharray="9 9" opacity="0"/>
 
-          <!-- 小男孩 -->
+          <!-- 地面影子（只跟 x 平移，小人抬脚时变淡） -->
+          <g id="isoShadow" transform="translate(212,0)">
+            <g transform="translate(0,300) scale(1.3) translate(0,-300)">
+              <ellipse cx="0" cy="320.5" rx="18" ry="4.4" fill="rgba(25,26,28,.15)"/>
+            </g>
+          </g>
+          <!-- 小男孩：大头潮玩造型，五套发型与衣裳 -->
           <g id="walker" class="walker" transform="translate(212,0)">
             <g transform="translate(0,300) scale(1.3) translate(0,-300)">
-              <ellipse cx="0" cy="320" rx="17" ry="4" fill="rgba(25,26,28,.16)"/>
               <g class="bob">
-              <!-- 01 本科：T 恤 + 牛仔 + 双肩包 -->
-              <g class="look look-1">
-                <rect x="-9" y="296" width="8" height="22" fill="#5C6B7E"/>
-                <rect x="1" y="296" width="8" height="22" fill="#5C6B7E"/>
-                <rect x="-11" y="314" width="11" height="5" rx="2" fill="#2A2B2E"/>
-                <rect x="0" y="314" width="11" height="5" rx="2" fill="#2A2B2E"/>
-                <path d="M-11 273 q11 -4 22 0 v23 h-22 z" fill="#E6DFCE" stroke="rgba(25,26,28,.22)"/>
-                <rect x="-15" y="274" width="4" height="20" rx="2" fill="#E6DFCE"/>
-                <rect x="11" y="274" width="4" height="20" rx="2" fill="#E6DFCE"/>
-                <rect x="-18" y="276" width="9" height="16" rx="2" fill="#4A4C50"/>
-                <line x1="-9" y1="276" x2="9" y2="276" stroke="#4A4C50" stroke-width="2"/>
-              </g>
-              <!-- 02 硕士：白衬衫 + 西裤 + 单肩包 -->
-              <g class="look look-2" style="display:none">
-                <rect x="-9" y="296" width="8" height="22" fill="#2F3134"/>
-                <rect x="1" y="296" width="8" height="22" fill="#2F3134"/>
-                <rect x="-11" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <rect x="0" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <path d="M-11 273 q11 -4 22 0 v23 h-22 z" fill="#FBFAF6" stroke="rgba(25,26,28,.22)"/>
-                <rect x="-15" y="274" width="4" height="20" rx="2" fill="#FBFAF6"/>
-                <rect x="11" y="274" width="4" height="20" rx="2" fill="#FBFAF6"/>
-                <line x1="-10" y1="273" x2="14" y2="290" stroke="#565A60" stroke-width="2"/>
-                <rect x="10" y="288" width="11" height="12" rx="1" fill="#565A60"/>
-              </g>
-              <!-- 03 实习：卫衣 + 工牌 + 笔记本 -->
-              <g class="look look-3" style="display:none">
-                <rect x="-9" y="296" width="8" height="22" fill="#41434A"/>
-                <rect x="1" y="296" width="8" height="22" fill="#41434A"/>
-                <rect x="-11" y="314" width="11" height="5" rx="2" fill="#2A2B2E"/>
-                <rect x="0" y="314" width="11" height="5" rx="2" fill="#2A2B2E"/>
-                <path d="M-11 272 q11 -4 22 0 v24 h-22 z" fill="#D2CBBB" stroke="rgba(25,26,28,.22)"/>
-                <rect x="-15" y="274" width="4" height="19" rx="2" fill="#D2CBBB"/>
-                <rect x="11" y="274" width="4" height="19" rx="2" fill="#D2CBBB"/>
-                <line x1="-4" y1="272" x2="2" y2="282" stroke="#AE3B2C" stroke-width="2"/>
-                <rect x="-2" y="280" width="9" height="11" fill="#FFFDF7" stroke="rgba(25,26,28,.3)"/>
-                <rect x="13" y="286" width="9" height="12" rx="1" fill="#FBFAF6" stroke="rgba(25,26,28,.25)"/>
-              </g>
-              <!-- 04 在职：衬衫 + 深外套 + 工牌 -->
-              <g class="look look-4" style="display:none">
-                <rect x="-9" y="296" width="8" height="22" fill="#3A3C41"/>
-                <rect x="1" y="296" width="8" height="22" fill="#3A3C41"/>
-                <rect x="-11" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <rect x="0" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <path d="M-12 272 q12 -4 24 0 v24 h-24 z" fill="#34363B" stroke="rgba(25,26,28,.3)"/>
-                <path d="M-4 272 h8 v12 h-8 z" fill="#F1ECE0"/>
-                <rect x="-15" y="274" width="4" height="19" rx="2" fill="#34363B"/>
-                <rect x="11" y="274" width="4" height="19" rx="2" fill="#34363B"/>
-                <line x1="-3" y1="272" x2="2" y2="281" stroke="#AE3B2C" stroke-width="2"/>
-                <rect x="-1" y="279" width="9" height="11" fill="#FFFDF7" stroke="rgba(25,26,28,.3)"/>
-                <rect x="13" y="285" width="11" height="9" fill="#FFFDF7" stroke="rgba(25,26,28,.3)"/>
-              </g>
-              <!-- 05 秋招：西装 + 公文袋 -->
-              <g class="look look-5" style="display:none">
-                <rect x="-9" y="296" width="8" height="22" fill="#2E3034"/>
-                <rect x="1" y="296" width="8" height="22" fill="#2E3034"/>
-                <rect x="-11" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <rect x="0" y="314" width="11" height="5" rx="2" fill="#191A1C"/>
-                <path d="M-12 272 q12 -4 24 0 v24 h-24 z" fill="#2E3034" stroke="rgba(25,26,28,.35)"/>
-                <path d="M-4 272 h8 v13 h-8 z" fill="#FBFAF6"/>
-                <path d="M0 272 l-4 6 h8 z" fill="#AE3B2C"/>
-                <rect x="-15" y="274" width="4" height="18" rx="2" fill="#2E3034"/>
-                <rect x="11" y="274" width="4" height="18" rx="2" fill="#2E3034"/>
-                <rect x="13" y="286" width="12" height="16" rx="1" fill="#C9C1AE" stroke="rgba(25,26,28,.3)"/>
-                <path d="M15 286 q4 -5 8 0" fill="none" stroke="rgba(25,26,28,.4)"/>
-              </g>
-              <!-- 头 -->
-              <circle cx="0" cy="258" r="13" fill="#F0D2B6"/>
-              <path d="M-13 258 a13 13 0 0 1 26 0 q-3 -8 -13 -8 q-10 0 -13 8 z" fill="#191A1C"/>
-              <circle cx="-4.5" cy="259" r="1.3" fill="#191A1C"/>
-              <circle cx="4.5" cy="259" r="1.3" fill="#191A1C"/>
+
+                <!-- 01 本科：芥末黄 T 恤 · 牛仔 · 双肩包 -->
+                <g class="look look-1">
+                  <rect x="-9.6" y="298" width="8.6" height="21" rx="4.3" fill="#50627A"/>
+                  <rect x="1" y="298" width="8.6" height="21" rx="4.3" fill="#50627A"/>
+                  <ellipse cx="-5.3" cy="319.6" rx="6.2" ry="3" fill="#EFE9DA"/>
+                  <ellipse cx="5.3" cy="319.6" rx="6.2" ry="3" fill="#EFE9DA"/>
+                  <path d="M-13 300 L-13 289 Q-13 278 0 278 Q13 278 13 289 L13 300 Z" fill="#E0B04A" stroke="rgba(25,26,28,.16)" stroke-width=".8"/>
+                  <path d="M-5 278.6 Q0 284 5 278.6" fill="none" stroke="rgba(25,26,28,.16)" stroke-width="1"/>
+                  <rect x="-17.4" y="279.5" width="5.6" height="16" rx="2.8" fill="#E0B04A"/>
+                  <rect x="11.8" y="279.5" width="5.6" height="16" rx="2.8" fill="#E0B04A"/>
+                  <circle cx="-14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <circle cx="14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <rect x="-18.4" y="281" width="9.6" height="13" rx="2.6" fill="#3C3F44"/>
+                  <path d="M-10 281 Q-1 277 7 281" fill="none" stroke="#3C3F44" stroke-width="1.7"/>
+                </g>
+
+                <!-- 02 读研：白衬衫 · 炭黑西裤 · 灰单肩包 -->
+                <g class="look look-2" style="display:none">
+                  <rect x="-9.6" y="298" width="8.6" height="21" rx="4.3" fill="#2E3034"/>
+                  <rect x="1" y="298" width="8.6" height="21" rx="4.3" fill="#2E3034"/>
+                  <ellipse cx="-5.3" cy="319.6" rx="6.2" ry="3" fill="#1A1B1D"/>
+                  <ellipse cx="5.3" cy="319.6" rx="6.2" ry="3" fill="#1A1B1D"/>
+                  <path d="M-13 300 L-13 289 Q-13 278 0 278 Q13 278 13 289 L13 300 Z" fill="#FAF8F2" stroke="rgba(25,26,28,.14)" stroke-width=".8"/>
+                  <path d="M-4.8 278 L0 285.4 L4.8 278 Z" fill="#E9E3D6"/>
+                  <rect x="-17.4" y="279.5" width="5.6" height="16" rx="2.8" fill="#FAF8F2"/>
+                  <rect x="11.8" y="279.5" width="5.6" height="16" rx="2.8" fill="#FAF8F2"/>
+                  <circle cx="-14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <circle cx="14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <path d="M-9 279 Q2 292 10.6 288" fill="none" stroke="#71757B" stroke-width="1.8"/>
+                  <rect x="8.6" y="285" width="11.6" height="12.6" rx="1.8" fill="#71757B"/>
+                </g>
+
+                <!-- 03 实习：雾蓝卫衣 · 深灰裤 · 工牌 -->
+                <g class="look look-3" style="display:none">
+                  <rect x="-9.6" y="298" width="8.6" height="21" rx="4.3" fill="#3B3E44"/>
+                  <rect x="1" y="298" width="8.6" height="21" rx="4.3" fill="#3B3E44"/>
+                  <ellipse cx="-5.3" cy="319.6" rx="6.2" ry="3" fill="#EFE9DA"/>
+                  <ellipse cx="5.3" cy="319.6" rx="6.2" ry="3" fill="#EFE9DA"/>
+                  <path d="M-13 300 L-13 289 Q-13 278 0 278 Q13 278 13 289 L13 300 Z" fill="#9CB6CB" stroke="rgba(25,26,28,.16)" stroke-width=".8"/>
+                  <path d="M-8.6 293.4 Q0 296.6 8.6 293.4" fill="none" stroke="rgba(25,26,28,.2)" stroke-width="1"/>
+                  <rect x="-17.4" y="279.5" width="5.6" height="16" rx="2.8" fill="#9CB6CB"/>
+                  <rect x="11.8" y="279.5" width="5.6" height="16" rx="2.8" fill="#9CB6CB"/>
+                  <circle cx="-14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <circle cx="14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <line x1="-3.4" y1="279" x2="1.6" y2="286.4" stroke="#AE3B2C" stroke-width="2"/>
+                  <rect x="-0.8" y="285.6" width="9.4" height="11.4" rx="1.4" fill="#FFFDF7" stroke="rgba(25,26,28,.24)"/>
+                  <rect x="14" y="289" width="9" height="11.6" rx="1.4" fill="#FBFAF6" stroke="rgba(25,26,28,.22)"/>
+                </g>
+
+                <!-- 04 在职：墨绿夹克 · 白领 · 工牌 · 议程卡 -->
+                <g class="look look-4" style="display:none">
+                  <rect x="-9.6" y="298" width="8.6" height="21" rx="4.3" fill="#2E3034"/>
+                  <rect x="1" y="298" width="8.6" height="21" rx="4.3" fill="#2E3034"/>
+                  <ellipse cx="-5.3" cy="319.6" rx="6.2" ry="3" fill="#1A1B1D"/>
+                  <ellipse cx="5.3" cy="319.6" rx="6.2" ry="3" fill="#1A1B1D"/>
+                  <path d="M-13 300 L-13 289 Q-13 278 0 278 Q13 278 13 289 L13 300 Z" fill="#3E5B4D" stroke="rgba(25,26,28,.18)" stroke-width=".8"/>
+                  <path d="M-4.8 278 L0 287.6 L4.8 278 Z" fill="#F7F3E8"/>
+                  <path d="M-4.8 278 L0 287.6 L-8.4 281 Z" fill="#34503F"/>
+                  <path d="M4.8 278 L0 287.6 L8.4 281 Z" fill="#34503F"/>
+                  <rect x="-17.4" y="279.5" width="5.6" height="16" rx="2.8" fill="#3E5B4D"/>
+                  <rect x="11.8" y="279.5" width="5.6" height="16" rx="2.8" fill="#3E5B4D"/>
+                  <circle cx="-14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <circle cx="14.6" cy="296.5" r="2.7" fill="#F3D7BC"/>
+                  <line x1="-1.8" y1="279" x2="2.6" y2="286" stroke="#AE3B2C" stroke-width="2"/>
+                  <rect x="0.2" y="285.4" width="8.8" height="10.6" rx="1.3" fill="#FFFDF7" stroke="rgba(25,26,28,.24)"/>
+                  <rect x="13.4" y="288" width="11" height="8.6" rx="1.2" fill="#FFFDF7" stroke="rgba(25,26,28,.24)"/>
+                </g>
+
+                <!-- 05 秋招：米色西装 · 白衬 · 朱红领带 · 公文袋 -->
+                <g class="look look-5" style="display:none">
+                  <rect x="-9.6" y="298" width="8.6" height="20" rx="4.3" fill="#6E5F4A"/>
+                  <rect x="1" y="298" width="8.6" height="20" rx="4.3" fill="#6E5F4A"/>
+                  <ellipse cx="-5.3" cy="319.6" rx="6.2" ry="3" fill="#4A4038"/>
+                  <ellipse cx="5.3" cy="319.6" rx="6.2" ry="3" fill="#4A4038"/>
+                  <path d="M-13 300 L-13 289 Q-13 278 0 278 Q13 278 13 289 L13 300 Z" fill="#C9B896" stroke="rgba(25,26,28,.18)" stroke-width=".8"/>
+                  <path d="M-4.8 278.2 L0 288.4 L4.8 278.2 Z" fill="#FBFAF6"/>
+                  <path d="M0 282 l-2.6 3.4 h5.2 z" fill="#AE3B2C"/>
+                  <path d="M-4.8 278.2 L0 288.4 L-8.6 281.4 Z" fill="#B8A582"/>
+                  <path d="M4.8 278.2 L0 288.4 L8.6 281.4 Z" fill="#B8A582"/>
+                  <rect x="-17.4" y="279.5" width="5.6" height="15" rx="2.8" fill="#C9B896"/>
+                  <rect x="11.8" y="279.5" width="5.6" height="15" rx="2.8" fill="#C9B896"/>
+                  <circle cx="-14.6" cy="295.6" r="2.7" fill="#F3D7BC"/>
+                  <circle cx="14.6" cy="295.6" r="2.7" fill="#F3D7BC"/>
+                  <rect x="14.4" y="288" width="12.4" height="14.6" rx="1.6" fill="#8E8676" stroke="rgba(25,26,28,.22)"/>
+                  <path d="M16.6 288 q4 -4.4 8 0" fill="none" stroke="rgba(25,26,28,.32)" stroke-width="1.2"/>
+                </g>
+
+                <!-- 头部（共用） -->
+                <ellipse cx="-17.6" cy="256" rx="2.8" ry="3.8" fill="#EDC9A6"/>
+                <ellipse cx="17.6" cy="256" rx="2.8" ry="3.8" fill="#EDC9A6"/>
+                <rect x="-4.6" y="266" width="9.2" height="9" rx="4.6" fill="#EAC9A8"/>
+                <circle cx="0" cy="254" r="18" fill="#F3D7BC"/>
+                <ellipse cx="-11" cy="263.6" rx="3.9" ry="2.4" fill="#E28F74" opacity=".3"/>
+                <ellipse cx="11" cy="263.6" rx="3.9" ry="2.4" fill="#E28F74" opacity=".3"/>
+                <ellipse cx="-6.6" cy="257.4" rx="4" ry="5.4" fill="#17181A"/>
+                <ellipse cx="6.6" cy="257.4" rx="4" ry="5.4" fill="#17181A"/>
+                <circle cx="-5.2" cy="255.2" r="1.75" fill="#FFFFFF"/>
+                <circle cx="7.8" cy="255.9" r="1.6" fill="#FFFFFF"/>
+                <circle cx="-7.9" cy="260.4" r=".9" fill="#FFFFFF" opacity=".5"/>
+                <circle cx="5.5" cy="260.2" r=".85" fill="#FFFFFF" opacity=".5"/>
+                <path d="M-2.8 265.4 q2.8 2.2 5.6 0" fill="none" stroke="#C97F67" stroke-width="1.05" stroke-linecap="round"/>
+
+                <!-- 发型 01：蓬松碎刘海 -->
+                <g class="hair hair-1">
+                  <path d="M-18.8 250.4 Q-17.4 239.6 0 238.6 Q17.4 239.6 18.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-13.2 245.6 Q-4.2 240.6 5.6 242.8" stroke="#565A65" stroke-width="2.1" stroke-linecap="round" fill="none" opacity=".85"/>
+                  <path d="M-3 249.4 L-2.2 254.2" stroke="#1A1B1F" stroke-width="1.4" opacity=".5"/>
+                  <ellipse cx="-17.4" cy="255.2" rx="2.7" ry="4.4" fill="#2B2D33"/>
+                  <ellipse cx="17.4" cy="255.2" rx="2.7" ry="4.4" fill="#2B2D33"/>
+                  <path d="M-18 250.5 Q-13.6 256 -9 251.6 Q-5 257.4 -1 252.2 Q3.2 256.6 7.6 251.6 Q12.6 255.8 18 250.5 Z" fill="#2B2D33"/>
+                  <path d="M-8.4 242 Q-1 238.4 5.6 240.6" fill="none" stroke="#4E525C" stroke-width="2.4" stroke-linecap="round"/>
+                </g>
+                <!-- 发型 02：学生侧分 -->
+                <g class="hair hair-2" style="display:none">
+                  <path d="M-18.8 250.4 Q-17.4 239.6 0 238.6 Q17.4 239.6 18.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-13.2 245.6 Q-4.2 240.6 5.6 242.8" stroke="#565A65" stroke-width="2.1" stroke-linecap="round" fill="none" opacity=".85"/>
+                  <path d="M-3 249.4 L-2.2 254.2" stroke="#1A1B1F" stroke-width="1.4" opacity=".5"/>
+                  <ellipse cx="-17.4" cy="255.2" rx="2.7" ry="4.4" fill="#2B2D33"/>
+                  <ellipse cx="17.4" cy="255.2" rx="2.7" ry="4.4" fill="#2B2D33"/>
+                  <path d="M-17.6 251.4 Q-8.6 258.6 1.8 252.8 Q10.4 254.6 17.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-4 241.4 Q3 238.8 10 243" fill="none" stroke="#4E525C" stroke-width="2.2" stroke-linecap="round"/>
+                  <path d="M4.6 244.4 Q11.6 243 16.4 248.4" fill="none" stroke="#33363E" stroke-width="1.3"/>
+                </g>
+                <!-- 发型 03：中分微长 -->
+                <g class="hair hair-3" style="display:none">
+                  <path d="M-18.8 250.4 Q-17.6 239.8 0 238.8 Q17.6 239.8 18.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-12.6 245.8 Q-3.6 241 6.2 243.2" stroke="#565A65" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"/>
+                  <path d="M-17.8 251 Q-9.4 264.6 -1.4 250.4 M1.4 250.4 Q9.4 264.6 17.8 251" fill="none" stroke="#22242A" stroke-width="5.4" stroke-linecap="round"/>
+                  <path d="M-1.6 249 L1.6 249" fill="none" stroke="#F3D7BC" stroke-width="1.8"/>
+                  <ellipse cx="-17.4" cy="255" rx="2.4" ry="4" fill="#2B2D33"/>
+                  <ellipse cx="17.4" cy="255" rx="2.4" ry="4" fill="#2B2D33"/>
+                  <path d="M-9 241.6 Q-2 238.4 4 240.6" fill="none" stroke="#4E525C" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
+                <!-- 发型 04：短背头推边 -->
+                <g class="hair hair-4" style="display:none">
+                  <path d="M-18.8 250 Q-17.6 239.6 0 238.6 Q17.6 239.6 18.8 250 Z" fill="#2B2D33"/>
+                  <path d="M-12.6 245.4 Q-3.4 240.6 6.4 242.8" stroke="#565A65" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"/>
+                  <path d="M-18 250 Q-6 240.6 6 242.6 Q14 244.4 18 250 Z" fill="#2B2E36"/>
+                  <path d="M-6 242 Q2 240 9.2 243.6" fill="none" stroke="#545862" stroke-width="1.8" stroke-linecap="round"/>
+                  <ellipse cx="-16.8" cy="254.6" rx="2.9" ry="3.8" fill="#2B2D33"/>
+                  <ellipse cx="16.8" cy="254.6" rx="2.9" ry="3.8" fill="#2B2D33"/>
+                </g>
+                <!-- 发型 05：三七分 -->
+                <g class="hair hair-5" style="display:none">
+                  <path d="M-18.8 250.4 Q-17.6 239.8 0 238.8 Q17.6 239.8 18.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-12.6 245.8 Q-3.6 241 6.2 243.2" stroke="#565A65" stroke-width="2" stroke-linecap="round" fill="none" opacity=".8"/>
+                  <path d="M-17.8 250.8 Q-12.6 255.6 -8 251.8 Q-1.6 257.4 7.6 251.8 Q13.8 255 17.8 250.4 Z" fill="#2B2D33"/>
+                  <path d="M-8.8 246.4 Q-3.4 242.6 1.6 244.4" fill="none" stroke="#4E525C" stroke-width="2.2" stroke-linecap="round"/>
+                </g>
               </g>
             </g>
           </g>
         </svg>
       </div>
 
-      <div class="iso-legend" id="isoLegend">
-        <div class="iso-item on">
-          <p class="iso-num">01</p>
-          <p class="iso-site">西南科技大学 · 外语</p>
-          <h3 class="iso-t">起点：喜欢跨文化交流</h3>
-          <p class="iso-x">本科读外语，动机很朴素——想跟不同的人聊得来</p>
-        </div>
-        <div class="iso-item">
-          <p class="iso-num">02</p>
-          <p class="iso-site">北京交通大学 · 笔译</p>
-          <h3 class="iso-t">保送：从「会说」到「译得准」</h3>
-          <p class="iso-x">保送读笔译，开始跟标点和语感较劲</p>
-        </div>
-        <div class="iso-item">
-          <p class="iso-num">03</p>
-          <p class="iso-site">字节 · 语言中心</p>
-          <h3 class="iso-t">实习：想看看专业在大厂怎么用</h3>
-          <p class="iso-x">语言中心实习，第一次看清翻译在真实业务里的样子</p>
-        </div>
-        <div class="iso-item">
-          <p class="iso-num">04</p>
-          <p class="iso-site">字节 · 飞书商业化</p>
-          <h3 class="iso-t">转岗：对商业和办活动上了头</h3>
-          <p class="iso-x">从语言跨 toB 营销中台</p>
-        </div>
-        <div class="iso-item">
-          <p class="iso-num">05</p>
-          <p class="iso-site">秋招中</p>
-          <h3 class="iso-t">现在：秋招进行中</h3>
-          <p class="iso-x">还在飞书商业化的工位上，也在往外递简历——线还没画完</p>
+      <div class="iso-lines" id="isoLines">
+        <p class="iso-line on">
+          <span class="iso-l-k">01</span><span class="iso-l-site">西南科技大学 · 外语</span>
+          <strong class="iso-l-t">起点：喜欢跨文化交流</strong>
+          <em class="iso-l-x">本科读外语，动机很朴素——想跟不同的人聊得来。</em>
+        </p>
+        <p class="iso-line">
+          <span class="iso-l-k">02</span><span class="iso-l-site">北京交通大学 · 笔译</span>
+          <strong class="iso-l-t">保送：从「会说」到「译得准」</strong>
+          <em class="iso-l-x">保送读笔译，开始跟标点和语感较劲。</em>
+        </p>
+        <p class="iso-line">
+          <span class="iso-l-k">03</span><span class="iso-l-site">字节 · 语言中心</span>
+          <strong class="iso-l-t">实习：想看看专业在大厂怎么用</strong>
+          <em class="iso-l-x">语言中心实习，第一次看清翻译在真实业务里的样子。</em>
+        </p>
+        <p class="iso-line">
+          <span class="iso-l-k">04</span><span class="iso-l-site">字节 · 飞书商业化</span>
+          <strong class="iso-l-t">转岗：对商业和办活动上了头</strong>
+          <em class="iso-l-x">从语言跨 toB 营销中台。</em>
+        </p>
+        <p class="iso-line">
+          <span class="iso-l-k">05</span><span class="iso-l-site">秋招中</span>
+          <strong class="iso-l-t">现在：秋招进行中</strong>
+          <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
+        </p>
+        <div class="iso-row" id="isoRow">
+          <span><b>01</b>起点</span><span><b>02</b>保送</span><span><b>03</b>实习</span><span><b>04</b>转岗</span><span><b>05</b>现在</span>
         </div>
       </div>
 
@@ -681,112 +773,140 @@ section[id]{scroll-margin-top:84px}
   },{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 
-  /* ===== 人生线动画：等轴测小人沿路走位 ===== */
+  /* ===== 人生线动画：小人沿弧线走位 ===== */
   var isoSvg = document.getElementById('isoSvg');
   var walker = document.getElementById('walker');
   if(isoSvg && walker){
-    var SPOTS = [212, 432, 652, 872, 1072];
-    var WALK = 3000, STAY = 1500;
+    var SPOTS = [197, 417, 637, 857, 1057];
+    var WALK = 3200, STAY = 1600;
     var sites = isoSvg.querySelectorAll('.site');
     var looks = isoSvg.querySelectorAll('.look');
-    var items = document.querySelectorAll('.iso-item');
+    var hairs = isoSvg.querySelectorAll('.hair');
+    var lines = document.querySelectorAll('.iso-line');
+    var linesBox = document.getElementById('isoLines');
     var scrollBox = document.getElementById('isoScroll');
     var spur = document.getElementById('isoSpur');
     var pauseBtn = document.getElementById('isoPause');
     var replayBtn = document.getElementById('isoReplay');
     var box = document.getElementById('isoBox');
     var cur = 0, pending = -1, paused = false, timer = null, started = false;
+    var walk = null, raf = null, posX = SPOTS[0];
+    var shadow = document.getElementById('isoShadow');
 
-    function follow(i){
+    function setPos(x, y){
+      posX = x;
+      walker.style.transform = 'translate(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px)';
+      if(shadow){
+        shadow.style.transform = 'translate(' + x.toFixed(1) + 'px,0)';
+        shadow.style.opacity = (y < -1) ? String(Math.max(.4, 1 + y / 22)) : '1';
+      }
+    }
+
+    function followX(x){
       if(!scrollBox || scrollBox.scrollWidth <= scrollBox.clientWidth + 6) return;
       var scale = scrollBox.scrollWidth / 1120;
-      var target = SPOTS[i] * scale - scrollBox.clientWidth / 2;
+      var target = x * scale - scrollBox.clientWidth / 2;
       target = Math.max(0, Math.min(scrollBox.scrollWidth - scrollBox.clientWidth, target));
-      if(scrollBox.scrollTo){ scrollBox.scrollTo({left:target, behavior:'smooth'}); }
-      else { scrollBox.scrollLeft = target; }
+      scrollBox.scrollLeft = target;
     }
 
     function look(i){
       for(var k=0;k<looks.length;k++){ looks[k].style.display = (k===i) ? '' : 'none'; }
+      for(var h=0;h<hairs.length;h++){ hairs[h].style.display = (h===i) ? '' : 'none'; }
     }
 
     function lightOn(i){
       for(var k=0;k<sites.length;k++){ sites[k].classList.toggle('on', k===i); }
-      for(var j=0;j<items.length;j++){ items[j].classList.toggle('on', j===i); }
+      for(var j=0;j<lines.length;j++){ lines[j].classList.toggle('on', j===i); }
+      if(linesBox){ linesBox.classList.remove('done'); }
       look(i);
       if(spur){ spur.style.opacity = (i === SPOTS.length-1) ? '1' : '0'; }
-      follow(i);
     }
 
     function arrive(i){
       cur = i; pending = -1;
       walker.classList.remove('walking');
       lightOn(i);
-      if(paused) return;
+      if(i >= SPOTS.length - 1){
+        timer = setTimeout(function(){ if(!paused && linesBox){ linesBox.classList.add('done'); } }, STAY);
+        return;
+      }
       timer = setTimeout(function(){ if(!paused) next(); }, STAY);
     }
 
-    function to(i){
+    function frame(ts){
+      if(!walk) return;
+      if(walk.last === null) walk.last = ts;
+      if(!paused){ walk.el += (ts - walk.last); }
+      walk.last = ts;
+      var t = Math.min(1, walk.el / WALK);
+      var e = t < .5 ? 2*t*t : 1 - Math.pow(-2*t+2, 2) / 2;
+      var x = walk.from + (walk.to - walk.from) * e + Math.sin(Math.PI * e * 2) * 4;
+      var y = -Math.sin(Math.PI * e) * walk.lift;
+      setPos(x, y);
+      followX(x);
+      if(t >= 1){
+        var tgt = walk.tgt;
+        walk = null; raf = null;
+        setPos(x, 0);
+        arrive(tgt);
+      } else if(!paused){
+        raf = requestAnimationFrame(frame);
+      } else {
+        raf = null;
+      }
+    }
+
+    function startWalk(i){
+      cancelAnimationFrame(raf); raf = null;
+      var from = posX, target = SPOTS[i];
+      walk = {from:from, to:target, el:0, last:null, tgt:i, lift:Math.min(13, Math.abs(target - from) * 0.065)};
       pending = i;
       walker.classList.add('walking');
-      walker.style.transform = 'translate(' + SPOTS[i] + 'px,0)';
-      follow(i);
-      timer = setTimeout(function(){ arrive(i); }, WALK);
+      raf = requestAnimationFrame(frame);
     }
 
     function next(){
       if(paused) return;
       if(cur >= SPOTS.length - 1) return;
-      to(cur + 1);
+      startWalk(cur + 1);
     }
 
     function begin(){
       clearTimeout(timer);
+      cancelAnimationFrame(raf); raf = null; walk = null;
       paused = false;
       if(pauseBtn) pauseBtn.textContent = '暂停';
       walker.classList.remove('walking');
       if(spur) spur.style.opacity = '0';
+      if(linesBox) linesBox.classList.remove('done');
       cur = 0; pending = -1;
-      walker.style.transform = 'translate(' + SPOTS[0] + 'px,0)';
+      setPos(SPOTS[0], 0);
+      if(scrollBox) scrollBox.scrollLeft = 0;
       lightOn(0);
-      if(scrollBox && scrollBox.scrollTo){ scrollBox.scrollTo({left:0, behavior:'smooth'}); }
       timer = setTimeout(function(){ if(!paused) next(); }, 1800);
-    }
-
-    function freezeX(){
-      var tr = window.getComputedStyle(walker).transform;
-      if(!tr || tr === 'none') return SPOTS[Math.max(0, cur)];
-      var nums = tr.replace('matrix3d(','').replace('matrix(','').replace(')','').split(',');
-      var x = parseFloat(nums[nums.length === 16 ? 12 : 4]);
-      return (isNaN(x) ? SPOTS[Math.max(0, cur)] : x);
     }
 
     function togglePause(){
       if(!started) return;
       paused = !paused;
       if(pauseBtn) pauseBtn.textContent = paused ? '继续' : '暂停';
-      clearTimeout(timer);
       if(paused){
-        if(pending >= 0){
-          var x = freezeX();
-          walker.style.transition = 'none';
-          walker.style.transform = 'translate(' + x + 'px,0)';
-          walker.getBoundingClientRect();
-          walker.style.transition = '';
-        }
+        clearTimeout(timer);
+        cancelAnimationFrame(raf); raf = null;
       } else {
-        if(pending >= 0){ to(pending); }
-        else { timer = setTimeout(function(){ if(!paused) next(); }, 700); }
+        if(walk){ walk.last = null; raf = requestAnimationFrame(frame); }
+        else { timer = setTimeout(function(){ if(!paused) next(); }, 800); }
       }
     }
 
     if(reduce){
-      walker.style.transform = 'translate(' + SPOTS[4] + 'px,0)';
-      sites[4].classList.add('on');
-      for(var b=0;b<items.length;b++){ items[b].classList.add('on'); }
+      setPos(SPOTS[4], 0);
+      for(var a=0;a<sites.length;a++){ sites[a].classList.toggle('on', a === 4); }
       look(4);
+      if(linesBox){ linesBox.classList.add('done'); }
       if(spur){ spur.style.opacity = '1'; }
-      follow(4);
+      followX(SPOTS[4]);
       if(pauseBtn){ pauseBtn.disabled = true; }
       if(replayBtn){ replayBtn.disabled = true; }
     } else {
