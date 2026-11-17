@@ -239,10 +239,7 @@ section[id]{scroll-margin-top:84px}
 .walker{will-change:transform}
 .walker .f-walk,.walker .f-walk2{opacity:0}
 .walker.walking .f-stand{opacity:0}
-.walker.walking .f-walk{animation:isoFA .44s steps(1,end) infinite}
-.walker.walking .f-walk2{animation:isoFB .44s steps(1,end) infinite}
-@keyframes isoFA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
-@keyframes isoFB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+.walker.walking .f-walk{opacity:1}50%,100%{opacity:1}}
 .walker.sitting .pose{animation:isoBreath 3.6s ease-in-out infinite}
 @keyframes isoBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
 .walker.cheering .pose{animation:isoCheer 1.2s ease-in-out infinite}
@@ -675,14 +672,14 @@ section[id]{scroll-margin-top:84px}
     var TL = [
       {k:'sit',   look:'lk-sit1', i:0, d:3600},
       {k:'rise',  look:'lk-stand1', i:0, d:600},
-      {k:'walk',  look:'lk-stand1', from:0, to:1, d:2200},
+      {k:'walk',  look:'lk-stand1', from:0, to:1, d:3000},
       {k:'stand', look:'lk-stand2', i:1, d:3400},
-      {k:'walk',  look:'lk-stand2', from:1, to:2, d:2200},
+      {k:'walk',  look:'lk-stand2', from:1, to:2, d:3000},
       {k:'sit',   look:'lk-sit3', i:2, d:3900},
       {k:'rise',  look:'lk-stand3', i:2, d:600},
-      {k:'walk',  look:'lk-stand3', from:2, to:3, d:2200},
+      {k:'walk',  look:'lk-stand3', from:2, to:3, d:3000},
       {k:'cheer', look:'lk-wave', i:3, d:3600},
-      {k:'walk',  look:'lk-stand4', from:3, to:4, d:2200},
+      {k:'walk',  look:'lk-stand4', from:3, to:4, d:3000},
       {k:'look',  look:'lk-look', i:4, d:4600}
     ];
     var sites = isoSvg.querySelectorAll('.site');
