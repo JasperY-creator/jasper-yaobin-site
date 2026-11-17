@@ -237,13 +237,12 @@ section[id]{scroll-margin-top:84px}
 .site.on .site-k,.site.on .site-s{fill:var(--accent)}
 .site.on .obj,.site.on .obj-top{stroke:var(--accent)}
 .walker{will-change:transform}
-.walker .f-walk{opacity:0}
+.walker .f-walk,.walker .f-walk2{opacity:0}
 .walker.walking .f-stand{opacity:0}
-.walker.walking .f-walk{opacity:1}
-.walker.walking .f-walk{animation:isoStepBob .32s ease-in-out infinite}
-@keyframes isoStepBob{0%,100%{transform:translateY(1px) rotate(-1deg)}50%{transform:translateY(-2.8px) rotate(1.1deg)}}
-.walker.walking .pose{animation:isoBob .32s ease-in-out infinite}
-@keyframes isoBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.2px)}}
+.walker.walking .f-walk{animation:isoFA .44s steps(1,end) infinite}
+.walker.walking .f-walk2{animation:isoFB .44s steps(1,end) infinite}
+@keyframes isoFA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes isoFB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
 .walker.sitting .pose{animation:isoBreath 3.6s ease-in-out infinite}
 @keyframes isoBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
 .walker.cheering .pose{animation:isoCheer 1.2s ease-in-out infinite}
@@ -495,22 +494,27 @@ section[id]{scroll-margin-top:84px}
             <g class="look lk-stand1">
               <image class="f-stand" href="assets/fig-01.png" x="-24.3" y="-143.0" width="48.6" height="143.0"/>
               <image class="f-walk" href="assets/step-01.png" x="-35.6" y="-143.0" width="71.2" height="143.0"/>
+              <image class="f-walk2" href="assets/step2-01.png" x="-36.8" y="-143" width="73.6" height="143"/>
             </g>
             <g class="look lk-stand2">
               <image class="f-stand" href="assets/fig-02.png" x="-22.0" y="-143.0" width="44.0" height="143.0"/>
               <image class="f-walk" href="assets/step-02.png" x="-35.9" y="-143.0" width="71.8" height="143.0"/>
+              <image class="f-walk2" href="assets/step2-02.png" x="-39.7" y="-143" width="79.4" height="143"/>
             </g>
             <g class="look lk-stand3">
               <image class="f-stand" href="assets/fig-03.png" x="-21.9" y="-143.0" width="43.8" height="143.0"/>
               <image class="f-walk" href="assets/step-03.png" x="-30.0" y="-143.0" width="60.0" height="143.0"/>
+              <image class="f-walk2" href="assets/step2-03.png" x="-31.1" y="-143" width="62.3" height="143"/>
             </g>
             <g class="look lk-stand4">
               <image class="f-stand" href="assets/fig-04.png" x="-21.1" y="-143.0" width="42.3" height="143.0"/>
               <image class="f-walk" href="assets/step-04.png" x="-31.2" y="-143.0" width="62.4" height="143.0"/>
+              <image class="f-walk2" href="assets/step2-04.png" x="-33.8" y="-143" width="67.6" height="143"/>
             </g>
             <g class="look lk-stand5">
               <image class="f-stand" href="assets/fig-05.png" x="-19.8" y="-143.0" width="39.6" height="143.0"/>
               <image class="f-walk" href="assets/step-05.png" x="-29.1" y="-143.0" width="58.3" height="143.0"/>
+              <image class="f-walk2" href="assets/step2-05.png" x="-29.8" y="-143" width="59.6" height="143"/>
             </g>
             <g class="look lk-sit1"><image class="" href="assets/sit-01.png" x="-36.0" y="-105.0" width="71.9" height="105.0"/></g>
             <g class="look lk-sit3"><image class="" href="assets/sit-03.png" x="-32.9" y="-105.0" width="65.8" height="105.0"/></g>
@@ -738,8 +742,6 @@ section[id]{scroll-margin-top:84px}
         var a = POS[st.from], b = POS[st.to];
         x = a[0] + (b[0] - a[0]) * t;
         y = a[1] + (b[1] - a[1]) * t;
-        // 每走一步落一下脚
-        y -= Math.abs(Math.sin(t * Math.PI * 7)) * 2.6;
         setClass('walk');
         lightOn(st.from);
       } else {
