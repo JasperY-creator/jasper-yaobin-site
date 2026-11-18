@@ -328,10 +328,8 @@ section[id]{scroll-margin-top:68px}
 .iso-shadow{position:absolute;bottom:0;left:0;width:4%;height:3.4%;transform:translateX(-50%);border-radius:50%;background:rgba(25,26,28,.13);z-index:2}
 @media (max-width:719px){
   .iso{max-width:100%;margin:2px 0 0}
-  .iso-scroll{aspect-ratio:auto;height:min(50vh, 62vw);display:flex;align-items:flex-end;
-    -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0,#000 9%);
-    mask-image:linear-gradient(to bottom,rgba(0,0,0,0) 0,#000 9%)}
-  .iso-track{top:auto;bottom:0;height:auto;width:279.07%}
+  .iso-scroll{--ih:min(40vh, 64vw);aspect-ratio:auto;height:var(--ih)}
+  .iso-track{top:0;height:100%;width:calc(var(--ih) * 3.75)}
   .iso-svg{height:auto}
 }
 
@@ -764,7 +762,11 @@ section[id]{scroll-margin-top:68px}
     var VW = 430;
     var trackX = -1;
     function frameTo(x){
-      var vx = mqNarrow.matches ? Math.max(0, Math.min(1200 - VW, x - VW / 2)) : 0;
+      var vw = VW;
+      if(mqNarrow.matches && scrollBox && isoTrackEl && isoTrackEl.offsetWidth){
+        vw = 1200 * scrollBox.clientWidth / isoTrackEl.offsetWidth;
+      }
+      var vx = mqNarrow.matches ? Math.max(0, Math.min(1200 - vw, x - vw / 2)) : 0;
       if(vx !== trackX){
         trackX = vx;
         isoTrackEl.style.transform = vx ? 'translateX(' + (-vx / 12).toFixed(2) + '%)' : 'translateX(0)';
