@@ -509,8 +509,10 @@ section[id]{scroll-margin-top:68px}
             <line class="det" x1="-74" y1="-128" x2="22" y2="-128" stroke="rgba(25,26,28,.1)"/>
             <g class="balloon"><ellipse cx="-118" cy="-208" rx="11" ry="13.5" fill="#E8DCC4" stroke="rgba(25,26,28,.16)"/><path d="M-118 -194 L-110 -150" stroke="rgba(25,26,28,.18)"/></g>
             <g class="balloon" style="animation-delay:1.1s"><ellipse cx="124" cy="-198" rx="9.5" ry="12" fill="#DCD5C4" stroke="rgba(25,26,28,.16)"/><path d="M124 -186 L116 -152" stroke="rgba(25,26,28,.18)"/></g>
-            <path d="M38 -28 L178 -28 L182 -24 L34 -24 Z" fill="#F7F2E6" stroke="rgba(25,26,28,.14)"/>
-            <image href="assets/aud-04.png" x="44" y="-70" width="126" height="50" preserveAspectRatio="xMidYMax meet"/>
+            <g id="aud4" opacity="0" style="transition:opacity .5s ease">
+              <path d="M38 -28 L178 -28 L182 -24 L34 -24 Z" fill="#F7F2E6" stroke="rgba(25,26,28,.14)"/>
+              <image href="assets/aud-04.png" x="44" y="-70" width="126" height="50" preserveAspectRatio="xMidYMax meet"/>
+            </g>
             <text class="site-k" x="-112" y="-8" text-anchor="start">04</text>
           </g>
 
@@ -818,12 +820,16 @@ section[id]{scroll-margin-top:68px}
         y = a[1] + (b[1] - a[1]) * t;
         setClass('walk');
         lightOn(st.from);
+        var audW = document.getElementById('aud4');
+        if(audW) audW.style.opacity = '0';
       } else {
         x = POS[st.i][0]; y = POS[st.i][1];
         var showTalk = (st.look === 'lk-talk2');
         if(friendEl) friendEl.style.display = showTalk ? 'block' : 'none';
         if(bubbleEl) bubbleEl.style.display = showTalk ? 'block' : 'none';
         if(bubblesEl) bubblesEl.classList.toggle('on', st.look === 'lk-look');
+        var aud4El = document.getElementById('aud4');
+        if(aud4El) aud4El.style.opacity = (st.look === 'lk-wave') ? '1' : '0';
         if(st.k === 'sit' || st.k === 'read'){ setClass('sit'); lightOn(st.i); }
         else if(st.k === 'cheer'){ setClass('cheer'); lightOn(st.i); }
         else if(st.k === 'rise'){ setClass('standing'); lightOn(st.i); }
