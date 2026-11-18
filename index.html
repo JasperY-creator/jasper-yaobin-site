@@ -54,7 +54,7 @@ section[id]{scroll-margin-top:84px}
 .hero-bg img{width:100%;height:205%;object-fit:cover;object-position:center top;opacity:.92;
   filter:sepia(.08) saturate(1.02) contrast(1.06) brightness(1.02)}
 .hero-bg::after{content:"";position:absolute;inset:0;
-  background:linear-gradient(180deg,var(--bg) 0%,rgba(243,240,233,.94) 24%,rgba(243,240,233,.75) 40%,rgba(243,240,233,.55) 52%,rgba(243,240,233,.38) 64%,rgba(243,240,233,.26) 78%,rgba(243,240,233,.2) 100%)}
+  background:linear-gradient(180deg,var(--bg) 0%,rgba(243,240,233,.94) 24%,rgba(243,240,233,.75) 40%,rgba(243,240,233,.55) 52%,rgba(243,240,233,.38) 64%,rgba(243,240,233,.5) 78%,rgba(243,240,233,.86) 92%,var(--bg) 100%)}
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;width:100%}
 .mast-rule{width:min(680px,74vw);height:1px;background:var(--ink);transform-origin:center}
 .hero-kicker{font-size:11px;letter-spacing:.4em;color:var(--ink-soft);margin:26px 0 0}
@@ -261,7 +261,7 @@ section[id]{scroll-margin-top:84px}
 .site.past .cast{opacity:.65}
 .site.past .glow{opacity:.18}
 .site .arch,.site .arch-top,.site .fill,.site .det{transition:stroke .6s}
-.site.on .arch,.site.on .fill{stroke:var(--accent)}
+.site.on .arch,.site.on .fill{stroke:rgba(174,59,44,.38)}
 .site.on .det{stroke:rgba(138,46,34,.42)}
 .balloon{animation:isoFloat 3.8s ease-in-out infinite}
 @keyframes isoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
@@ -302,7 +302,18 @@ section[id]{scroll-margin-top:84px}
 .walker{position:absolute;bottom:0;left:0;width:0;height:100%;z-index:3}
 .walker .look{position:absolute;bottom:0;left:0;width:0;height:100%;display:none}
 .walker .look img{position:absolute;bottom:0;left:0;height:44.7%;width:auto;max-width:none;transform:translateX(-50%)}
-.walker .look.lk-sit1 img,.walker .look.lk-sit3 img{height:32.8%}
+.walker .look.lk-sit1 img,.walker .look.lk-sit3 img,.walker .look.lk-read img{height:32.8%}
+.walker .look.lk-read img{transform:translateX(-57%)}
+.walker .look.lk-read .p1{animation:readA 1.5s steps(1,end) infinite}
+.walker .look.lk-read .p2{opacity:0;animation:readB 1.5s steps(1,end) infinite}
+@keyframes readA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+@keyframes readB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+.iso-track .bubble{position:absolute;left:32.6%;bottom:37%;display:none;z-index:4}
+.iso-track .bubble i{display:inline-block;width:5px;height:5px;border-radius:50%;background:rgba(174,59,44,.55);margin-right:3px;animation:talkdot 1.2s ease-in-out infinite}
+.iso-track .bubble i:nth-child(2){animation-delay:.18s}
+.iso-track .bubble i:nth-child(3){animation-delay:.36s}
+@keyframes talkdot{0%,100%{transform:translateY(0);opacity:.45}50%{transform:translateY(-3px);opacity:1}}
+.iso-track .friend{position:absolute;bottom:0;left:33.1%;height:44.7%;width:auto;max-width:none;transform:translateX(-50%);z-index:3;display:none}
 .iso-shadow{position:absolute;bottom:0;left:0;width:4%;height:3.4%;transform:translateX(-50%);border-radius:50%;background:rgba(25,26,28,.13);z-index:2}
 @media (max-width:719px){
   .iso-scroll{aspect-ratio:430/320}
@@ -411,9 +422,20 @@ section[id]{scroll-margin-top:84px}
             <line class="det" x1="-40" y1="-252" x2="-40" y2="-70" stroke="rgba(25,26,28,.12)"/>
             <line class="det" x1="40" y1="-252" x2="40" y2="-70" stroke="rgba(25,26,28,.12)"/>
             <line class="det" x1="66" y1="-252" x2="66" y2="-70" stroke="rgba(25,26,28,.18)"/>
-            <rect class="fill" x="-21" y="-142" width="42" height="72" fill="#E8E1D2" stroke="rgba(25,26,28,.26)"/>
-            <rect class="det" x="-27" y="-148" width="54" height="6" fill="#F2EEE3" stroke="rgba(25,26,28,.2)"/>
-            <line class="det" x1="0" y1="-142" x2="0" y2="-70" stroke="rgba(25,26,28,.2)"/>
+            <rect class="fill" x="-34" y="-166" width="68" height="158" fill="#EFE7D4" stroke="rgba(25,26,28,.26)"/>
+            <rect x="-30" y="-162" width="60" height="154" fill="#E7DEC9" opacity=".5"/>
+            <line x1="-30" y1="-134" x2="30" y2="-134" stroke="rgba(25,26,28,.15)"/>
+            <rect x="-27" y="-150" width="54" height="3" fill="rgba(25,26,28,.13)"/>
+            <rect x="-25" y="-161" width="4" height="11" fill="#8A2E22" opacity=".42"/>
+            <rect x="-18" y="-161" width="4" height="11" fill="rgba(25,26,28,.2)"/>
+            <rect x="-11" y="-161" width="4" height="11" fill="#AE3B2C" opacity=".38"/>
+            <rect x="-4" y="-161" width="4" height="11" fill="rgba(25,26,28,.16)"/>
+            <line x1="-30" y1="-100" x2="30" y2="-100" stroke="rgba(25,26,28,.11)"/>
+            <rect x="-26" y="-142" width="3" height="9" fill="#AE3B2C" opacity=".6"/>
+            <rect x="-20" y="-142" width="3" height="9" fill="rgba(25,26,28,.18)"/>
+            <rect x="17" y="-142" width="3" height="9" fill="#8A2E22" opacity=".4"/>
+            <rect class="det" x="-40" y="-172" width="80" height="6" fill="#F2EEE3" stroke="rgba(25,26,28,.22)"/>
+            <image href="assets/crest-swust.png" x="-12" y="-212" width="24" height="24" preserveAspectRatio="xMidYMid meet"/>
             <rect x="-36" y="-224" width="30" height="6" fill="#AE3B2C" opacity=".8"/>
             <rect x="2" y="-224" width="30" height="6" fill="rgba(25,26,28,.28)"/>
             <rect x="-36" y="-214" width="20" height="5" fill="rgba(25,26,28,.16)"/>
@@ -424,16 +446,13 @@ section[id]{scroll-margin-top:84px}
           <!-- 02 北交大 · 校门 -->
           <g class="site" id="site2" transform="translate(350,378)">
             <ellipse class="glow" cx="0" cy="0" rx="120" ry="14" fill="#E2C98A"/>
-            <path class="cast" d="M-140 0 L140 0 L170 15 L-110 15 Z" fill="rgba(25,26,28,.05)"/>
-            <rect class="arch" x="-142" y="-58" width="72" height="58" fill="#F7F3E8" stroke="rgba(25,26,28,.24)"/>
-            <rect class="arch" x="70" y="-58" width="72" height="58" fill="#F7F3E8" stroke="rgba(25,26,28,.24)"/>
-            <path class="arch-top" d="M-142 -58 L-70 -58 L-64 -64 L-136 -64 Z" fill="#FCFAF3" stroke="rgba(25,26,28,.18)"/>
-            <path class="arch-top" d="M70 -58 L142 -58 L136 -64 L64 -64 Z" fill="#FCFAF3" stroke="rgba(25,26,28,.18)"/>
+            <path class="cast" d="M-100 0 L100 0 L124 13 L-78 13 Z" fill="rgba(25,26,28,.05)"/>
             <rect class="arch" x="-78" y="-164" width="26" height="164" fill="#FCFAF3" stroke="rgba(25,26,28,.26)"/>
             <rect class="arch" x="52" y="-164" width="26" height="164" fill="#FCFAF3" stroke="rgba(25,26,28,.26)"/>
             <rect class="arch" x="-86" y="-190" width="172" height="26" fill="#F2EEE3" stroke="rgba(25,26,28,.26)"/>
             <rect class="fill" x="-42" y="-183" width="84" height="14" fill="#FCFAF3" stroke="rgba(25,26,28,.2)"/>
-            <text x="0" y="-173" text-anchor="middle" style="font-family:'Noto Sans SC',sans-serif;font-size:9px;letter-spacing:.16em;fill:#5C5952">北京交通大学</text>
+            <image href="assets/crest-bjtu.png" x="-39" y="-181.5" width="11" height="11" preserveAspectRatio="xMidYMid meet"/>
+            <text x="6" y="-173" text-anchor="middle" style="font-family:'Noto Sans SC',sans-serif;font-size:9px;letter-spacing:.16em;fill:#5C5952">北京交通大学</text>
             <text class="site-k" x="-132" y="-8" text-anchor="start">02</text>
           </g>
 
@@ -521,11 +540,15 @@ section[id]{scroll-margin-top:84px}
           <div class="look lk-stand5">
             <img class="f-stand" src="assets/fig-05.png" alt=""><div class="bodybox"><img src="assets/step-05.png" alt=""></div><div class="legbox la"><img src="assets/step-05.png" alt=""></div><div class="legbox lb"><img src="assets/step2-05.png" alt=""></div>
           </div>
+          <div class="look lk-read"><img class="p1" src="assets/read-01.png" alt=""><img class="p2" src="assets/read2-01.png" alt=""></div>
+          <div class="look lk-talk2"><img src="assets/fig-02.png" alt=""></div>
           <div class="look lk-sit1"><img src="assets/sit-01.png" alt=""></div>
           <div class="look lk-sit3"><img src="assets/sit-03.png" alt=""></div>
           <div class="look lk-wave"><img src="assets/wave-04.png" alt=""></div>
           <div class="look lk-look"><img src="assets/look-05.png" alt=""></div>
         </div>
+        <img class="friend" id="friend2" src="assets/friend-02.png" alt="">
+        <div class="bubble" id="bubble2"><i></i><i></i><i></i></div>
       </div>
     </div>
       <div class="iso-lines" id="isoLines">
@@ -678,10 +701,10 @@ section[id]{scroll-margin-top:84px}
     var POS = [[120,378],[350,378],[570,378],[800,378],[980,378]];
     // 每个阶段的姿态、位置、时长（每站停留 ≥3s）
     var TL = [
-      {k:'sit',   look:'lk-sit1', i:0, d:3600},
+      {k:'read',  look:'lk-read',  i:0, d:4400},
       {k:'rise',  look:'lk-stand1', i:0, d:600},
       {k:'walk',  look:'lk-stand1', from:0, to:1, d:3000},
-      {k:'stand', look:'lk-stand2', i:1, d:3400},
+      {k:'talk',  look:'lk-talk2', i:1, d:3800},
       {k:'walk',  look:'lk-stand2', from:1, to:2, d:3000},
       {k:'sit',   look:'lk-sit3', i:2, d:3900},
       {k:'rise',  look:'lk-stand3', i:2, d:600},
@@ -701,6 +724,8 @@ section[id]{scroll-margin-top:84px}
     var replayBtn = document.getElementById('isoReplay');
     var box = document.getElementById('isoBox');
     var shadow = document.getElementById('isoShadow');
+    var friendEl = document.getElementById('friend2');
+    var bubbleEl = document.getElementById('bubble2');
 
     var paused = false, started = false, el = 0, last = null, raf = null, curIdx = -1, litAt = -1;
 
@@ -766,7 +791,10 @@ section[id]{scroll-margin-top:84px}
         lightOn(st.from);
       } else {
         x = POS[st.i][0]; y = POS[st.i][1];
-        if(st.k === 'sit'){ setClass('sit'); lightOn(st.i); }
+        var showTalk = (st.look === 'lk-talk2');
+        if(friendEl) friendEl.style.display = showTalk ? 'block' : 'none';
+        if(bubbleEl) bubbleEl.style.display = showTalk ? 'block' : 'none';
+        if(st.k === 'sit' || st.k === 'read'){ setClass('sit'); lightOn(st.i); }
         else if(st.k === 'cheer'){ setClass('cheer'); lightOn(st.i); }
         else if(st.k === 'rise'){ setClass('standing'); lightOn(st.i); }
         else { setClass('stand'); lightOn(st.i); }
@@ -819,6 +847,7 @@ section[id]{scroll-margin-top:84px}
       if(linesBox){ linesBox.classList.remove('done'); }
       if(scrollBox){ scrollBox.scrollLeft = 0; }
       apply(TL[0], 0);
+      if(friendEl) friendEl.style.display='none';
       raf = requestAnimationFrame(tick);
     }
 
