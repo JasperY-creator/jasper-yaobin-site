@@ -244,11 +244,8 @@ section[id]{scroll-margin-top:84px}
 .walker .look .bodybox img{position:absolute;bottom:0;left:50%;height:100%;width:auto;max-width:none;transform:translateX(-50%)}
 .walker .look .legbox img{position:absolute;bottom:0;left:50%;height:100%;width:auto;max-width:none;transform:translateX(-50%)}
 .walker.walking .f-stand{opacity:0}
-.walker.walking .bodybox{opacity:1}
-.walker.walking .legbox.la{animation:legA .46s steps(1,end) infinite}
-.walker.walking .legbox.lb{animation:legB .46s steps(1,end) infinite}
-@keyframes legA{0%,49.9%{opacity:1}50%,100%{opacity:0}}
-@keyframes legB{0%,49.9%{opacity:0}50%,100%{opacity:1}}
+.walker.walking .bodybox{opacity:1;clip-path:none;-webkit-clip-path:none}
+.walker.walking .legbox{opacity:0!important;animation:none!important}
 .walker.sitting .pose{animation:isoBreath 3.6s ease-in-out infinite}
 @keyframes isoBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
 .walker.cheering .pose{animation:isoCheer 1.2s ease-in-out infinite}
