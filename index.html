@@ -89,7 +89,7 @@ section[id]{scroll-margin-top:68px}
 
 /* ===== 区块 ===== */
 .sec{padding:110px 0 20px;background:var(--bg);position:relative;z-index:1}
-#journey{padding-top:40px}
+#journey{padding-top:24px}
 .sec-head{max-width:1080px;margin:0 auto 46px;padding:0 24px}
 .kicker{font-size:11px;letter-spacing:.32em;color:var(--accent)}
 .sec-title{font-family:"Noto Serif SC","Songti SC",serif;font-weight:600;font-size:clamp(30px,5vw,46px);
@@ -286,7 +286,7 @@ section[id]{scroll-margin-top:68px}
 .iso-l-x{display:block;font-style:normal;font-size:13px;font-weight:300;line-height:1.75;color:var(--ink-soft);margin-top:9px}
 .iso-row{display:none}
 .iso-lines.done .iso-line{display:none}
-.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:flex-start;gap:56px;padding-top:6px}
+.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:6px}
 .iso-row span{font-size:12px;letter-spacing:.06em;color:var(--ink-soft);white-space:nowrap}
 .iso-row b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
 .iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
@@ -327,7 +327,7 @@ section[id]{scroll-margin-top:68px}
 .iso-track .friend{position:absolute;bottom:0;left:33.1%;height:44.7%;width:auto;max-width:none;transform:translateX(-50%);z-index:3;display:none}
 .iso-shadow{position:absolute;bottom:0;left:0;width:4%;height:3.4%;transform:translateX(-50%);border-radius:50%;background:rgba(25,26,28,.13);z-index:2}
 @media (max-width:719px){
-  .iso{max-width:calc(34vh * 430 / 320);margin:2px auto 0}
+  .iso{max-width:min(92%, calc(38vh * 430 / 320));margin:2px auto 0}
   .iso-scroll{aspect-ratio:430/320}
   .iso-track{width:279.07%}
 }
@@ -338,7 +338,9 @@ section[id]{scroll-margin-top:68px}
   .iso-l-x{font-size:12.5px}
   .iso-lines{min-height:0}
   .iso-lines.done{min-height:0}
-  .iso-lines.done .iso-row{flex-wrap:wrap;gap:9px 22px}
+  .iso-lines.done .iso-row{display:flex;justify-content:space-between;gap:0;width:100%}
+  .iso-lines.done .iso-row span{font-size:11px}
+  .iso-lines.done .iso-row span:last-child{text-align:right}
   .iso-row span{font-size:11.5px}
   .iso-ctrl{flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px}
 }
