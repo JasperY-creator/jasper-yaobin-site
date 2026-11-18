@@ -237,14 +237,14 @@ section[id]{scroll-margin-top:84px}
 .site.on .site-k,.site.on .site-s{fill:var(--accent)}
 .site.on .obj,.site.on .obj-top{stroke:var(--accent)}
 .walker{will-change:transform}
-.walker .f-walk,.walker .f-legswap{opacity:0}
+.walker .f-walk{opacity:0}
+.walker .look .legbox{position:absolute;bottom:0;left:50%;width:120px;margin-left:-60px;height:44.7%;overflow:hidden;
+  clip-path:inset(60% 0 0 0);-webkit-clip-path:inset(60% 0 0 0);opacity:0}
+.walker .look .legbox img{position:absolute;bottom:0;left:50%;height:100%;width:auto;max-width:none;transform:translateX(-50%)}
 .walker.walking .f-stand{opacity:0}
-.walker.walking .f-walk{animation:isoCycA .54s steps(1,end) infinite}
-.walker.walking .f-stand{animation:isoCycB .54s steps(1,end) infinite}
-.walker.walking .f-legswap{animation:isoCycC .54s steps(1,end) infinite}
-@keyframes isoCycA{0%,33.2%{opacity:1}33.3%,100%{opacity:0}}
-@keyframes isoCycB{0%,33.2%{opacity:0}33.3%,66.5%{opacity:1}66.6%,100%{opacity:0}}
-@keyframes isoCycC{0%,66.5%{opacity:0}66.6%,100%{opacity:1}}50%,100%{opacity:1}}50%,100%{opacity:1}}
+.walker.walking .f-walk{opacity:1}
+.walker.walking .look .legbox{animation:legSwap .44s steps(1,end) infinite}
+@keyframes legSwap{0%,49.9%{opacity:0}50%,100%{opacity:1}}
 .walker.sitting .pose{animation:isoBreath 3.6s ease-in-out infinite}
 @keyframes isoBreath{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.4px)}}
 .walker.cheering .pose{animation:isoCheer 1.2s ease-in-out infinite}
@@ -506,19 +506,19 @@ section[id]{scroll-margin-top:84px}
         <div id="isoShadow" class="iso-shadow"></div>
         <div id="walker" class="walker">
           <div class="look lk-stand1">
-            <img class="f-stand" src="assets/fig-01.png" alt=""><img class="f-walk" src="assets/step-01.png" alt=""><img class="f-legswap" src="assets/step2-01.png" alt="">
+            <img class="f-stand" src="assets/fig-01.png" alt=""><img class="f-walk" src="assets/step-01.png" alt=""><div class="legbox"><img class="f-legswap" src="assets/step2-01.png" alt=""></div>
           </div>
           <div class="look lk-stand2">
-            <img class="f-stand" src="assets/fig-02.png" alt=""><img class="f-walk" src="assets/step-02.png" alt=""><img class="f-legswap" src="assets/step2-02.png" alt="">
+            <img class="f-stand" src="assets/fig-02.png" alt=""><img class="f-walk" src="assets/step-02.png" alt=""><div class="legbox"><img class="f-legswap" src="assets/step2-02.png" alt=""></div>
           </div>
           <div class="look lk-stand3">
-            <img class="f-stand" src="assets/fig-03.png" alt=""><img class="f-walk" src="assets/step-03.png" alt=""><img class="f-legswap" src="assets/step2-03.png" alt="">
+            <img class="f-stand" src="assets/fig-03.png" alt=""><img class="f-walk" src="assets/step-03.png" alt=""><div class="legbox"><img class="f-legswap" src="assets/step2-03.png" alt=""></div>
           </div>
           <div class="look lk-stand4">
-            <img class="f-stand" src="assets/fig-04.png" alt=""><img class="f-walk" src="assets/step-04.png" alt=""><img class="f-legswap" src="assets/step2-04.png" alt="">
+            <img class="f-stand" src="assets/fig-04.png" alt=""><img class="f-walk" src="assets/step-04.png" alt=""><div class="legbox"><img class="f-legswap" src="assets/step2-04.png" alt=""></div>
           </div>
           <div class="look lk-stand5">
-            <img class="f-stand" src="assets/fig-05.png" alt=""><img class="f-walk" src="assets/step-05.png" alt=""><img class="f-legswap" src="assets/step2-05.png" alt="">
+            <img class="f-stand" src="assets/fig-05.png" alt=""><img class="f-walk" src="assets/step-05.png" alt=""><div class="legbox"><img class="f-legswap" src="assets/step2-05.png" alt=""></div>
           </div>
           <div class="look lk-sit1"><img src="assets/sit-01.png" alt=""></div>
           <div class="look lk-sit3"><img src="assets/sit-03.png" alt=""></div>
