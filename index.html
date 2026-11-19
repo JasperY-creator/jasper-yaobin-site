@@ -409,9 +409,17 @@ section[id]{scroll-margin-top:68px}
 .path-item--scroll .parch-roll::after{left:7px;width:11px;height:11px}
 .path-item--scroll .parch-roll::before{left:12px;width:4px;height:4px}
 .path-item--scroll .parch-seal{width:38px;height:29px;bottom:-2px}
-.path .path-item--teach{width:min(540px,90%);margin-right:16px}
-.path-item--teach .pi-wrap{flex:0 0 44%;min-width:0;padding-top:4px}
-.path-item--teach .pi-ph{order:6;flex:0 0 48%;height:286px;position:relative;border:0;background:none;display:block;align-self:center}
+.path .path-item--teach{width:min(560px,92%);margin-right:16px;display:flex;flex-wrap:wrap;align-items:flex-start}
+.path-item--teach .proof{order:3;flex:1 0 100%;margin-top:24px}
+.path-item--teach .proof-note{margin:0 0 9px;font:500 11.5px/1.5 var(--serif,serif);letter-spacing:.05em;color:#8B8578}
+.path-item--teach .proof-pics{display:flex;align-items:flex-start;gap:14px}
+.path-item--teach .proof-pics figure{margin:0;background:#fff;padding:5px;box-shadow:0 6px 16px rgba(25,26,28,.10)}
+.path-item--teach .proof-pics img{display:block;width:100%;height:auto}
+.path-item--teach .p-chat{flex:0 0 33%;transform:rotate(-1.4deg)}
+.path-item--teach .p-report{flex:0 0 47%;transform:rotate(1.1deg);margin-top:14px;box-shadow:0 8px 20px rgba(25,26,28,.13)}
+
+.path-item--teach .pi-wrap{order:1;flex:0 0 46%;min-width:0;padding-top:4px}
+.path-item--teach .pi-ph{order:2;flex:0 0 46%;height:286px;position:relative;border:0;background:none;display:block;align-self:center}
 .path-item--teach .pi-ph figure{margin:0;background:#fff;padding:5px;box-shadow:0 6px 18px rgba(25,26,28,.10)}
 .path-item--teach .pi-ph figure img{display:block;width:100%;height:auto;object-fit:cover}
 .path-item--teach .teach-a{position:absolute;right:0;top:0;width:54%;transform:rotate(-1.2deg)}
@@ -484,6 +492,9 @@ section[id]{scroll-margin-top:68px}
   .path-item--scroll{display:block;width:88%}
   .path .path-item--teach{display:block;width:88%}
   .path-item--teach .pi-ph{width:auto;height:250px;margin-top:20px}
+  .path-item--teach .proof{margin-top:20px}
+  .path-item--teach .proof-pics{gap:10px}
+  .path-item--teach .p-chat{flex:0 0 38%}
   .path-item--scroll .pi-t{font-size:14px}
   .path-item--scroll .parch{width:auto;flex:none;margin-top:18px;padding-bottom:34px}
   .path-item--scroll .parch-body{padding:20px 20px 18px}
@@ -914,7 +925,7 @@ section[id]{scroll-margin-top:68px}
             <div class="pi-wrap">
               <p class="pi-no"><em>01</em> · 学业</p>
               <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
-              <p class="pi-x">语法、术语和语感，是那几年一天天练出来的。</p>
+              <p class="pi-x">语法和语感，是那几年一天天练出来的。</p>
 
             </div>
             <div class="parch">
@@ -944,11 +955,18 @@ section[id]{scroll-margin-top:68px}
             <div class="pi-wrap">
               <p class="pi-no"><em>02</em> · 讲台</p>
               <h3 class="pi-t">把课讲到别人真会做</h3>
-              <p class="pi-x">学校的「勤学堂」带四六级，新东方教雅思。<br>备课、上课、改作业——讲清楚比讲得多难。</p>
+              <p class="pi-x">学校「勤学堂」带四六级，新东方教雅思。<br>看到学员分数往上走，比自己考高分还开心。<br>教学相长——教别人的同时，我也在被练。</p>
             </div>
             <div class="pi-ph">
               <figure class="teach-a"><img src="assets/teach-01.jpg" alt="勤学堂英语任课教师聘书"></figure>
               <figure class="teach-b"><img src="assets/teach-02.jpg" alt="新东方雅思课堂"></figure>
+            </div>
+            <div class="proof">
+              <p class="proof-note">学员发来的成绩单 · 雅思 7.0</p>
+              <div class="proof-pics">
+                <figure class="p-chat"><img src="assets/score-chat.jpg" alt="学员发来的雅思成绩聊天记录"></figure>
+                <figure class="p-report"><img src="assets/score-report.jpg" alt="雅思考试成绩：听力8.0 阅读7.0 写作6.5 口语7.0 总分7.0"></figure>
+              </div>
             </div>
           </div>
           <div class="path-item">
@@ -1312,7 +1330,7 @@ section[id]{scroll-margin-top:68px}
         var phA = A.querySelector('.pi-ph, .parch'), phB = B.querySelector('.pi-ph, .parch');
         var boxR = box.getBoundingClientRect();
         var ax, ay, bx, by;
-        if(phA){ var ra = phA.getBoundingClientRect(); ax = ra.left - boxR.left + ra.width / 2; ay = ra.bottom - boxR.top; }
+        if(phA){ var ra = phA.getBoundingClientRect(); ax = ra.left - boxR.left + ra.width / 2; ay = A.getBoundingClientRect().bottom - boxR.top; }
         else { var ra2 = A.getBoundingClientRect(); ax = ra2.left - boxR.left + ra2.width * .5; ay = ra2.bottom - boxR.top; }
         if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width / 2; }
         else { var rb3 = B.getBoundingClientRect(); bx = rb3.left - boxR.left + rb3.width * .5; }
