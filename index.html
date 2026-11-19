@@ -391,7 +391,18 @@ section[id]{scroll-margin-top:68px}
 .pi-t{text-wrap:balance;font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-weight:400;font-size:17.5px;line-height:1.7;letter-spacing:.03em;margin:0 0 10px;color:var(--ink)}
 .pi-x{font-size:12px;font-weight:300;line-height:1.95;color:var(--ink-soft);margin:0;max-width:305px}
 .pi-ph{order:-1;flex:0 0 30%;aspect-ratio:4/5;align-self:flex-start;border:1px dashed rgba(25,26,28,.16);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.14em;color:#A9A399;background:#fff}
-.path-item--scroll{display:block;width:min(540px,92%)}
+.path-item--scroll{display:flex;gap:26px;align-items:flex-start;width:min(560px,92%)}
+.path-item--scroll .pi-wrap{flex:1;min-width:0;padding-top:2px}
+.path-item--scroll .parch{order:-1;flex:0 0 38%;margin-top:0;padding-bottom:30px}
+.path-item--scroll .parch-body{padding:18px 16px 16px}
+.path-item--scroll .parch-t{font-size:14px;margin-bottom:2px;letter-spacing:.04em}
+.path-item--scroll .parch-sub{font-size:9.5px;letter-spacing:.05em;margin-bottom:10px}
+.path-item--scroll .parch-list li{font-size:10.5px;line-height:1.95;gap:6px}
+.path-item--scroll .parch-list li span{flex-basis:13px;font-size:11px}
+.path-item--scroll .parch-roll{left:-8px;right:-8px;height:18px;border-radius:9px}
+.path-item--scroll .parch-roll::after{left:7px;width:11px;height:11px}
+.path-item--scroll .parch-roll::before{left:12px;width:4px;height:4px}
+.path-item--scroll .parch-seal{width:38px;height:29px;bottom:-2px}
 .parch{position:relative;margin-top:22px;padding-bottom:36px}
 .parch-body{position:relative;background:#FEFDF9;border:1px solid rgba(25,26,28,.18);border-radius:2px;padding:28px 32px 24px;box-shadow:3px 4px 0 rgba(25,26,28,.035)}
 .parch-t{font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-size:19px;letter-spacing:.05em;margin:0 0 5px;color:var(--ink)}
@@ -445,6 +456,16 @@ section[id]{scroll-margin-top:68px}
   .pi-t{font-size:14px;line-height:1.7}
   .pi-x{font-size:11.5px;line-height:1.9;max-width:none}
   .pi-ph{flex-basis:26%}
+  .path-item--scroll{display:block}
+  .path-item--scroll .parch{width:auto;flex:none;margin-top:18px;padding-bottom:34px}
+  .path-item--scroll .parch-body{padding:20px 20px 18px}
+  .path-item--scroll .parch-t{font-size:17px;margin-bottom:4px}
+  .path-item--scroll .parch-sub{font-size:10.5px;margin-bottom:12px}
+  .path-item--scroll .parch-list li{font-size:11.5px;line-height:2.05;gap:8px}
+  .path-item--scroll .parch-list li span{flex-basis:15px;font-size:12px}
+  .path-item--scroll .parch-roll{left:-10px;right:-10px;height:22px;border-radius:11px}
+  .path-item--scroll .parch-roll::after{left:9px;width:14px;height:14px}
+  .path-item--scroll .parch-seal{width:46px;height:35px;bottom:-3px}
   .parch-body{padding:22px 22px 20px}
   .parch-t{font-size:17px}
   .parch-sub{font-size:10.5px;margin-bottom:13px}
@@ -872,28 +893,30 @@ section[id]{scroll-margin-top:68px}
               <p class="pi-no"><em>01</em> · 学业</p>
               <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
               <p class="pi-x">专四、专八、雅思、CATTI，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
-              <div class="parch">
-                <div class="parch-body">
-                  <p class="parch-t">本科解锁成就</p>
-                  <p class="parch-sub">七件，一件一件攒下来的</p>
-                  <ul class="parch-list">
-                    <li><span>✅</span>专四 · 专八</li>
-                    <li><span>✅</span>雅思</li>
-                    <li><span>✅</span>CATTI 笔译证书</li>
-                    <li><span>✅</span>国际英语人才证书</li>
-                    <li><span>🏅</span>连续四年，院级各类奖学金</li>
-                    <li><span>🎖</span>中西部翻译大赛 · 全国口译奖项</li>
-                    <li><span>🎓</span>保研资格</li>
-                  </ul>
-                </div>
-                <div class="parch-roll"></div>
-                <div class="parch-seal"><svg viewBox="0 0 58 44" aria-hidden="true">
-                  <path d="M21 1 C 21 16 26 24 29 26 M 37 1 C 37 16 32 24 29 26" fill="none" stroke="rgba(25,26,28,.35)" stroke-width="1.4"/>
-                  <circle cx="29" cy="35" r="8.6" fill="#8A6A3F"/>
-                  <circle cx="29" cy="35" r="5" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
-                </svg></div>
-              </div>
+
             </div>
+            <div class="parch">
+              <div class="parch-body">
+                <p class="parch-t">本科解锁成就</p>
+                <p class="parch-sub">七件，一件一件攒下来的</p>
+                <ul class="parch-list">
+                  <li><span>✅</span>专四 · 专八</li>
+                  <li><span>✅</span>雅思</li>
+                  <li><span>✅</span>CATTI 笔译证书</li>
+                  <li><span>✅</span>国际英语人才证书</li>
+                  <li><span>🏅</span>连续四年，院级各类奖学金</li>
+                  <li><span>🎖</span>中西部翻译大赛 · 全国口译奖项</li>
+                  <li><span>🎓</span>保研资格</li>
+                </ul>
+              </div>
+              <div class="parch-roll"></div>
+              <div class="parch-seal"><svg viewBox="0 0 58 44" aria-hidden="true">
+                <path d="M21 1 C 21 16 26 24 29 26 M 37 1 C 37 16 32 24 29 26" fill="none" stroke="rgba(25,26,28,.35)" stroke-width="1.4"/>
+                <circle cx="29" cy="35" r="8.6" fill="#8A6A3F"/>
+                <circle cx="29" cy="35" r="5" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+              </svg></div>
+            </div>
+
           </div>
           <div class="path-item">
             <div class="pi-wrap">
@@ -1260,7 +1283,7 @@ section[id]{scroll-margin-top:68px}
 
       for(var i=0;i<items.length-1;i++){
         var A = items[i], B = items[i+1];
-        var phA = A.querySelector('.pi-ph'), phB = B.querySelector('.pi-ph');
+        var phA = A.querySelector('.pi-ph, .parch'), phB = B.querySelector('.pi-ph, .parch');
         var ax, ay, bx, by;
         if(phA){ ax = A.offsetLeft + phA.offsetLeft + phA.offsetWidth / 2; ay = A.offsetTop + phA.offsetTop + phA.offsetHeight; }
         else { ax = A.offsetLeft + A.offsetWidth * .5; ay = A.offsetTop + A.offsetHeight; }
