@@ -299,8 +299,8 @@ section[id]{scroll-margin-top:68px}
 .iso-row{display:none}
 .iso-lines.done .iso-line{display:none}
 .iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:6px}
-.iso-row span{font-size:12px;letter-spacing:.06em;color:var(--ink-soft);white-space:nowrap}
-.iso-row b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
+.iso-row button{font-size:12px;letter-spacing:.06em;white-space:nowrap}
+.iso-row button b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
 .iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
 .iso-hint{font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);font-weight:300}
 .iso-btns{display:flex;gap:10px;flex-shrink:0}
@@ -352,9 +352,9 @@ section[id]{scroll-margin-top:68px}
   .iso-lines{min-height:0}
   .iso-lines.done{min-height:0}
   .iso-lines.done .iso-row{display:flex;justify-content:space-between;gap:0;width:100%}
-  .iso-lines.done .iso-row span{font-size:11px}
-  .iso-lines.done .iso-row span:last-child{text-align:right}
-  .iso-row span{font-size:11.5px}
+  .iso-lines.done .iso-row button{font-size:11px}
+  .iso-lines.done .iso-row button:last-child{justify-content:flex-end}
+  .iso-row button{font-size:11.5px}
   .iso-ctrl{flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px}
 }
 
@@ -365,6 +365,57 @@ section[id]{scroll-margin-top:68px}
   .tl-fill{width:100%}
   .iso-line.on{animation:none}
 }
+
+/* ===== 节点按钮 + 手指光标 ===== */
+.iso-row button{appearance:none;-webkit-appearance:none;background:none;border:0;padding:0;font:inherit;cursor:pointer;display:inline-flex;align-items:baseline;color:var(--ink-soft);transition:color .25s ease,letter-spacing .25s ease}
+.iso-row button:hover,.iso-row button:focus-visible{color:var(--ink);letter-spacing:.1em}
+.iso-row button:focus-visible{outline:1px dashed rgba(25,26,28,.35);outline-offset:5px}
+.iso-row button.done{opacity:.42}
+.iso-lines.done{padding-bottom:74px;position:relative}
+.hands{position:absolute;left:0;right:0;top:34px;height:0;pointer-events:none}
+.hand{position:absolute;top:0;transform:translateX(-50%);opacity:0;transition:opacity .55s ease}
+.hand.in{opacity:1;animation:handBob 2.4s ease-in-out infinite}
+.hand svg{display:block;width:17px;height:26px}
+.hand .tip{position:absolute;left:19px;top:1px;white-space:nowrap;font-size:10.5px;letter-spacing:.1em;color:var(--accent)}
+@keyframes handBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
+
+/* ===== 阶段记忆抽屉 ===== */
+.memo{position:fixed;inset:0;z-index:95;background:var(--bg);display:none;overflow-y:auto;overscroll-behavior:contain}
+.memo.on{display:block;animation:memoIn .4s ease both}
+@keyframes memoIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.memo-in{max-width:760px;margin:0 auto;padding:0 34px 90px}
+.memo-top{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:26px 0 18px;border-bottom:1px solid var(--line);background:var(--bg)}
+.memo-back{appearance:none;background:none;border:0;padding:0;cursor:pointer;font-family:inherit;font-size:12px;letter-spacing:.14em;color:var(--ink-soft);display:inline-flex;align-items:center;gap:8px;transition:color .25s ease,transform .25s ease}
+.memo-back:hover{color:var(--ink);transform:translateX(-3px)}
+.memo-back:focus{outline:none}
+.memo-back:focus-visible{outline:1px dashed rgba(25,26,28,.3);outline-offset:5px}
+.memo-count{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.22em;color:var(--ink-soft)}
+.memo-p{display:none;margin-top:36px}
+.memo-p.on{display:block}
+.memo-kick{font-size:11px;letter-spacing:.26em;color:var(--accent);margin:0 0 18px}
+.memo-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:30px;line-height:1.45;letter-spacing:.02em;margin:0 0 16px}
+.memo-x{font-size:13.5px;font-weight:300;line-height:2;color:var(--ink-soft);margin:0 0 30px;max-width:620px}
+.memo-list{list-style:none;padding:0;margin:0 0 34px;border-top:1px solid var(--line)}
+.memo-list li{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.9;color:var(--ink-soft)}
+.memo-list li span{flex:0 0 46px;font-family:"Cormorant Garamond",serif;font-size:11px;letter-spacing:.16em;color:var(--accent);padding-top:4px}
+.memo-pics{display:flex;gap:16px;align-items:flex-end}
+.memo-pics img{width:calc(50% - 0px);height:340px;object-fit:contain;display:block;background:#fff;padding:6px}
+.memo-foot{margin-top:44px;font-size:11px;letter-spacing:.14em;color:#9C978C}
+@media (max-width:719px){
+  .memo-in{padding:0 20px 70px}
+  .memo-top{padding:18px 0 14px}
+  .memo-p{margin-top:26px}
+  .memo-kick{font-size:10px;letter-spacing:.18em;margin-bottom:14px}
+  .memo-t{font-size:22px;line-height:1.5;margin-bottom:14px}
+  .memo-x{font-size:12.5px;line-height:1.9;margin-bottom:24px}
+  .memo-list li{font-size:12.5px;gap:12px;padding:12px 0}
+  .memo-list li span{flex-basis:40px;font-size:10px}
+  .hand .tip{left:50%;top:25px;transform:translateX(-50%);font-size:10px}
+  .memo-pics{gap:10px}
+  .memo-pics img{height:230px;padding:4px}
+  .memo-foot{margin-top:30px;font-size:10px}
+}
+
 </style>
 </head>
 <body>
@@ -666,7 +717,7 @@ section[id]{scroll-margin-top:68px}
           <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
         </p>
         <div class="iso-row" id="isoRow">
-          <span><b>01</b>起点</span><span><b>02</b>保研</span><span><b>03</b>实习</span><span><b>04</b>二份实习</span><span><b>05</b>现在</span>
+          <button type="button" data-i="0"><b>01</b>起点</button><button type="button" data-i="1"><b>02</b>保研</button><button type="button" data-i="2"><b>03</b>实习</button><button type="button" data-i="3"><b>04</b>二份实习</button><button type="button" data-i="4"><b>05</b>现在</button>
         </div>
       </div>
 
@@ -679,6 +730,7 @@ section[id]{scroll-margin-top:68px}
       </div>
     </div>
   </div>
+
 </section>
 
 <!-- ===== 视图：兴趣 ===== -->
@@ -761,6 +813,60 @@ section[id]{scroll-margin-top:68px}
   <span>© 2026 JASPER 姚斌</span>
   <span>本站是手写 HTML · 欢迎抄作业</span>
 </footer>
+
+<!-- ===== 阶段记忆抽屉（仅由节点按钮打开） ===== -->
+<div class="memo" id="memo" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="memo-in">
+    <div class="memo-top">
+      <button class="memo-back" id="memoBack" type="button"><span aria-hidden="true">←</span> 返回旅程</button>
+      <span class="memo-count" id="memoCount">01 / 05</span>
+    </div>
+    <div class="memo-pages" id="memoPages">
+      <article class="memo-p" data-i="0">
+        <p class="memo-kick">01 — 起点 · 西南科技大学 · 外语</p>
+        <h2 class="memo-t">先把「敢开口」练出来</h2>
+        <p class="memo-x">外语是我自己选的路：想和不同文化背景的人无障碍沟通，于是本科四年一直在练听、说、读、写、译。</p>
+        <ul class="memo-list"><li><span>入学</span>西南科技大学外语专业，主修英语</li><li><span>在校</span>开始学第二、第三外语，泡在语言角和跨文化交流活动里</li><li><span>毕业</span>拿到推免资格，选择继续读笔译</li></ul>
+        <div class="memo-pics"><img src="assets/fig-01.png" alt=""><img src="assets/read-01.png" alt=""></div>
+        <p class="memo-foot">配图暂用站点素材，可换成校园照片、成绩单、活动合影</p>
+      </article>
+      <article class="memo-p" data-i="1">
+        <p class="memo-kick">02 — 保研 · 北京交通大学 · 笔译</p>
+        <h2 class="memo-t">把「会说」练成「译得准」</h2>
+        <p class="memo-x">读研两年，一边夯实听说读写译，一边试着把语言和 AI 放在一起看；笔译的工夫，是在标点、语感和术语里一点点抠出来的。</p>
+        <ul class="memo-list"><li><span>研一</span>系统训笔译：CATTI 方向训练，用 YiCAT 做翻译与术语实践</li><li><span>研一</span>参与 AI 翻译项目评测，做语言供应商管理</li><li><span>研二</span>把「人怎么评、机器怎么译」写成自己的判断</li></ul>
+        <div class="memo-pics"><img src="assets/fig-02.png" alt=""><img src="assets/friend-talk-02.png" alt=""></div>
+        <p class="memo-foot">配图暂用站点素材，可换成论文、项目界面、工牌</p>
+      </article>
+      <article class="memo-p" data-i="2">
+        <p class="memo-kick">03 — 实习 · 字节 语言中心</p>
+        <h2 class="memo-t">看清翻译在业务里怎么跑</h2>
+        <p class="memo-x">从课堂走进业务现场：翻译不只是「译得对」，还要译得快、说得清、能复用。</p>
+        <ul class="memo-list"><li><span>第一份</span>字节语言中心：翻译、术语、质量评测</li><li><span>日常</span>听业务怎么提需求，看一份译文怎么进产品</li><li><span>收获</span>知道语言能力在大厂里能换成什么</li></ul>
+        <div class="memo-pics"><img src="assets/fig-03.png" alt=""><img src="assets/sit-03.png" alt=""></div>
+        <p class="memo-foot">配图暂用站点素材，可换成工位照、项目文档截图</p>
+      </article>
+      <article class="memo-p" data-i="3">
+        <p class="memo-kick">04 — 第二份实习 · 字节 飞书商业化</p>
+        <h2 class="memo-t">从语言区跨到商业化现场</h2>
+        <p class="memo-x">活水只是想看看语言之外还能做什么，结果一头扎进 toB 营销中台：策划、开会、跟进、出差成了日常。</p>
+        <ul class="memo-list"><li><span>转岗</span>活水到飞书商业化，做客户活动</li><li><span>日常</span>策划、开会、跟进、出差：成了空中飞人和活动 PMO</li><li><span>现场</span>办座谈与分享会，把客户请到台前</li></ul>
+        <div class="memo-pics"><img src="assets/fig-04.png" alt=""><img src="assets/speak-04.png" alt=""></div>
+        <p class="memo-foot">配图暂用站点素材，可换成活动现场照、议程、合影</p>
+      </article>
+      <article class="memo-p" data-i="4">
+        <p class="memo-kick">05 — 现在 · 秋招进行中</p>
+        <h2 class="memo-t">线还没画完</h2>
+        <p class="memo-x">还在飞书商业化的工位上，也在往外递简历。往哪走还没定，但想去的方向已经清楚。</p>
+        <ul class="memo-list"><li><span>此刻</span>在职 + 秋招并行</li><li><span>方向</span>AI 初创 / 互联网 / 继续深造 / 创业</li><li><span>下一步</span>把语言、AI 与商业化的经验拼成一条自己的路</li></ul>
+        <div class="memo-pics"><img src="assets/fig-05.png" alt=""><img src="assets/look-05.png" alt=""></div>
+        <p class="memo-foot">配图暂用站点形象，可换成简历、offer、近期作品</p>
+      </article>
+    </div>
+  </div>
+</div>
+
+
 
 <script>
 (function(){
@@ -905,6 +1011,7 @@ section[id]{scroll-margin-top:68px}
       var st = TL[TL.length - 1];
       apply(st, 1);
       if(linesBox){ linesBox.classList.add('done'); }
+      showHands();
       raf = null;
       if(pauseBtn){ pauseBtn.disabled = true; }
     }
@@ -924,6 +1031,88 @@ section[id]{scroll-margin-top:68px}
       apply(TL[idx], Math.max(0, Math.min(1, t)));
       raf = requestAnimationFrame(tick);
     }
+
+    /* ===== 节点按钮 → 阶段记忆抽屉 ===== */
+    var memoEl = document.getElementById('memo');
+    var memoBack = document.getElementById('memoBack');
+    var memoCount = document.getElementById('memoCount');
+    var memoPages = document.getElementById('memoPages');
+    var isoRowEl = document.getElementById('isoRow');
+    var visited = {};
+    var handsBox = null;
+
+    function hideHand(i){
+      if(!handsBox){ return; }
+      var h = handsBox.querySelector('.hand[data-i="' + i + '"]');
+      if(h){
+        h.classList.remove('in'); h.style.opacity = '0';
+        setTimeout(function(){ if(h.parentNode){ h.parentNode.removeChild(h); } }, 600);
+      }
+    }
+
+    function showHands(){
+      if(!isoRowEl || handsBox){ return; }
+      var box = document.getElementById('isoLines');
+      if(!box){ return; }
+      handsBox = document.createElement('div');
+      handsBox.className = 'hands';
+      box.appendChild(handsBox);
+      var btns = isoRowEl.querySelectorAll('button');
+      var cR = box.getBoundingClientRect();
+      for(var k=0;k<btns.length;k++){
+        var bR = btns[k].getBoundingClientRect();
+        var h = document.createElement('div');
+        h.className = 'hand';
+        h.setAttribute('data-i', k);
+        h.innerHTML = '<svg viewBox="0 0 17 26" aria-hidden="true" fill="none" stroke="#7E786B" stroke-width="1"><rect x="6.2" y="1" width="4.6" height="13.6" rx="2.3" fill="#D9D3C4"/><rect x="3.4" y="11.6" width="10.2" height="10.2" rx="4.2" fill="#D9D3C4"/><rect x="1.2" y="13.4" width="3.8" height="5.6" rx="1.9" fill="#D9D3C4" transform="rotate(-18 3.1 16.2)"/></svg>' + (k === 0 ? '<span class="tip">看看我做了什么</span>' : '');
+        h.style.left = (bR.left + bR.width / 2 - cR.left) + 'px';
+        h.style.top = (bR.bottom - cR.top + 4) + 'px';
+        handsBox.appendChild(h);
+        if(visited[k]){ continue; }
+        (function(el, d){ setTimeout(function(){ el.classList.add('in'); }, d); })(h, 260 + k * 180);
+      }
+    }
+
+    function openMemo(i){
+      if(!memoEl || !memoPages){ return; }
+      var ps = memoPages.querySelectorAll('.memo-p');
+      for(var j=0;j<ps.length;j++){ ps[j].classList.toggle('on', j === i); }
+      if(memoCount){ memoCount.textContent = '0' + (i + 1) + ' / 05'; }
+      memoEl.classList.add('on');
+      memoEl.setAttribute('aria-hidden', 'false');
+      memoEl.scrollTop = 0;
+      document.body.style.overflow = 'hidden';
+      var b = isoRowEl.querySelector('button[data-i="' + i + '"]');
+      if(b){ b.classList.add('done'); }
+      visited[i] = 1;
+      hideHand(i);
+    }
+
+    function closeMemo(){
+      if(!memoEl){ return; }
+      memoEl.classList.remove('on');
+      memoEl.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    function resetMemo(){
+      visited = {};
+      if(handsBox && handsBox.parentNode){ handsBox.parentNode.removeChild(handsBox); }
+      handsBox = null;
+      if(isoRowEl){
+        var bs = isoRowEl.querySelectorAll('button');
+        for(var k=0;k<bs.length;k++){ bs[k].classList.remove('done'); }
+      }
+    }
+
+    if(isoRowEl){
+      isoRowEl.addEventListener('click', function(e){
+        var b = e.target.closest ? e.target.closest('button') : null;
+        if(b && b.getAttribute('data-i') !== null){ openMemo(parseInt(b.getAttribute('data-i'), 10)); }
+      });
+    }
+    if(memoBack){ memoBack.addEventListener('click', closeMemo); }
+    document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMemo(); } });
 
     function preloadThen(fn){
       var seen = 0, fired = false;
@@ -964,7 +1153,7 @@ section[id]{scroll-margin-top:68px}
       if(replayBtn){ replayBtn.disabled = true; }
     } else {
       if(pauseBtn){ pauseBtn.addEventListener('click', togglePause); }
-      if(replayBtn){ replayBtn.addEventListener('click', function(){ started = true; preloadThen(begin); }); }
+      if(replayBtn){ replayBtn.addEventListener('click', function(){ resetMemo(); closeMemo(); started = true; preloadThen(begin); }); }
       if(box && 'IntersectionObserver' in window){
         var ioIso = new IntersectionObserver(function(entries){
           entries.forEach(function(e){
