@@ -346,6 +346,7 @@ section[id]{scroll-margin-top:68px}
 @media (max-width:719px){
   .iso{max-width:100%;margin:2px 0 0}
   .iso-scroll{--ih:min(40vh, 64vw);aspect-ratio:auto;height:var(--ih)}
+  @supports (height:100svh){ .iso-scroll{--ih:min(40svh, 64vw)} }
   .iso-track{top:0;height:100%;width:calc(var(--ih) * 3.75)}
   .iso-svg{height:auto}
 }
@@ -506,6 +507,19 @@ section[id]{scroll-margin-top:68px}
   .path-item--scroll .parch-roll::after{left:9px;width:14px;height:14px}
   .path-item--scroll .parch-seal{width:46px;height:35px;bottom:-3px}
 }
+
+/* ---- 人物渲染加固（iOS） ---- */
+.walker{transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.walker .look img,.walker .look .bodybox img,.walker .look .legbox img,.friend{-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.walker .look img{aspect-ratio:.34}
+.walker .look .bodybox img,.walker .look .legbox img{aspect-ratio:.5}
+.walker .look.lk-talk2 img{aspect-ratio:.273}
+.walker .look.lk-sit1 img{aspect-ratio:.685}
+.walker .look.lk-sit3 img{aspect-ratio:.627}
+.walker .look.lk-wave img{aspect-ratio:.296}
+.walker .look.lk-look img{aspect-ratio:.276}
+.walker .look.lk-read img{aspect-ratio:.631}
+.friend{aspect-ratio:.285}
 
 </style>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
@@ -1381,6 +1395,8 @@ section[id]{scroll-margin-top:68px}
     window.addEventListener('load', function(){ setTimeout(openFromHash, 120); });
     window.addEventListener('hashchange', openFromHash);
     function preloadThen(fn){
+      var extra = document.querySelectorAll('#walker img, #walker .look img, .friend');
+      for(var ei=0;ei<extra.length;ei++){ if(extra[ei].decode){ try{ extra[ei].decode(); }catch(e){} } }
       var seen = 0, fired = false;
       var list = ['fig-01','fig-02','fig-03','fig-04','fig-05','step-01','step-02','step-03','step-04','step-05',
                   'step2-01','step2-02','step2-03','step2-04','step2-05','sit-01','sit-03','wave-04','look-05'];
