@@ -379,6 +379,18 @@ section[id]{scroll-margin-top:68px}
 .hand .tip{position:absolute;left:19px;top:1px;white-space:nowrap;font-size:10.5px;letter-spacing:.1em;color:var(--accent)}
 @keyframes handBob{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-5px)}}
 
+
+/* ===== 起点路线图 ===== */
+.path{position:relative;margin-top:6px}
+.path-item{position:relative;width:min(430px,68%);background:#FBFAF6;border:1px solid var(--line);padding:22px 24px 18px;margin-bottom:74px}
+.path-item:last-child{margin-bottom:0}
+.path-item:nth-child(even){margin-left:auto}
+.pi-no{font-size:10.5px;letter-spacing:.22em;color:var(--accent);margin:0 0 12px}
+.pi-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:19px;line-height:1.55;letter-spacing:.02em;margin:0 0 10px}
+.pi-x{font-size:12.5px;font-weight:300;line-height:1.95;color:var(--ink-soft);margin:0 0 16px}
+.pi-ph{height:132px;border:1px dashed rgba(25,26,28,.2);display:flex;align-items:center;justify-content:center;font-size:10.5px;letter-spacing:.16em;color:#A9A399;margin:0 -8px 0}
+.path-lines{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+
 /* ===== 阶段记忆抽屉 ===== */
 .memo{position:fixed;inset:0;z-index:95;background:var(--bg);display:none;overflow-y:auto;overscroll-behavior:contain}
 .memo.on{display:block;animation:memoIn .4s ease both}
@@ -414,6 +426,10 @@ section[id]{scroll-margin-top:68px}
   .memo-pics{gap:10px}
   .memo-pics img{height:230px;padding:4px}
   .memo-foot{margin-top:30px;font-size:10px}
+  .path-item{width:88%;padding:16px 16px 14px;margin-bottom:56px}
+  .pi-t{font-size:16px;line-height:1.5}
+  .pi-x{font-size:12px;line-height:1.85}
+  .pi-ph{height:104px}
 }
 
 </style>
@@ -827,9 +843,33 @@ section[id]{scroll-margin-top:68px}
         <p class="memo-kick">01 — 起点 · 西南科技大学 · 外语</p>
         <h2 class="memo-t">先把「敢开口」练出来</h2>
         <p class="memo-x">外语是我自己选的路：想和不同文化背景的人无障碍沟通，于是本科四年一直在练听、说、读、写、译。</p>
-        <ul class="memo-list"><li><span>入学</span>西南科技大学外语专业，主修英语</li><li><span>在校</span>开始学第二、第三外语，泡在语言角和跨文化交流活动里</li><li><span>毕业</span>拿到推免资格，选择继续读笔译</li></ul>
-        <div class="memo-pics"><img src="assets/fig-01.png" alt=""><img src="assets/read-01.png" alt=""></div>
-        <p class="memo-foot">配图暂用站点素材，可换成校园照片、成绩单、活动合影</p>
+        <div class="path" id="path0">
+          <div class="path-item">
+            <p class="pi-no">01 · 学业</p>
+            <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
+            <p class="pi-x">专四、专八再加笔译证书，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
+            <div class="pi-ph">图片占位 · 待补</div>
+          </div>
+          <div class="path-item">
+            <p class="pi-no">02 · 社团</p>
+            <h3 class="pi-t">第一次「组织」一件事</h3>
+            <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
+            <div class="pi-ph">图片占位 · 待补</div>
+          </div>
+          <div class="path-item">
+            <p class="pi-no">03 · 讲台</p>
+            <h3 class="pi-t">把知识讲成别人听得懂的话</h3>
+            <p class="pi-x">备课、上课、改作业。站在讲台上才发现，讲清楚比讲得多难。</p>
+            <div class="pi-ph">图片占位 · 待补</div>
+          </div>
+          <div class="path-item">
+            <p class="pi-no">04 · 大四实习</p>
+            <h3 class="pi-t">第一次用英语做生意</h3>
+            <p class="pi-x">外贸实习：报价、跟单、写邮件、对接海外客户。英语是工具，生意才是内容。</p>
+            <div class="pi-ph">图片占位 · 待补</div>
+          </div>
+          <svg class="path-lines" aria-hidden="true"></svg>
+        </div>
       </article>
       <article class="memo-p" data-i="1">
         <p class="memo-kick">02 — 保研 · 北京交通大学 · 笔译</p>
@@ -1103,6 +1143,7 @@ section[id]{scroll-margin-top:68px}
       document.body.style.overflow = 'hidden';
       visited[i] = 1;
       hideHand(i);
+      setTimeout(drawPaths, 60);
     }
 
     function closeMemo(){
@@ -1130,6 +1171,41 @@ section[id]{scroll-margin-top:68px}
     }
     if(memoBack){ memoBack.addEventListener('click', closeMemo); }
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMemo(); } });
+
+    /* ===== 起点路线图：折线连接 ===== */
+    var NS = 'http://www.w3.org/2000/svg';
+    function drawPaths(){
+      var box = document.getElementById('path0');
+      if(!box || !memoEl || !memoEl.classList.contains('on')){ return; }
+      var svg = box.querySelector('.path-lines');
+      var items = box.querySelectorAll('.path-item');
+      if(!svg || items.length < 2){ return; }
+      var W = box.offsetWidth, H = box.offsetHeight;
+      svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
+      svg.setAttribute('width', W); svg.setAttribute('height', H);
+      while(svg.firstChild){ svg.removeChild(svg.firstChild); }
+      for(var i=0;i<items.length-1;i++){
+        var A = items[i], B = items[i+1];
+        var ax = A.offsetLeft + A.offsetWidth / 2, ay = A.offsetTop + A.offsetHeight;
+        var bx = B.offsetLeft + B.offsetWidth / 2, by = B.offsetTop;
+        var d = 'M ' + ax + ' ' + ay + ' L ' + ax + ' ' + (ay + 20) + ' L ' + bx + ' ' + (by - 22) + ' L ' + bx + ' ' + by;
+        var pl = document.createElementNS(NS, 'polyline');
+        pl.setAttribute('points', [ax + ',' + ay, ax + ',' + (ay + 20), bx + ',' + (by - 22), bx + ',' + by].join(' '));
+        pl.setAttribute('fill', 'none');
+        pl.setAttribute('stroke', 'rgba(25,26,28,.28)');
+        pl.setAttribute('stroke-width', '1');
+        svg.appendChild(pl);
+        var tri = document.createElementNS(NS, 'polygon');
+        tri.setAttribute('points', [bx - 3.5 + ',' + (by - 8), bx + 3.5 + ',' + (by - 8), bx + ',' + by].join(' '));
+        tri.setAttribute('fill', 'rgba(25,26,28,.45)');
+        svg.appendChild(tri);
+      }
+    }
+    var pathTimer = null;
+    window.addEventListener('resize', function(){
+      clearTimeout(pathTimer);
+      pathTimer = setTimeout(drawPaths, 180);
+    });
 
     function preloadThen(fn){
       var seen = 0, fired = false;
