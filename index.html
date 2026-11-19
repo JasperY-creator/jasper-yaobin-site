@@ -409,6 +409,15 @@ section[id]{scroll-margin-top:68px}
 .path-item--scroll .parch-roll::after{left:7px;width:11px;height:11px}
 .path-item--scroll .parch-roll::before{left:12px;width:4px;height:4px}
 .path-item--scroll .parch-seal{width:38px;height:29px;bottom:-2px}
+.path .path-item--teach{width:min(540px,90%);margin-right:16px}
+.path-item--teach .pi-wrap{flex:0 0 44%;min-width:0;padding-top:4px}
+.path-item--teach .pi-ph{order:6;flex:0 0 48%;height:286px;position:relative;border:0;background:none;display:block;align-self:center}
+.path-item--teach .pi-ph figure{margin:0;background:#fff;padding:5px;box-shadow:0 6px 18px rgba(25,26,28,.10)}
+.path-item--teach .pi-ph figure img{display:block;width:100%;height:auto;object-fit:cover}
+.path-item--teach .teach-a{position:absolute;right:0;top:0;width:54%;transform:rotate(-1.2deg)}
+.path-item--teach .teach-a img{aspect-ratio:3/4}
+.path-item--teach .teach-b{position:absolute;left:0;bottom:0;width:74%;transform:rotate(1.6deg);z-index:2;box-shadow:0 10px 22px rgba(25,26,28,.14)}
+.path-item--teach .teach-b img{aspect-ratio:3/2}
 .parch{position:relative;margin-top:22px;padding-bottom:36px}
 .parch-body{position:relative;background:#FEFDF9;border:1px solid rgba(25,26,28,.18);border-radius:2px;padding:28px 32px 24px;box-shadow:3px 4px 0 rgba(25,26,28,.035)}
 .parch-t{font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-size:19px;letter-spacing:.05em;margin:0 0 5px;color:var(--ink)}
@@ -473,6 +482,8 @@ section[id]{scroll-margin-top:68px}
 
 @media (max-width:559px){
   .path-item--scroll{display:block;width:88%}
+  .path .path-item--teach{display:block;width:88%}
+  .path-item--teach .pi-ph{width:auto;height:250px;margin-top:20px}
   .path-item--scroll .pi-t{font-size:14px}
   .path-item--scroll .parch{width:auto;flex:none;margin-top:18px;padding-bottom:34px}
   .path-item--scroll .parch-body{padding:20px 20px 18px}
@@ -929,19 +940,22 @@ section[id]{scroll-margin-top:68px}
             </div>
 
           </div>
-          <div class="path-item">
+          <div class="path-item path-item--teach">
             <div class="pi-wrap">
-              <p class="pi-no"><em>02</em> · 社团</p>
-              <h3 class="pi-t">第一次「组织」一件事</h3>
-              <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
+              <p class="pi-no"><em>02</em> · 讲台</p>
+              <h3 class="pi-t">把课讲到别人真会做</h3>
+              <p class="pi-x">学校的「勤学堂」带四六级，新东方教雅思。<br>备课、上课、改作业——讲清楚比讲得多难。</p>
             </div>
-            <div class="pi-ph">图片占位</div>
+            <div class="pi-ph">
+              <figure class="teach-a"><img src="assets/teach-01.jpg" alt="勤学堂英语任课教师聘书"></figure>
+              <figure class="teach-b"><img src="assets/teach-02.jpg" alt="新东方雅思课堂"></figure>
+            </div>
           </div>
           <div class="path-item">
             <div class="pi-wrap">
-              <p class="pi-no"><em>03</em> · 讲台</p>
-              <h3 class="pi-t">把知识讲成别人听得懂的话</h3>
-              <p class="pi-x">备课、上课、改作业。站在讲台上才发现，讲清楚比讲得多难。</p>
+              <p class="pi-no"><em>03</em> · 社团</p>
+              <h3 class="pi-t">第一次「组织」一件事</h3>
+              <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
             </div>
             <div class="pi-ph">图片占位</div>
           </div>
@@ -1229,6 +1243,7 @@ section[id]{scroll-margin-top:68px}
       visited[i] = 1;
       hideHand(i);
       setTimeout(drawPaths, 60);
+      setTimeout(drawPaths, 340);
     }
 
     function closeMemo(){
@@ -1295,11 +1310,13 @@ section[id]{scroll-margin-top:68px}
       for(var i=0;i<items.length-1;i++){
         var A = items[i], B = items[i+1];
         var phA = A.querySelector('.pi-ph, .parch'), phB = B.querySelector('.pi-ph, .parch');
+        var boxR = box.getBoundingClientRect();
         var ax, ay, bx, by;
-        if(phA){ ax = A.offsetLeft + phA.offsetLeft + phA.offsetWidth / 2; ay = A.offsetTop + phA.offsetTop + phA.offsetHeight; }
-        else { ax = A.offsetLeft + A.offsetWidth * .5; ay = A.offsetTop + A.offsetHeight; }
-        if(phB){ bx = B.offsetLeft + phB.offsetLeft + phB.offsetWidth / 2; by = B.offsetTop + phB.offsetTop; }
-        else { bx = B.offsetLeft + B.offsetWidth * .5; by = B.offsetTop; }
+        if(phA){ var ra = phA.getBoundingClientRect(); ax = ra.left - boxR.left + ra.width / 2; ay = ra.bottom - boxR.top; }
+        else { var ra2 = A.getBoundingClientRect(); ax = ra2.left - boxR.left + ra2.width * .5; ay = ra2.bottom - boxR.top; }
+        if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width / 2; }
+        else { var rb3 = B.getBoundingClientRect(); bx = rb3.left - boxR.left + rb3.width * .5; }
+        by = B.getBoundingClientRect().top - boxR.top;
         var y1 = ay + 18, y2 = by - 22;
 
         var pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
@@ -1330,7 +1347,10 @@ section[id]{scroll-margin-top:68px}
         }
       }
     }
-    var pathTimer = null;
+
+    window.addEventListener('load', function(){ setTimeout(drawPaths, 400); });
+    var __dpT;
+    window.addEventListener('resize', function(){ clearTimeout(__dpT); __dpT = setTimeout(drawPaths, 120); });    var pathTimer = null;
     window.addEventListener('resize', function(){
       clearTimeout(pathTimer);
       pathTimer = setTimeout(drawPaths, 180);
