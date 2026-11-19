@@ -724,7 +724,8 @@ section[id]{scroll-margin-top:68px}
       <div class="iso-ctrl">
         <p class="iso-hint">自动播放 · 五个站点，一屏看完</p>
         <div class="iso-btns">
-          <button class="iso-btn" id="isoPause" type="button">暂停</button>
+          <button class="iso-btn" id="isoPrev" type="button">上一站</button>
+        <button class="iso-btn" id="isoPause" type="button">暂停</button>
           <button class="iso-btn" id="isoReplay" type="button">重播</button>
         </div>
       </div>
@@ -912,10 +913,12 @@ section[id]{scroll-margin-top:68px}
     var sites = isoSvg.querySelectorAll('.site');
     var looks = document.querySelectorAll('#walker .look');
     var lines = document.querySelectorAll('.iso-line');
+    var TOTAL = 0; for(var ti=0;ti<TL.length;ti++){ TOTAL += TL[ti].d; }
     var linesBox = document.getElementById('isoLines');
     var scrollBox = document.getElementById('isoScroll');
     var pauseBtn = document.getElementById('isoPause');
     var replayBtn = document.getElementById('isoReplay');
+    var prevBtn = document.getElementById('isoPrev');
     var box = document.getElementById('isoBox');
     var shadow = document.getElementById('isoShadow');
     var friendEl = document.getElementById('friend2');
@@ -1008,11 +1011,13 @@ section[id]{scroll-margin-top:68px}
     }
 
     function finish(){
+      if(dir < 0){ raf = requestAnimationFrame(tick); return; }
       var st = TL[TL.length - 1];
       apply(st, 1);
       if(linesBox){ linesBox.classList.add('done'); }
       showHands();
       raf = null;
+      syncPrev();
       if(pauseBtn){ pauseBtn.disabled = true; }
     }
 
@@ -1020,7 +1025,21 @@ section[id]{scroll-margin-top:68px}
       if(last === null){ last = ts; }
       var dt = ts - last; last = ts;
       if(dt > 60){ dt = 60; }
-      if(!paused){ el += dt; }
+      if(!paused){ el += dt * dir; }
+      if(el >= TOTAL){ el = dir > 0 ? TOTAL : TOTAL - 1; }
+      if(el < 0){ el = 0; }
+      if(dir < 0 && stopEl !== null && el <= stopEl){
+        el = stopEl; dir = 1; stopEl = null; paused = true;
+        if(pauseBtn){ pauseBtn.textContent = '继续'; }
+      }
+      var list = stopList();
+      var lastStop = list[list.length - 1].at;
+      if(el < lastStop - 1){
+        if(linesBox){ linesBox.classList.remove('done'); }
+        if(handsBox && handsBox.parentNode){ handsBox.parentNode.removeChild(handsBox); }
+        handsBox = null;
+      }
+      syncPrev();
       var acc = 0, idx = -1, t = 0;
       for(var i=0;i<TL.length;i++){
         if(el < acc + TL[i].d){ idx = i; t = (el - acc) / TL[i].d; break; }
@@ -1082,8 +1101,6 @@ section[id]{scroll-margin-top:68px}
       memoEl.setAttribute('aria-hidden', 'false');
       memoEl.scrollTop = 0;
       document.body.style.overflow = 'hidden';
-      var b = isoRowEl.querySelector('button[data-i="' + i + '"]');
-      if(b){ b.classList.add('done'); }
       visited[i] = 1;
       hideHand(i);
     }
@@ -1127,14 +1144,66 @@ section[id]{scroll-margin-top:68px}
       setTimeout(go, 2500);
     }
 
+    /* ===== 回看：时间轴倒放 ===== */
+    var dir = 1, stopEl = null, stopsCache = null;
+
+    function stopList(){
+      if(stopsCache){ return stopsCache; }
+      var acc = 0, out = [];
+      for(var i=0;i<TL.length;i++){
+        if(TL[i].k !== 'walk'){ out.push({ at: acc, i: TL[i].i }); }
+        acc += TL[i].d;
+      }
+      stopsCache = out;
+      return out;
+    }
+
+    function prevTarget(){
+      var list = stopList();
+      var acc = 0, idx = TL.length - 1;
+      for(var i=0;i<TL.length;i++){
+        if(el < acc + TL[i].d){ idx = i; break; }
+        acc += TL[i].d;
+      }
+      var curI = TL[idx].k === 'walk' ? TL[idx].from : TL[idx].i;
+      var target = curI - 1;
+      if(target < 0){ return null; }
+      for(var i=list.length-1;i>=0;i--){
+        if(list[i].i === target){ return list[i]; }
+      }
+      return null;
+    }
+
+    function syncPrev(){
+      if(!prevBtn){ return; }
+      prevBtn.disabled = !prevTarget();
+    }
+
+    function seekBack(){
+      if(!started){ return; }
+      var tgt = prevTarget();
+      if(!tgt){ return; }
+      closeMemo();
+      var walkAt = null, acc = 0;
+      for(var i=0;i<TL.length;i++){
+        if(TL[i].k === 'walk' && TL[i].from === tgt.i){ walkAt = acc; break; }
+        acc += TL[i].d;
+      }
+      var stop = (walkAt !== null) ? walkAt - 2 : tgt.at;
+      paused = false; dir = -2; stopEl = stop; last = null;
+      if(pauseBtn){ pauseBtn.disabled = false; pauseBtn.textContent = '暂停'; }
+      if(raf === null){ raf = requestAnimationFrame(tick); }
+    }
+
     function begin(){
       cancelAnimationFrame(raf); raf = null;
-      paused = false; el = 0; last = null; curIdx = -1; litAt = -1;
+      paused = false; el = 0; last = null; curIdx = -1; litAt = -1; dir = 1; stopEl = null;
       if(pauseBtn){ pauseBtn.textContent = '暂停'; pauseBtn.disabled = false; }
       if(linesBox){ linesBox.classList.remove('done'); }
       if(scrollBox){ scrollBox.scrollLeft = 0; }
       apply(TL[0], 0);
       if(friendEl) friendEl.style.display='none';
+      syncPrev();
       raf = requestAnimationFrame(tick);
     }
 
@@ -1151,8 +1220,10 @@ section[id]{scroll-margin-top:68px}
       frameTo(POS[4][0]);
       if(pauseBtn){ pauseBtn.disabled = true; }
       if(replayBtn){ replayBtn.disabled = true; }
+      if(prevBtn){ prevBtn.disabled = true; }
     } else {
       if(pauseBtn){ pauseBtn.addEventListener('click', togglePause); }
+      if(prevBtn){ prevBtn.addEventListener('click', seekBack); }
       if(replayBtn){ replayBtn.addEventListener('click', function(){ resetMemo(); closeMemo(); started = true; preloadThen(begin); }); }
       if(box && 'IntersectionObserver' in window){
         var ioIso = new IntersectionObserver(function(entries){
