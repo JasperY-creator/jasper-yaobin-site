@@ -391,6 +391,19 @@ section[id]{scroll-margin-top:68px}
 .pi-t{text-wrap:balance;font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-weight:400;font-size:17.5px;line-height:1.7;letter-spacing:.03em;margin:0 0 10px;color:var(--ink)}
 .pi-x{font-size:12px;font-weight:300;line-height:1.95;color:var(--ink-soft);margin:0;max-width:305px}
 .pi-ph{order:-1;flex:0 0 30%;aspect-ratio:4/5;align-self:flex-start;border:1px dashed rgba(25,26,28,.16);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.14em;color:#A9A399;background:#fff}
+.path-item--scroll{display:block;width:min(540px,92%)}
+.parch{position:relative;margin-top:22px;padding-bottom:36px}
+.parch-body{position:relative;background:#FEFDF9;border:1px solid rgba(25,26,28,.18);border-radius:2px;padding:28px 32px 24px;box-shadow:3px 4px 0 rgba(25,26,28,.035)}
+.parch-t{font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-size:19px;letter-spacing:.05em;margin:0 0 5px;color:var(--ink)}
+.parch-sub{font-family:"LXGW WenKai Lite",serif;font-size:11px;letter-spacing:.1em;color:var(--accent);margin:0 0 15px}
+.parch-list{list-style:none;margin:0;padding:0}
+.parch-list li{display:flex;gap:9px;align-items:baseline;font-size:12.5px;line-height:2.1;color:var(--ink-soft)}
+.parch-list li span{flex:0 0 16px;font-size:13px;text-align:center;line-height:1}
+.parch-roll{position:absolute;left:-14px;right:-14px;bottom:20px;height:26px;background:#FEFDF9;border:1px solid rgba(25,26,28,.18);border-radius:13px;box-shadow:inset 0 -3px 0 rgba(25,26,28,.05)}
+.parch-roll::after{content:"";position:absolute;left:11px;top:50%;transform:translateY(-50%);width:15px;height:15px;border:1px solid rgba(25,26,28,.3);border-radius:50%;background:#FFFEFB}
+.parch-roll::before{content:"";position:absolute;left:18px;top:50%;transform:translateY(-50%);width:5px;height:5px;border-radius:50%;background:rgba(25,26,28,.22);z-index:1}
+.parch-seal{position:absolute;left:50%;bottom:-4px;transform:translateX(-50%);width:58px;height:44px;pointer-events:none}
+.parch-seal svg{width:100%;height:100%;display:block}
 .path-lines{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 
 /* ===== 阶段记忆抽屉 ===== */
@@ -432,6 +445,13 @@ section[id]{scroll-margin-top:68px}
   .pi-t{font-size:14px;line-height:1.7}
   .pi-x{font-size:11.5px;line-height:1.9;max-width:none}
   .pi-ph{flex-basis:26%}
+  .parch-body{padding:22px 22px 20px}
+  .parch-t{font-size:17px}
+  .parch-sub{font-size:10.5px;margin-bottom:13px}
+  .parch-list li{font-size:11.5px;line-height:2.05;gap:8px}
+  .parch-list li span{flex-basis:15px;font-size:12px}
+  .parch-roll{left:-10px;right:-10px;height:22px}
+  .parch-seal{width:48px;height:37px}
 }
 
 </style>
@@ -847,13 +867,33 @@ section[id]{scroll-margin-top:68px}
         <h2 class="memo-t">本科四年，把语言练成一条路</h2>
         <p class="memo-x">考证、社团、讲台、外贸——四段走下来，敢开口慢慢变成了能办事。</p>
         <div class="path" id="path0">
-          <div class="path-item">
+          <div class="path-item path-item--scroll">
             <div class="pi-wrap">
               <p class="pi-no"><em>01</em> · 学业</p>
               <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
-              <p class="pi-x">专四、专八再加笔译证书，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
+              <p class="pi-x">专四、专八、雅思、CATTI，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
+              <div class="parch">
+                <div class="parch-body">
+                  <p class="parch-t">本科解锁成就</p>
+                  <p class="parch-sub">七件，一件一件攒下来的</p>
+                  <ul class="parch-list">
+                    <li><span>✅</span>专四 · 专八</li>
+                    <li><span>✅</span>雅思</li>
+                    <li><span>✅</span>CATTI 笔译证书</li>
+                    <li><span>✅</span>国际英语人才证书</li>
+                    <li><span>🏅</span>连续四年，院级各类奖学金</li>
+                    <li><span>🎖</span>中西部翻译大赛 · 全国口译奖项</li>
+                    <li><span>🎓</span>保研资格</li>
+                  </ul>
+                </div>
+                <div class="parch-roll"></div>
+                <div class="parch-seal"><svg viewBox="0 0 58 44" aria-hidden="true">
+                  <path d="M21 1 C 21 16 26 24 29 26 M 37 1 C 37 16 32 24 29 26" fill="none" stroke="rgba(25,26,28,.35)" stroke-width="1.4"/>
+                  <circle cx="29" cy="35" r="8.6" fill="#8A6A3F"/>
+                  <circle cx="29" cy="35" r="5" fill="none" stroke="rgba(255,255,255,.45)" stroke-width="1.2"/>
+                </svg></div>
+              </div>
             </div>
-            <div class="pi-ph">图片占位</div>
           </div>
           <div class="path-item">
             <div class="pi-wrap">
@@ -1221,8 +1261,11 @@ section[id]{scroll-margin-top:68px}
       for(var i=0;i<items.length-1;i++){
         var A = items[i], B = items[i+1];
         var phA = A.querySelector('.pi-ph'), phB = B.querySelector('.pi-ph');
-        var ax = A.offsetLeft + phA.offsetLeft + phA.offsetWidth / 2, ay = A.offsetTop + phA.offsetTop + phA.offsetHeight;
-        var bx = B.offsetLeft + phB.offsetLeft + phB.offsetWidth / 2, by = B.offsetTop + phB.offsetTop;
+        var ax, ay, bx, by;
+        if(phA){ ax = A.offsetLeft + phA.offsetLeft + phA.offsetWidth / 2; ay = A.offsetTop + phA.offsetTop + phA.offsetHeight; }
+        else { ax = A.offsetLeft + A.offsetWidth * .5; ay = A.offsetTop + A.offsetHeight; }
+        if(phB){ bx = B.offsetLeft + phB.offsetLeft + phB.offsetWidth / 2; by = B.offsetTop + phB.offsetTop; }
+        else { bx = B.offsetLeft + B.offsetWidth * .5; by = B.offsetTop; }
         var y1 = ay + 18, y2 = by - 22;
 
         var pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
