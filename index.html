@@ -382,13 +382,15 @@ section[id]{scroll-margin-top:68px}
 
 /* ===== 起点路线图 ===== */
 .path{position:relative;margin-top:6px}
-.path-item{position:relative;width:min(430px,68%);background:#FBFAF6;border:1px solid var(--line);padding:22px 24px 18px;margin-bottom:74px}
+.path-item{position:relative;width:min(490px,88%);display:flex;gap:18px;align-items:flex-start;background:#FBFAF6;border:1px solid var(--line);padding:18px 18px 18px;margin-bottom:78px}
 .path-item:last-child{margin-bottom:0}
 .path-item:nth-child(even){margin-left:auto}
-.pi-no{font-size:10.5px;letter-spacing:.22em;color:var(--accent);margin:0 0 12px}
-.pi-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:19px;line-height:1.55;letter-spacing:.02em;margin:0 0 10px}
-.pi-x{font-size:12.5px;font-weight:300;line-height:1.95;color:var(--ink-soft);margin:0 0 16px}
-.pi-ph{height:132px;border:1px dashed rgba(25,26,28,.2);display:flex;align-items:center;justify-content:center;font-size:10.5px;letter-spacing:.16em;color:#A9A399;margin:0 -8px 0}
+.pi-wrap{flex:1;min-width:0}
+.pi-no{font-family:"Cormorant Garamond","LXGW WenKai Lite",serif;font-style:italic;font-size:13px;letter-spacing:.08em;color:var(--accent);margin:0 0 8px}
+.pi-no em{font-style:italic}
+.pi-t{text-wrap:balance;font-family:"LXGW WenKai Lite","Noto Serif SC",serif;font-weight:400;font-size:17.5px;line-height:1.7;letter-spacing:.03em;margin:0 0 10px;color:var(--ink)}
+.pi-x{font-size:12px;font-weight:300;line-height:1.95;color:var(--ink-soft);margin:0}
+.pi-ph{flex:0 0 30%;aspect-ratio:4/5;align-self:flex-start;border:1px dashed rgba(25,26,28,.2);display:flex;align-items:center;justify-content:center;font-size:10px;letter-spacing:.14em;color:#A9A399;background:#fff}
 .path-lines{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;overflow:visible}
 
 /* ===== 阶段记忆抽屉 ===== */
@@ -405,7 +407,7 @@ section[id]{scroll-margin-top:68px}
 .memo-p{display:none;margin-top:36px}
 .memo-p.on{display:block}
 .memo-kick{font-size:11px;letter-spacing:.26em;color:var(--accent);margin:0 0 18px}
-.memo-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:30px;line-height:1.45;letter-spacing:.02em;margin:0 0 16px}
+.memo-t{text-wrap:balance;font-family:"Noto Serif SC",serif;font-weight:600;font-size:30px;line-height:1.45;letter-spacing:.02em;margin:0 0 16px}
 .memo-x{font-size:13.5px;font-weight:300;line-height:2;color:var(--ink-soft);margin:0 0 30px;max-width:620px}
 .memo-list{list-style:none;padding:0;margin:0 0 34px;border-top:1px solid var(--line)}
 .memo-list li{display:flex;gap:16px;padding:15px 0;border-bottom:1px solid var(--line);font-size:13px;line-height:1.9;color:var(--ink-soft)}
@@ -426,13 +428,14 @@ section[id]{scroll-margin-top:68px}
   .memo-pics{gap:10px}
   .memo-pics img{height:230px;padding:4px}
   .memo-foot{margin-top:30px;font-size:10px}
-  .path-item{width:88%;padding:16px 16px 14px;margin-bottom:56px}
-  .pi-t{font-size:16px;line-height:1.5}
-  .pi-x{font-size:12px;line-height:1.85}
-  .pi-ph{height:104px}
+  .path-item{width:86%;gap:12px;padding:14px;margin-bottom:62px}
+  .pi-t{font-size:15.5px;line-height:1.65}
+  .pi-x{font-size:11.5px;line-height:1.9}
+  .pi-ph{flex-basis:30%}
 }
 
 </style>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -841,32 +844,40 @@ section[id]{scroll-margin-top:68px}
     <div class="memo-pages" id="memoPages">
       <article class="memo-p" data-i="0">
         <p class="memo-kick">01 — 起点 · 西南科技大学 · 外语</p>
-        <h2 class="memo-t">先把「敢开口」练出来</h2>
-        <p class="memo-x">外语是我自己选的路：想和不同文化背景的人无障碍沟通，于是本科四年一直在练听、说、读、写、译。</p>
+        <h2 class="memo-t">本科四年，把语言练成一条路</h2>
+        <p class="memo-x">考证、社团、讲台、外贸——四段走下来，敢开口慢慢变成了能办事。</p>
         <div class="path" id="path0">
           <div class="path-item">
-            <p class="pi-no">01 · 学业</p>
-            <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
-            <p class="pi-x">专四、专八再加笔译证书，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
-            <div class="pi-ph">图片占位 · 待补</div>
+            <div class="pi-wrap">
+              <p class="pi-no"><em>01</em> · 学业</p>
+              <h3 class="pi-t">把语言这张通行证，一张张考出来</h3>
+              <p class="pi-x">专四、专八再加笔译证书，一路考下来。语法、术语和语感，是那几年一页页啃出来的。</p>
+            </div>
+            <div class="pi-ph">图片占位</div>
           </div>
           <div class="path-item">
-            <p class="pi-no">02 · 社团</p>
-            <h3 class="pi-t">第一次「组织」一件事</h3>
-            <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
-            <div class="pi-ph">图片占位 · 待补</div>
+            <div class="pi-wrap">
+              <p class="pi-no"><em>02</em> · 社团</p>
+              <h3 class="pi-t">第一次「组织」一件事</h3>
+              <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
+            </div>
+            <div class="pi-ph">图片占位</div>
           </div>
           <div class="path-item">
-            <p class="pi-no">03 · 讲台</p>
-            <h3 class="pi-t">把知识讲成别人听得懂的话</h3>
-            <p class="pi-x">备课、上课、改作业。站在讲台上才发现，讲清楚比讲得多难。</p>
-            <div class="pi-ph">图片占位 · 待补</div>
+            <div class="pi-wrap">
+              <p class="pi-no"><em>03</em> · 讲台</p>
+              <h3 class="pi-t">把知识讲成别人听得懂的话</h3>
+              <p class="pi-x">备课、上课、改作业。站在讲台上才发现，讲清楚比讲得多难。</p>
+            </div>
+            <div class="pi-ph">图片占位</div>
           </div>
           <div class="path-item">
-            <p class="pi-no">04 · 大四实习</p>
-            <h3 class="pi-t">第一次用英语做生意</h3>
-            <p class="pi-x">外贸实习：报价、跟单、写邮件、对接海外客户。英语是工具，生意才是内容。</p>
-            <div class="pi-ph">图片占位 · 待补</div>
+            <div class="pi-wrap">
+              <p class="pi-no"><em>04</em> · 大四实习</p>
+              <h3 class="pi-t">第一次用英语做生意</h3>
+              <p class="pi-x">外贸实习：报价、跟单、写邮件、对接海外客户。英语是工具，生意才是内容。</p>
+            </div>
+            <div class="pi-ph">图片占位</div>
           </div>
           <svg class="path-lines" aria-hidden="true"></svg>
         </div>
@@ -1148,6 +1159,9 @@ section[id]{scroll-margin-top:68px}
 
     function closeMemo(){
       if(!memoEl){ return; }
+      if(/^#m[1-5]$/.test(location.hash || '')){
+        try{ history.replaceState(null, '', location.pathname + location.search); }catch(err){}
+      }
       memoEl.classList.remove('on');
       memoEl.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
@@ -1172,8 +1186,28 @@ section[id]{scroll-margin-top:68px}
     if(memoBack){ memoBack.addEventListener('click', closeMemo); }
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMemo(); } });
 
-    /* ===== 起点路线图：折线连接 ===== */
+    /* ===== 起点路线图：足迹连线 ===== */
     var NS = 'http://www.w3.org/2000/svg';
+
+    function footMark(x, y, rot, flip){
+      var g = document.createElementNS(NS, 'g');
+      g.setAttribute('transform', 'translate(' + x + ',' + y + ') rotate(' + rot + ') scale(' + (flip ? -1 : 1) + ',1)');
+      g.setAttribute('stroke', 'rgba(120,113,99,.55)');
+      g.setAttribute('fill', 'rgba(190,182,166,.75)');
+      g.setAttribute('stroke-width', '.7');
+      var sole = document.createElementNS(NS, 'ellipse');
+      sole.setAttribute('cx', '0'); sole.setAttribute('cy', '6');
+      sole.setAttribute('rx', '3.4'); sole.setAttribute('ry', '5');
+      g.appendChild(sole);
+      var toes = [[-2.6, -1.9, 1.15], [0, -3.1, 1.25], [2.6, -1.9, 1.15]];
+      for(var i=0;i<toes.length;i++){
+        var c = document.createElementNS(NS, 'circle');
+        c.setAttribute('cx', toes[i][0]); c.setAttribute('cy', toes[i][1]); c.setAttribute('r', toes[i][2]);
+        g.appendChild(c);
+      }
+      return g;
+    }
+
     function drawPaths(){
       var box = document.getElementById('path0');
       if(!box || !memoEl || !memoEl.classList.contains('on')){ return; }
@@ -1184,21 +1218,43 @@ section[id]{scroll-margin-top:68px}
       svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H);
       svg.setAttribute('width', W); svg.setAttribute('height', H);
       while(svg.firstChild){ svg.removeChild(svg.firstChild); }
+
       for(var i=0;i<items.length-1;i++){
         var A = items[i], B = items[i+1];
         var ax = A.offsetLeft + A.offsetWidth / 2, ay = A.offsetTop + A.offsetHeight;
         var bx = B.offsetLeft + B.offsetWidth / 2, by = B.offsetTop;
-        var d = 'M ' + ax + ' ' + ay + ' L ' + ax + ' ' + (ay + 20) + ' L ' + bx + ' ' + (by - 22) + ' L ' + bx + ' ' + by;
-        var pl = document.createElementNS(NS, 'polyline');
-        pl.setAttribute('points', [ax + ',' + ay, ax + ',' + (ay + 20), bx + ',' + (by - 22), bx + ',' + by].join(' '));
-        pl.setAttribute('fill', 'none');
-        pl.setAttribute('stroke', 'rgba(25,26,28,.28)');
-        pl.setAttribute('stroke-width', '1');
-        svg.appendChild(pl);
-        var tri = document.createElementNS(NS, 'polygon');
-        tri.setAttribute('points', [bx - 3.5 + ',' + (by - 8), bx + 3.5 + ',' + (by - 8), bx + ',' + by].join(' '));
-        tri.setAttribute('fill', 'rgba(25,26,28,.45)');
-        svg.appendChild(tri);
+        var y1 = ay + 16, y2 = by - 18;
+
+        var guide = document.createElementNS(NS, 'polyline');
+        guide.setAttribute('points', [ax + ',' + ay, ax + ',' + y1, bx + ',' + y2, bx + ',' + by].join(' '));
+        guide.setAttribute('fill', 'none');
+        guide.setAttribute('stroke', 'rgba(25,26,28,.14)');
+        guide.setAttribute('stroke-width', '1');
+        svg.appendChild(guide);
+
+        var pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
+        var total = 0, seg = [];
+        for(var q=0;q<pts.length-1;q++){
+          var sx = pts[q+1][0] - pts[q][0], sy = pts[q+1][1] - pts[q][1];
+          var L = Math.sqrt(sx * sx + sy * sy);
+          seg.push({ x0: pts[q][0], y0: pts[q][1], dx: sx, dy: sy, len: L });
+          total += L;
+        }
+        var n = Math.max(3, Math.min(7, Math.round(total / 44)));
+        for(var k=1;k<=n;k++){
+          var dist = total * k / (n + 1), acc2 = 0, sg = seg[0];
+          for(var q2=0;q2<seg.length;q2++){
+            if(dist <= acc2 + seg[q2].len){ sg = seg[q2]; dist -= acc2; break; }
+            acc2 += seg[q2].len;
+          }
+          var t2 = sg.len ? dist / sg.len : 0;
+          var px = sg.x0 + sg.dx * t2, py = sg.y0 + sg.dy * t2;
+          var len2 = sg.len || 1;
+          var nx = -sg.dy / len2, ny = sg.dx / len2;
+          var off = (k % 2 === 0 ? 4 : -4);
+          var ang2 = Math.atan2(sg.dy, sg.dx) * 180 / Math.PI + 90;
+          svg.appendChild(footMark(px + nx * off, py + ny * off, ang2, k % 2 === 0));
+        }
       }
     }
     var pathTimer = null;
@@ -1207,6 +1263,12 @@ section[id]{scroll-margin-top:68px}
       pathTimer = setTimeout(drawPaths, 180);
     });
 
+    function openFromHash(){
+      var m = /^#m([1-5])$/.exec(location.hash || '');
+      if(m){ openMemo(parseInt(m[1], 10) - 1); }
+    }
+    window.addEventListener('load', function(){ setTimeout(openFromHash, 120); });
+    window.addEventListener('hashchange', openFromHash);
     function preloadThen(fn){
       var seen = 0, fired = false;
       var list = ['fig-01','fig-02','fig-03','fig-04','fig-05','step-01','step-02','step-03','step-04','step-05',
