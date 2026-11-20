@@ -608,6 +608,21 @@ section[id]{scroll-margin-top:68px}
 }
 
 /* ===== 04 兼职译员 ===== */
+/* ---- 05 在读 · 语言（自由插画，无框） ---- */
+.path .path-item--lingo{width:min(600px,92%);margin-bottom:0;display:flex;gap:26px;align-items:flex-start}
+.path-item--lingo .pi-wrap{order:1;flex:1;min-width:0;padding-top:8px}
+.path .path-item--lingo .pi-ph{order:-1;flex:0 0 50%;height:362px;position:relative;border:0;background:none;display:block;padding:0;aspect-ratio:auto;margin-top:6px}
+.path-item--lingo .pi-ph figure{margin:0;background:none;border:0;box-shadow:none}
+.path-item--lingo .pi-ph figure img{display:block;width:100%;height:auto}
+.path-item--lingo .lingo-bird{position:absolute;left:-7%;top:-8px;width:57%}
+.path-item--lingo .lingo-desk{position:absolute;right:-4%;bottom:-8px;width:94%}
+
+@media (max-width:559px){
+  .path .path-item--lingo{display:block;width:88%;margin-left:auto;margin-right:0}
+  .path .path-item--lingo .pi-ph{height:auto;margin-top:18px}
+  .path-item--lingo .lingo-bird{position:static;width:52%;margin:0 0 0 auto}
+  .path-item--lingo .lingo-desk{position:static;width:100%;margin:6px 0 0 auto}
+}
 .path .path-item--trans{width:min(660px,94%);display:flex;gap:26px;align-items:flex-start;margin-bottom:52px}
 .path-item--trans .pi-wrap{order:1;flex:0 0 44%;min-width:0;padding-top:6px}
 .path .path-item--trans .pi-ph{order:2;flex:1;height:432px;position:relative;aspect-ratio:auto;border:0;background:none;display:block;padding:0}
@@ -1125,6 +1140,19 @@ section[id]{scroll-margin-top:68px}
               <figure class="tr-scene"><img src="assets/fr-scene.jpg" alt="法国文化交流周现场"></figure>
             </div>
           </div>
+          <div class="path-item path-item--lingo">
+            <div class="pi-wrap">
+              <p class="pi-no"><em>05</em> · 在读 · 语言</p>
+              <h3 class="pi-t">西语、法语在学，粤语在听</h3>
+              <p class="tr-line"><b>在学</b>多邻国每天打卡，慕课上补语法和听力——西班牙语、法语，从字母表重新过一遍。</p>
+              <p class="tr-line"><b>下一步</b>想把多语种证书一个个考出来。两门都刚起步，懂行的路过，欢迎指点两句。</p>
+              <p class="tr-line"><b>粤语</b>纯是喜欢粤语歌，盼着有位会粤语的朋友，愿意教我开口。</p>
+            </div>
+            <div class="pi-ph">
+              <figure class="lingo-bird"><img src="assets/lingo-bird-cut.png" alt="学语言：一只绿鸟站在书堆上，手机里是打卡格子"></figure>
+              <figure class="lingo-desk"><img src="assets/lingo-desk-cut.png" alt="慕课与粤语歌：笔记本课程界面、练习本与耳机"></figure>
+            </div>
+          </div>
           <svg class="path-lines" aria-hidden="true"></svg>
         </div>
       </article>
@@ -1451,7 +1479,7 @@ section[id]{scroll-margin-top:68px}
         if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width * (B.classList.contains('path-item--trans') ? 0.28 : 0.5); }
         else { var rb3 = B.getBoundingClientRect(); bx = rb3.left - boxR.left + rb3.width * .5; }
         by = B.getBoundingClientRect().top - boxR.top;
-        if(bx < ax - 30){ var ra4 = A.getBoundingClientRect(); ax = ra4.left - boxR.left + Math.min(148, ra4.width * 0.34); }
+        if(bx < ax - 30 && !B.classList.contains('path-item--lingo')){ var ra4 = A.getBoundingClientRect(); ax = ra4.left - boxR.left + Math.min(148, ra4.width * 0.34); }
         var y1 = ay + 18, y2 = by - 22;
 
         var pts;
@@ -1467,6 +1495,20 @@ section[id]{scroll-margin-top:68px}
             pts.push([
               mt*mt*mt*p0x + 3*mt*mt*t*c1x + 3*mt*t*t*c2x + t*t*t*p1x,
               mt*mt*mt*p0y + 3*mt*mt*t*c1y + 3*mt*t*t*c2y + t*t*t*p1y
+            ]);
+          }
+        } else if(A.classList.contains('path-item--trans') && B.classList.contains('path-item--lingo')){
+          var q0x = ax, q0y = y1 - 2, q1x = bx, q1y = y2 + 2;
+          var dxl = q1x - q0x, dyl = q1y - q0y;
+          var d1x = q0x + dxl * 0.06, d1y = q0y + dyl * 0.52;
+          var d2x = q1x - dxl * 0.34, d2y = q1y - dyl * 0.24;
+          pts = [];
+          var KL = 18;
+          for(var u2 = 0; u2 <= KL; u2++){
+            var t3 = u2 / KL, mt3 = 1 - t3;
+            pts.push([
+              mt3*mt3*mt3*q0x + 3*mt3*mt3*t3*d1x + 3*mt3*t3*t3*d2x + t3*t3*t3*q1x,
+              mt3*mt3*mt3*q0y + 3*mt3*mt3*t3*d1y + 3*mt3*t3*t3*d2y + t3*t3*t3*q1y
             ]);
           }
         } else {
