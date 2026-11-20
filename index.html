@@ -1443,7 +1443,24 @@ section[id]{scroll-margin-top:68px}
         if(bx < ax - 30){ var ra4 = A.getBoundingClientRect(); ax = ra4.left - boxR.left + Math.min(148, ra4.width * 0.34); }
         var y1 = ay + 18, y2 = by - 22;
 
-        var pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
+        var pts;
+        if(A.classList.contains('path-item--club') && B.classList.contains('path-item--trans')){
+          var p0x = ax, p0y = y1 - 2, p1x = bx, p1y = y2 + 2;
+          var dxc = p1x - p0x, dyc = p1y - p0y;
+          var c1x = p0x + dxc * 0.02, c1y = p0y + dyc * 0.66;
+          var c2x = p1x - dxc * 0.48, c2y = p1y - dyc * 0.18;
+          pts = [];
+          var K = 18;
+          for(var u = 0; u <= K; u++){
+            var t = u / K, mt = 1 - t;
+            pts.push([
+              mt*mt*mt*p0x + 3*mt*mt*t*c1x + 3*mt*t*t*c2x + t*t*t*p1x,
+              mt*mt*mt*p0y + 3*mt*mt*t*c1y + 3*mt*t*t*c2y + t*t*t*p1y
+            ]);
+          }
+        } else {
+          pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
+        }
         var total = 0, seg = [];
         for(var q=0;q<pts.length-1;q++){
           var sx = pts[q+1][0] - pts[q][0], sy = pts[q+1][1] - pts[q][1];
