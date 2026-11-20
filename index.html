@@ -412,11 +412,17 @@ section[id]{scroll-margin-top:68px}
 .path-item--scroll .parch-seal{width:38px;height:29px;bottom:-2px}
 .path .path-item--teach{width:min(560px,92%);margin-left:auto;margin-right:0;margin-bottom:216px;display:flex;flex-wrap:wrap;align-items:flex-start}
 .path-item--teach .proof{order:3;flex:1 0 100%;margin-top:24px}
-.path-item--teach .proof-note{margin:0 0 9px;padding-left:140px;font:500 11.5px/1.5 var(--serif,serif);letter-spacing:.05em;color:#8B8578}
+.path-item--teach .proof-note{margin:0 0 9px;padding-left:200px;font:500 11.5px/1.5 var(--serif,serif);letter-spacing:.05em;color:#8B8578}
 .path-item--teach .proof-pics{display:flex;align-items:flex-start;gap:14px;justify-content:flex-end}
 .path-item--teach .proof-pics figure{margin:0;background:#fff;padding:5px;box-shadow:0 6px 16px rgba(25,26,28,.10)}
 .path-item--teach .proof-pics img{display:block;width:100%;height:auto}
 .path-item--teach .p-chat{flex:0 0 30%;transform:rotate(-1.4deg)}
+.path-item--teach .proof-extra{display:flex;justify-content:flex-end;gap:18px;align-items:flex-start;margin-top:6px}
+.path-item--teach .extra-note{margin:24px 0 10px;font:500 11.5px/1.5 var(--serif,serif);letter-spacing:.05em;color:#8B8578;text-align:right}
+.path-item--teach .proof-extra figure{margin:0;background:#fff;padding:5px;box-shadow:0 6px 16px rgba(25,26,28,.10)}
+.path-item--teach .proof-extra img{display:block;width:100%;height:auto}
+.path-item--teach .p-s2{flex:0 0 44%;transform:rotate(-1.2deg)}
+.path-item--teach .p-s3{flex:0 0 41%;transform:rotate(.9deg);margin-top:26px;box-shadow:0 8px 20px rgba(25,26,28,.12)}
 .path-item--teach .p-report{flex:0 0 43%;transform:rotate(1.1deg);margin-top:14px;box-shadow:0 8px 20px rgba(25,26,28,.13)}
 
 .path-item--teach .pi-wrap{order:1;flex:0 0 46%;min-width:0;padding-top:4px}
@@ -572,6 +578,25 @@ section[id]{scroll-margin-top:68px}
 
 @media (max-width:559px){
   .path-item--teach .teach-ghost{position:static;left:auto;top:auto;width:108px;margin:14px 0 4px auto;opacity:.26}
+}
+
+@media (max-width:559px){
+  .path-item--teach .proof{width:auto}
+  .path-item--teach .proof-extra{gap:10px}
+  .path-item--teach .p-s2{flex:0 0 48%}
+  .path-item--teach .p-s3{flex:0 0 44%;margin-top:16px}
+}
+
+@media (min-width:900px){
+  .path-item--teach .proof{flex-basis:calc(100% + 220px)}
+}
+
+@media (max-width:559px){
+  .path-item--teach .proof-note{padding-left:0}
+  .path-item--teach .extra-note{text-align:left;margin:22px 0 8px}
+  .path-item--teach .proof-extra{flex-direction:column;align-items:flex-end;gap:12px}
+  .path-item--teach .p-s2{flex:0 0 auto;width:80%}
+  .path-item--teach .p-s3{flex:0 0 auto;width:80%;margin-top:0}
 }
 
 </style>
@@ -1034,6 +1059,11 @@ section[id]{scroll-margin-top:68px}
               <div class="proof-pics">
                 <figure class="p-chat"><img src="assets/score-chat.jpg" alt="学员发来的雅思成绩聊天记录"></figure>
                 <figure class="p-report"><img src="assets/score-report.jpg" alt="雅思考试成绩：听力8.0 阅读7.0 写作6.5 口语7.0 总分7.0"></figure>
+              </div>
+              <p class="extra-note">另两位学员的成绩 · 总分 7.0 / 6.5</p>
+              <div class="proof-extra">
+                <figure class="p-s2"><img src="assets/score-p2.jpg" alt="学员雅思成绩：听力7.5 阅读8.5 写作6.5 口语5.5 总分7.0"></figure>
+                <figure class="p-s3"><img src="assets/score-p3.jpg" alt="学员雅思成绩：听力7.0 阅读6.0 写作6.5 口语7.0 总分6.5"></figure>
               </div>
             </div>
           </div>
