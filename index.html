@@ -302,9 +302,11 @@ section[id]{scroll-margin-top:68px}
 .iso-l-t{display:block;font-family:"Noto Serif SC",serif;font-weight:600;font-size:19px;line-height:1.5;margin-top:9px;letter-spacing:.01em}
 .iso-l-x{display:block;font-style:normal;font-size:13px;font-weight:300;line-height:1.75;color:var(--ink-soft);margin-top:9px}
 .sec-sub .nb{white-space:nowrap}
+.iso-row .row-side{font-family:"Cormorant Garamond",serif;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:rgba(25,26,28,.36);white-space:nowrap}
+.iso-row .row-mid{display:flex;align-items:center;gap:76px}
 .iso-row{display:none}
 .iso-lines.done .iso-line{display:none}
-.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:center;gap:76px;padding-top:18px}
+.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:18px}
 .iso-row button{font-size:14px;letter-spacing:.06em;white-space:nowrap}
 .iso-row button b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
 .iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
@@ -358,7 +360,8 @@ section[id]{scroll-margin-top:68px}
   .iso-l-x{font-size:12.5px}
   .iso-lines{min-height:0}
   .iso-lines.done{min-height:0}
-  .iso-lines.done .iso-row{display:flex;justify-content:center;gap:46px;width:100%}
+  .iso-lines.done .iso-row{display:flex;justify-content:center;gap:0;width:100%}
+  .iso-row .row-mid{gap:60px}
   .iso-lines.done .iso-row button{flex:0 1 auto;font-size:13px;white-space:normal;min-width:0;line-height:1.55;justify-content:flex-start}
   .iso-lines.done .iso-row button:last-child{justify-content:flex-start}
   .iso-row button{font-size:11.5px}
@@ -624,6 +627,10 @@ section[id]{scroll-margin-top:68px}
   .path-item--trans .tr-line{max-width:none}
 }
 
+@media (max-width:559px){
+  .iso-row .row-side{display:none}
+  .iso-row .row-mid{gap:44px}
+}
 </style>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
 </head>
@@ -927,7 +934,7 @@ section[id]{scroll-margin-top:68px}
           <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
         </p>
         <div class="iso-row" id="isoRow">
-          <button type="button" data-i="0"><b>01</b>专业成长&amp;校园经历</button><button type="button" data-i="1"><b>02</b>社会实践&amp;实习经历</button>
+          <span class="row-side">Five stops</span><span class="row-mid"><button type="button" data-i="0"><b>01</b>专业成长&amp;校园经历</button><button type="button" data-i="1"><b>02</b>社会实践&amp;实习经历</button></span><span class="row-side row-side--r">Auto &#183; 30 sec</span>
         </div>
       </div>
 
