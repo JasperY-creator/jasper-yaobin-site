@@ -303,7 +303,7 @@ section[id]{scroll-margin-top:68px}
 .iso-l-x{display:block;font-style:normal;font-size:13px;font-weight:300;line-height:1.75;color:var(--ink-soft);margin-top:9px}
 .iso-row{display:none}
 .iso-lines.done .iso-line{display:none}
-.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:6px}
+.iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:18px}
 .iso-row button{font-size:12px;letter-spacing:.06em;white-space:nowrap}
 .iso-row button b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
 .iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
@@ -607,6 +607,11 @@ section[id]{scroll-margin-top:68px}
 .path-item--trans .tr-line{font-size:11.6px;line-height:1.75;color:var(--ink-soft);margin-top:11px;max-width:300px}
 .path-item--trans .tr-line b{font-weight:600;color:var(--ink);font-size:11px;letter-spacing:.08em;margin-right:6px}
 .path-item--trans .pi-ph figure{margin:0}
+.path .path-item--grad{width:min(620px,92%);display:flex;gap:30px;align-items:flex-start;margin-bottom:16px}
+.path-item--grad .pi-wrap{order:1;flex:1;min-width:0;padding-top:6px}
+.path .path-item--grad .pi-ph{order:-1;flex:0 0 42%;height:340px;position:relative;aspect-ratio:auto;border:0;background:none;display:block;padding:0;margin-top:4px}
+.path-item--grad .grad-fig{position:absolute;left:0;bottom:0;margin:0;height:100%}
+.path-item--grad .grad-fig img{height:100%;width:auto;display:block;filter:drop-shadow(0 16px 14px rgba(60,54,44,.13))}
 .path-item--trans .tr-tv{position:absolute;left:17%;top:150px;width:83%;background:#fff;padding:5px;box-shadow:0 8px 22px rgba(25,26,28,.12);transform:rotate(-.7deg)}
 .path-item--trans .tr-tv img{display:block;width:100%;height:auto}
 .path-item--trans .tr-work{position:absolute;left:-2%;top:0;width:50%}
@@ -616,11 +621,16 @@ section[id]{scroll-margin-top:68px}
 
 @media (max-width:559px){
   .path .path-item--trans{display:block;width:88%;gap:0;margin-bottom:64px}
-  .path-item--trans .pi-ph{height:auto;margin-top:18px}
+  .path .path-item--trans .pi-ph{height:auto;margin-top:18px}
   .path-item--trans .pi-ph figure{position:static;width:auto}
-  .path-item--trans .pi-ph .tr-tv,.path-item--trans .pi-ph .tr-scene{width:100%;margin-top:14px}
+  .path .path-item--trans .pi-ph .tr-tv,.path .path-item--trans .pi-ph .tr-scene{position:static;width:100%;margin-top:14px;left:auto;right:auto;top:auto}
   .path-item--trans .pi-ph .tr-work{position:static;width:56%;margin:20px 0 0 auto}
   .path-item--trans .tr-line{max-width:none}
+  .path .path-item--grad{display:block;width:88%;margin-bottom:56px}
+  .path-item--grad .pi-ph{height:auto;margin-top:18px}
+  .path-item--grad .grad-fig{position:static;height:auto;width:66%;margin-left:auto}
+  .path-item--grad .grad-fig img{height:auto;width:100%}
+  .path-item--grad .tr-line{max-width:none}
 }
 
 </style>
@@ -902,8 +912,8 @@ section[id]{scroll-margin-top:68px}
       <div class="iso-lines" id="isoLines">
         <p class="iso-line on">
           <span class="iso-l-k">01</span><span class="iso-l-site">西南科技大学 · 外语</span>
-          <strong class="iso-l-t">起点：喜欢跨文化交流</strong>
-          <em class="iso-l-x">想和来自不同文化背景的人无障碍沟通，也在努力学习第二和第三外语ing</em>
+          <strong class="iso-l-t">本科：把语言这张通行证，一张张考出来</strong>
+          <em class="iso-l-x">想和不同文化的人无障碍沟通，于是考证、上台、带班、接稿，一样样补上。</em>
         </p>
         <p class="iso-line">
           <span class="iso-l-k">02</span><span class="iso-l-site">北京交通大学 · 笔译</span>
@@ -917,7 +927,7 @@ section[id]{scroll-margin-top:68px}
         </p>
         <p class="iso-line">
           <span class="iso-l-k">04</span><span class="iso-l-site">字节 · 飞书商业化</span>
-          <strong class="iso-l-t">第二份实习：空中飞人 + 活动 PMO</strong>
+          <strong class="iso-l-t">第二份实习：活动 PMO、空中飞人</strong>
           <em class="iso-l-x">踏出自己的舒适圈，结果成了空中飞人，策划、开会、跟进、出差成了日常。</em>
         </p>
         <p class="iso-line">
@@ -926,7 +936,7 @@ section[id]{scroll-margin-top:68px}
           <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
         </p>
         <div class="iso-row" id="isoRow">
-          <button type="button" data-i="0"><b>01</b>起点</button><button type="button" data-i="1"><b>02</b>保研</button><button type="button" data-i="2"><b>03</b>实习</button><button type="button" data-i="3"><b>04</b>二份实习</button><button type="button" data-i="4"><b>05</b>现在</button>
+          <button type="button" data-i="0"><b>01</b>校园</button><button type="button" data-i="1"><b>02</b>实习</button><button type="button" data-i="1"><b>03</b>二份实习</button><button type="button" data-i="2"><b>04</b>现在</button>
         </div>
       </div>
 
@@ -1029,13 +1039,13 @@ section[id]{scroll-margin-top:68px}
   <div class="memo-in">
     <div class="memo-top">
       <button class="memo-back" id="memoBack" type="button"><span aria-hidden="true">←</span> 返回旅程</button>
-      <span class="memo-count" id="memoCount">01 / 05</span>
+      <span class="memo-count" id="memoCount">01 / 04</span>
     </div>
     <div class="memo-pages" id="memoPages">
       <article class="memo-p" data-i="0">
-        <p class="memo-kick">01 — 起点 · 西南科技大学 · 外语</p>
-        <h2 class="memo-t">本科四年，把语言练成一条路</h2>
-        <p class="memo-x">考证、社团、讲台、外贸——四段走下来，敢开口慢慢变成了能办事。</p>
+        <p class="memo-kick">01 — 校园 · 西南科技大学 → 北京交通大学</p>
+        <h2 class="memo-t">本硕六年，把语言练成一条路</h2>
+        <p class="memo-x">考证、社团、讲台、翻译——本科四年到读研两年，敢开口慢慢变成了能办事。</p>
         <div class="path" id="path0">
           <div class="path-item path-item--scroll">
             <div class="pi-wrap">
@@ -1114,16 +1124,19 @@ section[id]{scroll-margin-top:68px}
               <figure class="tr-scene"><img src="assets/fr-scene.jpg" alt="法国文化交流周现场"></figure>
             </div>
           </div>
+          <div class="path-item path-item--grad">
+            <div class="pi-wrap">
+              <p class="pi-no"><em>05</em> · 读研 · 北京交通大学</p>
+              <h3 class="pi-t">把「会说」练成「译得准」</h3>
+              <p class="tr-line"><b>笔译训练</b>用 YiCAT 做翻译与术语实践，术语库一条条攒，译文一遍遍回校。</p>
+              <p class="tr-line"><b>AI 评测</b>做 AI 翻译项目评测与语言供应商管理，看机器译到哪、人还得补什么。</p>
+            </div>
+            <div class="pi-ph">
+              <figure class="grad-fig"><img src="assets/read-01.png" alt="读研期间读书做笔译的形象"></figure>
+            </div>
+          </div>
           <svg class="path-lines" aria-hidden="true"></svg>
         </div>
-      </article>
-      <article class="memo-p" data-i="1">
-        <p class="memo-kick">02 — 保研 · 北京交通大学 · 笔译</p>
-        <h2 class="memo-t">把「会说」练成「译得准」</h2>
-        <p class="memo-x">读研两年，一边夯实听说读写译，一边试着把语言和 AI 放在一起看；笔译的工夫，是在标点、语感和术语里一点点抠出来的。</p>
-        <ul class="memo-list"><li><span>研一</span>系统训笔译：CATTI 方向训练，用 YiCAT 做翻译与术语实践</li><li><span>研一</span>参与 AI 翻译项目评测，做语言供应商管理</li><li><span>研二</span>把「人怎么评、机器怎么译」写成自己的判断</li></ul>
-        <div class="memo-pics"><img src="assets/fig-02.png" alt=""><img src="assets/friend-talk-02.png" alt=""></div>
-        <p class="memo-foot">配图暂用站点素材，可换成论文、项目界面、工牌</p>
       </article>
       <article class="memo-p" data-i="2">
         <p class="memo-kick">03 — 实习 · 字节 语言中心</p>
@@ -1137,11 +1150,11 @@ section[id]{scroll-margin-top:68px}
         <p class="memo-kick">04 — 第二份实习 · 字节 飞书商业化</p>
         <h2 class="memo-t">从语言区跨到商业化现场</h2>
         <p class="memo-x">活水只是想看看语言之外还能做什么，结果一头扎进 toB 营销中台：策划、开会、跟进、出差成了日常。</p>
-        <ul class="memo-list"><li><span>转岗</span>活水到飞书商业化，做客户活动</li><li><span>日常</span>策划、开会、跟进、出差：成了空中飞人和活动 PMO</li><li><span>现场</span>办座谈与分享会，把客户请到台前</li></ul>
+        <ul class="memo-list"><li><span>转岗</span>活水到飞书商业化，做客户活动</li><li><span>日常</span>策划、开会、跟进、出差：成了活动 PMO，也成了空中飞人</li><li><span>现场</span>办座谈与分享会，把客户请到台前</li></ul>
         <div class="memo-pics"><img src="assets/fig-04.png" alt=""><img src="assets/speak-04.png" alt=""></div>
         <p class="memo-foot">配图暂用站点素材，可换成活动现场照、议程、合影</p>
       </article>
-      <article class="memo-p" data-i="4">
+      <article class="memo-p" data-i="3">
         <p class="memo-kick">05 — 现在 · 秋招进行中</p>
         <h2 class="memo-t">线还没画完</h2>
         <p class="memo-x">还在飞书商业化的工位上，也在往外递简历。往哪走还没定，但想去的方向已经清楚。</p>
@@ -1382,7 +1395,7 @@ section[id]{scroll-margin-top:68px}
       if(!memoEl || !memoPages){ return; }
       var ps = memoPages.querySelectorAll('.memo-p');
       for(var j=0;j<ps.length;j++){ ps[j].classList.toggle('on', j === i); }
-      if(memoCount){ memoCount.textContent = '0' + (i + 1) + ' / 05'; }
+      if(memoCount){ memoCount.textContent = '0' + (i + 1) + ' / 04'; }
       memoEl.classList.add('on');
       memoEl.setAttribute('aria-hidden', 'false');
       memoEl.scrollTop = 0;
@@ -1395,7 +1408,7 @@ section[id]{scroll-margin-top:68px}
 
     function closeMemo(){
       if(!memoEl){ return; }
-      if(/^#m[1-5]$/.test(location.hash || '')){
+      if(/^#m[1-4]$/.test(location.hash || '')){
         try{ history.replaceState(null, '', location.pathname + location.search); }catch(err){}
       }
       memoEl.classList.remove('on');
@@ -1505,7 +1518,7 @@ section[id]{scroll-margin-top:68px}
     });
 
     function openFromHash(){
-      var m = /^#m([1-5])$/.exec(location.hash || '');
+      var m = /^#m([1-4])$/.exec(location.hash || '');
       if(m){ openMemo(parseInt(m[1], 10) - 1); }
     }
     window.addEventListener('load', function(){ setTimeout(openFromHash, 120); });
