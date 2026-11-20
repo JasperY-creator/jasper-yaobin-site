@@ -530,7 +530,7 @@ section[id]{scroll-margin-top:68px}
 .friend{aspect-ratio:.285}
 
 /* ---- 03 社团 · 学生工作 ---- */
-.path .path-item--club{width:min(600px,92%);display:flex;gap:26px;margin-bottom:84px}
+.path .path-item--club{width:min(600px,92%);display:flex;gap:26px;margin-bottom:212px}
 .path-item--club .pi-wrap{flex:1;min-width:0;padding-top:6px}
 .path .path-item--club .pi-ph{order:-1;flex:0 0 42%;aspect-ratio:auto;height:346px;position:relative;border:0;background:none;display:block;padding:0;margin-top:4px}
 .club-a{position:absolute;left:0;top:0;width:56%;margin:0;transform:rotate(-1.4deg)}
@@ -540,7 +540,7 @@ section[id]{scroll-margin-top:68px}
 .club-line b{font-weight:600;color:var(--ink);font-size:11px;letter-spacing:.08em;margin-right:6px}
 
 @media (max-width:559px){
-  .path .path-item--club{display:block;width:88%;gap:0;margin-bottom:64px}
+  .path .path-item--club{display:block;width:88%;gap:0;margin-bottom:96px}
   .path .path-item--club .pi-ph{width:auto;flex:none;height:290px;margin-top:16px}
   .path-item--club .club-a{width:48%;left:0;top:0}
   .path-item--club .club-b{width:52%;right:0;bottom:6px}
@@ -1435,9 +1435,9 @@ section[id]{scroll-margin-top:68px}
         var phA = A.querySelector('.pi-ph, .parch'), phB = B.querySelector('.pi-ph, .parch');
         var boxR = box.getBoundingClientRect();
         var ax, ay, bx, by;
-        if(phA){ var ra = phA.getBoundingClientRect(); ax = ra.left - boxR.left + ra.width / 2; ay = A.getBoundingClientRect().bottom - boxR.top; }
+        if(phA){ var ra = phA.getBoundingClientRect(); ax = ra.left - boxR.left + ra.width * (A.classList.contains('path-item--club') ? 0.72 : 0.5); ay = A.getBoundingClientRect().bottom - boxR.top; }
         else { var ra2 = A.getBoundingClientRect(); ax = ra2.left - boxR.left + ra2.width * .5; ay = ra2.bottom - boxR.top; }
-        if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width / 2; }
+        if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width * (B.classList.contains('path-item--trans') ? 0.28 : 0.5); }
         else { var rb3 = B.getBoundingClientRect(); bx = rb3.left - boxR.left + rb3.width * .5; }
         by = B.getBoundingClientRect().top - boxR.top;
         if(bx < ax - 30){ var ra4 = A.getBoundingClientRect(); ax = ra4.left - boxR.left + Math.min(148, ra4.width * 0.34); }
