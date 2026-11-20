@@ -410,7 +410,7 @@ section[id]{scroll-margin-top:68px}
 .path-item--scroll .parch-roll::after{left:7px;width:11px;height:11px}
 .path-item--scroll .parch-roll::before{left:12px;width:4px;height:4px}
 .path-item--scroll .parch-seal{width:38px;height:29px;bottom:-2px}
-.path .path-item--teach{width:min(560px,92%);margin-right:16px;display:flex;flex-wrap:wrap;align-items:flex-start}
+.path .path-item--teach{width:min(560px,92%);margin-left:auto;margin-right:0;margin-bottom:216px;display:flex;flex-wrap:wrap;align-items:flex-start}
 .path-item--teach .proof{order:3;flex:1 0 100%;margin-top:24px}
 .path-item--teach .proof-note{margin:0 0 9px;font:500 11.5px/1.5 var(--serif,serif);letter-spacing:.05em;color:#8B8578}
 .path-item--teach .proof-pics{display:flex;align-items:flex-start;gap:14px}
@@ -491,9 +491,11 @@ section[id]{scroll-margin-top:68px}
 
 @media (max-width:559px){
   .path-item--scroll{display:block;width:88%}
-  .path .path-item--teach{display:block;width:88%}
+  .path .path-item--teach{display:block;width:88%;margin-left:0;margin-bottom:150px}
   .path-item--teach .pi-ph{width:auto;height:250px;margin-top:20px}
   .path-item--teach .proof{margin-top:20px}
+  .club-a{width:62%}
+  .club-b{width:72%}
   .path-item--teach .proof-pics{gap:10px}
   .path-item--teach .p-chat{flex:0 0 38%}
   .path-item--scroll .pi-t{font-size:14px}
@@ -520,6 +522,24 @@ section[id]{scroll-margin-top:68px}
 .walker .look.lk-look img{aspect-ratio:.276}
 .walker .look.lk-read img{aspect-ratio:.631}
 .friend{aspect-ratio:.285}
+
+/* ---- 03 社团 · 学生工作 ---- */
+.path .path-item--club{width:min(600px,92%);display:flex;gap:26px;margin-bottom:84px}
+.path-item--club .pi-wrap{flex:1;min-width:0;padding-top:6px}
+.path .path-item--club .pi-ph{order:-1;flex:0 0 42%;aspect-ratio:auto;height:346px;position:relative;border:0;background:none;display:block;padding:0;margin-top:4px}
+.club-a{position:absolute;left:0;top:0;width:56%;margin:0;transform:rotate(-1.4deg)}
+.club-b{position:absolute;right:0;bottom:4px;width:58%;margin:0;transform:rotate(1.3deg)}
+.club-a img,.club-b img{display:block;width:100%;height:auto;border:5px solid #fff;border-radius:2px;box-shadow:0 6px 18px rgba(25,26,28,.10)}
+.club-line{font-size:11.6px;line-height:1.75;color:var(--ink-soft);margin-top:11px;max-width:300px}
+.club-line b{font-weight:600;color:var(--ink);font-size:11px;letter-spacing:.08em;margin-right:6px}
+
+@media (max-width:559px){
+  .path .path-item--club{display:block;width:88%;gap:0;margin-bottom:64px}
+  .path .path-item--club .pi-ph{width:auto;flex:none;height:290px;margin-top:16px}
+  .path-item--club .club-a{width:48%;left:0;top:0}
+  .path-item--club .club-b{width:52%;right:0;bottom:6px}
+  .path-item--club .club-line{max-width:none}
+}
 
 </style>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
@@ -983,13 +1003,17 @@ section[id]{scroll-margin-top:68px}
               </div>
             </div>
           </div>
-          <div class="path-item">
+          <div class="path-item path-item--club">
             <div class="pi-wrap">
-              <p class="pi-no"><em>03</em> · 社团</p>
-              <h3 class="pi-t">第一次「组织」一件事</h3>
-              <p class="pi-x">拉人、写通知、跑流程、做海报。后来做活动 PMO 的手感，最早是在社团里练的。</p>
+              <p class="pi-no"><em>03</em> · 社团 · 学生工作</p>
+              <h3 class="pi-t">第一次对着话筒，也第一次对着名单</h3>
+              <p class="club-line"><b>播音部</b>播新闻、读情感文章，还做过「朋友圈那些事儿」访谈——围着一个话题聊开。爱听播客的习惯，就是那时候落下的。</p>
+              <p class="club-line"><b>资助委员</b>按学校的标准组织班级评议，把助学金落到真正需要的同学手里。</p>
             </div>
-            <div class="pi-ph">图片占位</div>
+            <div class="pi-ph club-ph">
+              <figure class="club-a"><img src="assets/broadcast.jpg" alt="播音部：戴耳机对着话筒播读稿件"></figure>
+              <figure class="club-b"><img src="assets/aidmeet.jpg" alt="班级资助评议：主持讲解评议标准"></figure>
+            </div>
           </div>
           <div class="path-item">
             <div class="pi-wrap">
@@ -1349,6 +1373,7 @@ section[id]{scroll-margin-top:68px}
         if(phB){ var rb = phB.getBoundingClientRect(); bx = rb.left - boxR.left + rb.width / 2; }
         else { var rb3 = B.getBoundingClientRect(); bx = rb3.left - boxR.left + rb3.width * .5; }
         by = B.getBoundingClientRect().top - boxR.top;
+        if(bx < ax - 30){ var ra4 = A.getBoundingClientRect(); ax = ra4.left - boxR.left + Math.min(148, ra4.width * 0.34); }
         var y1 = ay + 18, y2 = by - 22;
 
         var pts = [[ax, ay], [ax, y1], [bx, y2], [bx, by]];
