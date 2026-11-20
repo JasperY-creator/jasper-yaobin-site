@@ -587,15 +587,15 @@ section[id]{scroll-margin-top:68px}
   .path-item--teach .p-s3{flex:0 0 44%;margin-top:16px}
 }
 
-@media (min-width:1180px){
-  .path-item--teach .proof{flex-basis:calc(100% + 220px);position:relative;height:452px}
-  .path-item--teach .proof-pics,.path-item--teach .proof-extra{display:contents}
-  .path-item--teach .proof figure{position:absolute;margin:0}
-  .path-item--teach .p-chat{left:152px;top:56px;width:236px;transform:rotate(-3.4deg);z-index:2}
-  .path-item--teach .p-report{left:404px;top:4px;width:330px;transform:rotate(2.5deg);z-index:3}
-  .path-item--teach .p-s3{left:342px;top:216px;width:330px;transform:rotate(3.2deg);margin-top:0;z-index:4}
-  .path-item--teach .p-s2{left:452px;top:344px;width:308px;transform:rotate(-3deg);z-index:1}
-  .path-item--teach .extra-note{position:absolute;right:0;top:416px;margin:0}
+/* 一摞成绩单：四张错开叠放，咬边但不遮内容 */
+.path-item--teach .proof{order:3;flex:1 0 100%;margin-top:24px;position:relative;height:512px}
+.path-item--teach .proof-pics,.path-item--teach .proof-extra{display:contents}
+.path-item--teach .proof figure{position:absolute;margin:0}
+.path-item--teach .p-report{left:240px;top:36px;width:316px;transform:rotate(1.6deg);z-index:2}
+.path-item--teach .p-s3{left:276px;top:206px;width:284px;transform:rotate(2.4deg);margin-top:0;z-index:1}
+.path-item--teach .p-s2{left:334px;top:300px;width:226px;transform:rotate(-1.3deg);z-index:3}
+.path-item--teach .p-chat{left:158px;top:226px;width:196px;transform:rotate(-2.6deg);z-index:4}
+.path-item--teach .extra-note{position:absolute;right:0;top:506px;margin:0}
 }
 
 @media (max-width:559px){
@@ -604,6 +604,14 @@ section[id]{scroll-margin-top:68px}
   .path-item--teach .proof-extra{flex-direction:column;align-items:flex-end;gap:12px}
   .path-item--teach .p-s2{flex:0 0 auto;width:80%}
   .path-item--teach .p-s3{flex:0 0 auto;width:80%;margin-top:0}
+}
+
+@media (max-width:559px){
+  .path-item--teach .proof{position:static;height:auto;flex-basis:100%}
+  .path-item--teach .proof-pics{display:flex}
+  .path-item--teach .proof-extra{display:flex}
+  .path-item--teach .proof figure{position:static}
+  .path-item--teach .extra-note{position:static;right:auto;top:auto}
 }
 
 </style>
