@@ -304,7 +304,7 @@ section[id]{scroll-margin-top:68px}
 .iso-row{display:none}
 .iso-lines.done .iso-line{display:none}
 .iso-lines.done .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:18px}
-.iso-row button{font-size:12px;letter-spacing:.06em;white-space:nowrap}
+.iso-row button{font-size:14px;letter-spacing:.06em;white-space:nowrap}
 .iso-row button b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent);margin-right:6px}
 .iso-ctrl{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:20px}
 .iso-hint{font-size:10.5px;letter-spacing:.16em;color:var(--ink-soft);font-weight:300}
@@ -358,7 +358,7 @@ section[id]{scroll-margin-top:68px}
   .iso-lines{min-height:0}
   .iso-lines.done{min-height:0}
   .iso-lines.done .iso-row{display:flex;justify-content:space-between;gap:0;width:100%}
-  .iso-lines.done .iso-row button{font-size:11px;white-space:normal;min-width:0;line-height:1.55}
+  .iso-lines.done .iso-row button{flex:1 1 0;font-size:13px;white-space:normal;min-width:0;line-height:1.55;justify-content:flex-start}
   .iso-lines.done .iso-row button:last-child{justify-content:flex-end}
   .iso-row button{font-size:11.5px}
   .iso-ctrl{flex-direction:column;align-items:flex-start;gap:14px;margin-top:18px}
@@ -926,7 +926,7 @@ section[id]{scroll-margin-top:68px}
           <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
         </p>
         <div class="iso-row" id="isoRow">
-          <button type="button" data-i="0"><b>01</b>专业成长&amp;校园经历</button><button type="button" data-i="1"><b>02</b>社会实践&amp;实习经历</button><button type="button" data-i="2"><b>03</b>现在</button>
+          <button type="button" data-i="0"><b>01</b>专业成长&amp;校园经历</button><button type="button" data-i="1"><b>02</b>社会实践&amp;实习经历</button>
         </div>
       </div>
 
@@ -1029,7 +1029,7 @@ section[id]{scroll-margin-top:68px}
   <div class="memo-in">
     <div class="memo-top">
       <button class="memo-back" id="memoBack" type="button"><span aria-hidden="true">←</span> 返回旅程</button>
-      <span class="memo-count" id="memoCount">01 / 03</span>
+      <span class="memo-count" id="memoCount">01 / 02</span>
     </div>
     <div class="memo-pages" id="memoPages">
       <article class="memo-p" data-i="0">
@@ -1124,14 +1124,6 @@ section[id]{scroll-margin-top:68px}
         <ul class="memo-list"><li><span>一段</span>语言中心：翻译、术语、质量评测；听业务怎么提需求，看一份译文怎么进产品</li><li><span>转岗</span>活水到飞书商业化，做客户活动与 toB 营销中台</li><li><span>日常</span>策划、开会、跟进、出差——活动 PMO，也成了空中飞人；办座谈与分享会，把客户请到台前</li></ul>
         <div class="memo-pics"><img src="assets/sit-03.png" alt=""><img src="assets/speak-04.png" alt=""></div>
         <p class="memo-foot">配图暂用站点素材，可换成工位照、活动现场照</p>
-      </article>
-      <article class="memo-p" data-i="2">
-        <p class="memo-kick">03 — 现在 · 秋招进行中</p>
-        <h2 class="memo-t">线还没画完</h2>
-        <p class="memo-x">还在飞书商业化的工位上，也在往外递简历。往哪走还没定，但想去的方向已经清楚。</p>
-        <ul class="memo-list"><li><span>此刻</span>在职 + 秋招并行</li><li><span>方向</span>AI 初创 / 互联网 / 继续深造 / 创业</li><li><span>下一步</span>把语言、AI 与商业化的经验拼成一条自己的路</li></ul>
-        <div class="memo-pics"><img src="assets/fig-05.png" alt=""><img src="assets/look-05.png" alt=""></div>
-        <p class="memo-foot">配图暂用站点形象，可换成简历、offer、近期作品</p>
       </article>
     </div>
   </div>
@@ -1366,7 +1358,7 @@ section[id]{scroll-margin-top:68px}
       if(!memoEl || !memoPages){ return; }
       var ps = memoPages.querySelectorAll('.memo-p');
       for(var j=0;j<ps.length;j++){ ps[j].classList.toggle('on', j === i); }
-      if(memoCount){ memoCount.textContent = '0' + (i + 1) + ' / 03'; }
+      if(memoCount){ memoCount.textContent = '0' + (i + 1) + ' / 02'; }
       memoEl.classList.add('on');
       memoEl.setAttribute('aria-hidden', 'false');
       memoEl.scrollTop = 0;
@@ -1379,7 +1371,7 @@ section[id]{scroll-margin-top:68px}
 
     function closeMemo(){
       if(!memoEl){ return; }
-      if(/^#m[1-3]$/.test(location.hash || '')){
+      if(/^#m[1-2]$/.test(location.hash || '')){
         try{ history.replaceState(null, '', location.pathname + location.search); }catch(err){}
       }
       memoEl.classList.remove('on');
@@ -1489,7 +1481,7 @@ section[id]{scroll-margin-top:68px}
     });
 
     function openFromHash(){
-      var m = /^#m([1-3])$/.exec(location.hash || '');
+      var m = /^#m([1-2])$/.exec(location.hash || '');
       if(m){ openMemo(parseInt(m[1], 10) - 1); }
     }
     window.addEventListener('load', function(){ setTimeout(openFromHash, 120); });
