@@ -600,6 +600,29 @@ section[id]{scroll-margin-top:68px}
   .path-item--teach .p-s3{flex:0 0 auto;width:80%;margin-top:0}
 }
 
+/* ===== 04 兼职译员 ===== */
+.path .path-item--trans{width:min(660px,94%);display:flex;gap:26px;align-items:flex-start;margin-bottom:52px}
+.path-item--trans .pi-wrap{order:1;flex:0 0 44%;min-width:0;padding-top:6px}
+.path .path-item--trans .pi-ph{order:2;flex:1;height:366px;position:relative;aspect-ratio:auto;border:0;background:none;display:block;padding:0}
+.path-item--trans .tr-line{font-size:11.6px;line-height:1.75;color:var(--ink-soft);margin-top:11px;max-width:300px}
+.path-item--trans .tr-line b{font-weight:600;color:var(--ink);font-size:11px;letter-spacing:.08em;margin-right:6px}
+.path-item--trans .pi-ph figure{margin:0}
+.path-item--trans .tr-tv{position:absolute;left:0;top:0;width:100%;background:#fff;padding:5px;box-shadow:0 8px 22px rgba(25,26,28,.12);transform:rotate(-.7deg)}
+.path-item--trans .tr-tv img{display:block;width:100%;height:auto}
+.path-item--trans .tr-work{position:absolute;left:-3%;top:150px;width:52%}
+.path-item--trans .tr-work img{display:block;width:100%;height:auto}
+.path-item--trans .tr-scene{position:absolute;right:0;top:198px;width:54%;background:#fff;padding:5px;box-shadow:0 6px 18px rgba(25,26,28,.10);transform:rotate(1.2deg)}
+.path-item--trans .tr-scene img{display:block;width:100%;height:auto}
+
+@media (max-width:559px){
+  .path .path-item--trans{display:block;width:88%;gap:0;margin-bottom:64px}
+  .path-item--trans .pi-ph{height:auto;margin-top:18px}
+  .path-item--trans .pi-ph figure{position:static;width:auto}
+  .path-item--trans .pi-ph .tr-tv,.path-item--trans .pi-ph .tr-scene{width:100%;margin-top:14px}
+  .path-item--trans .pi-ph .tr-work{position:static;width:56%;margin:20px 0 0 auto}
+  .path-item--trans .tr-line{max-width:none}
+}
+
 </style>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
 </head>
@@ -1078,13 +1101,18 @@ section[id]{scroll-margin-top:68px}
               <figure class="club-b"><img src="assets/aidmeet-cut.png" alt="班级资助评议：主持讲解评议标准"></figure>
             </div>
           </div>
-          <div class="path-item">
+          <div class="path-item path-item--trans">
             <div class="pi-wrap">
-              <p class="pi-no"><em>04</em> · 大四实习</p>
-              <h3 class="pi-t">第一次用英语做生意</h3>
-              <p class="pi-x">外贸实习：报价、跟单、写邮件、对接海外客户。英语是工具，生意才是内容。</p>
+              <p class="pi-no"><em>04</em> · 兼职 · 译员</p>
+              <h3 class="pi-t">第一次把翻译变成收入</h3>
+              <p class="tr-line"><b>笔译</b>参与词典修订，一条词条的用法，能抠一下午。</p>
+              <p class="tr-line"><b>口译</b>法国文化交流周，在展台前来回翻，后来被深圳卫视的镜头捎进去几秒。</p>
             </div>
-            <div class="pi-ph">图片占位</div>
+            <div class="pi-ph">
+              <figure class="tr-tv"><img src="assets/fr-tv.jpg" alt="深圳卫视《深视新闻》报道画面：法国文化交流周现场"></figure>
+              <figure class="tr-work"><img src="assets/translate-cut.png" alt="书桌前做笔译的形象"></figure>
+              <figure class="tr-scene"><img src="assets/fr-scene.jpg" alt="法国文化交流周现场"></figure>
+            </div>
           </div>
           <svg class="path-lines" aria-hidden="true"></svg>
         </div>
