@@ -292,12 +292,14 @@ section[id]{scroll-margin-top:68px}
 .iso-scroll{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
 .iso-scroll::-webkit-scrollbar{display:none}
 .iso-svg{display:block;width:100%;height:auto;aspect-ratio:1200/320}
-.iso-lines{margin-top:22px;padding-top:20px;border-top:1px solid var(--line);min-height:106px;transition:min-height .4s ease}
+.iso-lines{position:relative;margin-top:22px;padding-top:20px;border-top:1px solid var(--line);min-height:106px;transition:min-height .4s ease}
 .iso-lines.done{min-height:0;padding-bottom:2px}
 .iso-line{display:none;margin:0}
 .iso-line.on{display:block;animation:isoRise .55s cubic-bezier(.2,.7,.2,1) both}
+.iso-line.fading{display:block;position:absolute;left:0;right:0;top:20px;margin:0;animation:none;opacity:0;transition:opacity .45s ease;pointer-events:none}
 @keyframes isoRise{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
 .iso-l-k{font-family:"Cormorant Garamond",serif;font-size:12px;letter-spacing:.2em;color:var(--accent)}
+.iso-l-d{font-family:"Cormorant Garamond",serif;font-size:10.5px;letter-spacing:.15em;color:rgba(25,26,28,.44);margin-left:11px}
 .iso-l-site{font-size:10.5px;letter-spacing:.12em;color:var(--ink-soft);margin-left:12px}
 .iso-l-t{display:block;font-family:"Noto Serif SC",serif;font-weight:600;font-size:19px;line-height:1.5;margin-top:9px;letter-spacing:.01em}
 .iso-l-x{display:block;font-style:normal;font-size:13px;font-weight:300;line-height:1.75;color:var(--ink-soft);margin-top:9px}
@@ -927,27 +929,27 @@ section[id]{scroll-margin-top:68px}
     </div>
       <div class="iso-lines" id="isoLines">
         <p class="iso-line on">
-          <span class="iso-l-k">01</span><span class="iso-l-site">西南科技大学 · 外语</span>
+          <span class="iso-l-k">01</span><span class="iso-l-site">西南科技大学 · 外语</span><span class="iso-l-d">2021.09 – 2025.06</span>
           <strong class="iso-l-t">本科：把语言这张通行证，一张张考出来</strong>
           <em class="iso-l-x">想和不同文化的人无障碍沟通，于是考证、上台、带班、接稿，一样样补上。</em>
         </p>
         <p class="iso-line">
-          <span class="iso-l-k">02</span><span class="iso-l-site">北京交通大学 · 笔译</span>
+          <span class="iso-l-k">02</span><span class="iso-l-site">北京交通大学 · 笔译</span><span class="iso-l-d">2025.09 – 2027.06</span>
           <strong class="iso-l-t">保研：把语言练扎实的同时，也在探索专业与 AI 的结合</strong>
           <em class="iso-l-x">一边夯实听说读写译的技能，一边在宇宙厂进行 AI 翻译项目的评测与供应商管理。</em>
         </p>
         <p class="iso-line">
-          <span class="iso-l-k">03</span><span class="iso-l-site">字节 · 语言中心</span>
+          <span class="iso-l-k">03</span><span class="iso-l-site">字节 · 语言中心</span><span class="iso-l-d">2025.11 – 2026.07</span>
           <strong class="iso-l-t">第一份实习：看专业怎么接上 AI</strong>
           <em class="iso-l-x">于是开始不停地听听听、看看看、评评评 💪</em>
         </p>
         <p class="iso-line">
-          <span class="iso-l-k">04</span><span class="iso-l-site">字节 · 飞书商业化</span>
+          <span class="iso-l-k">04</span><span class="iso-l-site">字节 · 飞书商业化</span><span class="iso-l-d">2026.07 – 今</span>
           <strong class="iso-l-t">实习二：活动 PM · 空中飞人</strong>
           <em class="iso-l-x">踏出自己的舒适圈，结果成了空中飞人，策划、开会、跟进、出差成了日常。</em>
         </p>
         <p class="iso-line">
-          <span class="iso-l-k">05</span><span class="iso-l-site">秋招中</span>
+          <span class="iso-l-k">05</span><span class="iso-l-site">秋招中</span><span class="iso-l-d">2026.09 – 今</span>
           <strong class="iso-l-t">现在：秋招进行中</strong>
           <em class="iso-l-x">还在飞书商业化的工位上，也在往外递简历——线还没画完。</em>
         </p>
@@ -1267,7 +1269,13 @@ section[id]{scroll-margin-top:68px}
 
     function lightOn(i){
       if(litAt === i) return;
+      var prevI = litAt;
       litAt = i;
+      if(prevI >= 0 && lines[prevI] && lines[prevI].classList.contains('on')){
+        var oldEl = lines[prevI];
+        oldEl.classList.add('fading');
+        setTimeout(function(){ oldEl.classList.remove('on'); oldEl.classList.remove('fading'); }, 470);
+      }
       for(var k=0;k<sites.length;k++){
         sites[k].classList.toggle('on', k === i);
         sites[k].classList.toggle('past', k < i);
