@@ -324,7 +324,7 @@ section[id]{scroll-margin-top:68px}
 
 .iso-scroll{position:relative;overflow:hidden;width:100%;aspect-ratio:1200/320}
 .iso-track{position:absolute;top:0;left:0;width:100%;height:100%}
-.iso-svg{display:block;width:100%;height:100%}
+.iso-svg{position:relative;z-index:1;display:block;width:100%;height:100%}
 .walker{position:absolute;bottom:0;left:0;width:0;height:100%;z-index:3}
 .bubbles{position:absolute;left:0;top:0;width:100%;height:100%;z-index:4;pointer-events:none;opacity:0;transition:opacity .55s ease}
 .bubbles.on{opacity:1;animation:bubDrift 7.5s ease-in-out infinite alternate}
@@ -1240,22 +1240,28 @@ section[id]{scroll-margin-top:68px}
     var mqNarrow = window.matchMedia('(max-width:719px)');
     var VW = 430;
     var trackX = -1;
-    function frameTo(x){
-      var vw = VW;
-      if(mqNarrow.matches && scrollBox && isoTrackEl && isoTrackEl.offsetWidth){
-        vw = 1200 * scrollBox.clientWidth / isoTrackEl.offsetWidth;
+    var camX = 0;
+    function frameTo(x, snap){
+      if(!mqNarrow.matches || !scrollBox || !isoTrackEl){
+        if(trackX !== 0){ trackX = 0; camX = 0; isoTrackEl.style.transform = 'translateX(0)'; }
+        return;
       }
-      var vx = mqNarrow.matches ? Math.max(0, Math.min(1200 - vw, x - vw / 2)) : 0;
-      if(vx !== trackX){
-        trackX = vx;
-        isoTrackEl.style.transform = vx ? 'translateX(' + (-vx / 12).toFixed(2) + '%)' : 'translateX(0)';
-      }
+      var h = scrollBox.clientHeight || 1;
+      var vw = Math.max(180, Math.min(1200, 1200 * scrollBox.clientWidth / (h * 3.75)));
+      var target = Math.max(0, Math.min(1200 - vw, x - vw / 2));
+      camX = (snap || Math.abs(target - camX) > vw * 0.75) ? target : camX + (target - camX) * 0.14;
+      if(Math.abs(camX - target) < 0.4) camX = target;
+      var px = -(camX * h * 3.75 / 1200);
+      trackX = camX;
+      isoTrackEl.style.transform = px ? 'translateX(' + px.toFixed(2) + 'px)' : 'translateX(0)';
     }
 
+    var lastX = POS[0][0];
     function setPos(x, y){
       var p = (x / 1200 * 100).toFixed(3) + '%';
       walker.style.left = p;
       if(shadow){ shadow.style.left = p; }
+      lastX = x;
       frameTo(x);
     }
 
@@ -1300,7 +1306,7 @@ section[id]{scroll-margin-top:68px}
         x = a[0] + (b[0] - a[0]) * t;
         y = a[1] + (b[1] - a[1]) * t;
         setClass('walk');
-        lightOn(st.from);
+        lightOn(t < 0.5 ? st.from : st.to);
         var audW = document.getElementById('aud4');
         if(audW) audW.style.opacity = '0';
       } else {
@@ -1551,7 +1557,8 @@ section[id]{scroll-margin-top:68px}
       }
     }
 
-    window.addEventListener('load', function(){ setTimeout(drawPaths, 400); });
+    window.addEventListener('resize', function(){ if(isoTrackEl){ frameTo(lastX, true); } });
+    window.addEventListener('load', function(){ setTimeout(drawPaths, 400); frameTo(POS[0][0], true); });
     var __dpT;
     window.addEventListener('resize', function(){ clearTimeout(__dpT); __dpT = setTimeout(drawPaths, 120); });    var pathTimer = null;
     window.addEventListener('resize', function(){
