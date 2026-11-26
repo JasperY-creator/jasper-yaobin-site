@@ -1539,6 +1539,7 @@ section[id]{scroll-margin-top:68px}
     function renderPose(){
       var input = sourceFor(poseName, poseKind, readSecond);
       var entry = input && poseCache[input.getAttribute('src')];
+      if(entry && entry.ready) lastReady = entry.image;
       var ready = entry && entry.ready ? entry.image : lastReady;
       if(!ready){ if(sprite.complete && sprite.naturalWidth) ready = sprite; else return; }
       if(sprite.getAttribute('src') !== ready.getAttribute('src')) sprite.src = ready.getAttribute('src');
@@ -1552,7 +1553,7 @@ section[id]{scroll-margin-top:68px}
         var retried = false, completed = false, timeout;
         function done(ok){
           if(completed) return; completed = true; clearTimeout(timeout);
-          if(ok){ entry.ready = true; lastReady = entry.image; renderPose(); }
+          if(ok){ entry.ready = true; renderPose(); }
           resolve(ok);
         }
         entry.image.onload = function(){
