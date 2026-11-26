@@ -32,6 +32,20 @@
 .word-keep{display:inline!important;white-space:nowrap;font:inherit!important;color:inherit!important;letter-spacing:inherit!important;margin:0!important}
 p,.reflection>span,.product-caption{word-break:normal;overflow-wrap:normal;text-wrap:pretty}
 @media(min-width:600px) and (max-width:899px){.result{grid-template-columns:1fr}}
+
+/* Language-center memories: open image/text relationships, not boxed evidence. */
+.private-note{font-size:12px;color:var(--soft);margin-top:14px;padding-left:11px;border-left:2px solid var(--line)}
+.language-record .figure img{max-height:325px}
+.eval-loop{list-style:none;margin:0 0 36px;padding:16px 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.eval-loop li{min-width:0}.eval-loop span{font:600 18px/1.5 var(--serif)}.eval-loop small{display:block;font-size:12px;color:var(--soft);margin-top:5px}
+.supplier-note{padding:19px 0 23px;border-bottom:1px solid var(--line);margin-bottom:28px}.supplier-note h3{font:600 21px/1.5 var(--serif);margin:10px 0}.supplier-note p{font-size:15px;color:var(--soft);line-height:1.9;max-width:710px}
+.team-memory{display:grid;gap:20px;align-items:center;margin:30px 0}.team-intro h3,.juice-story h3{font:600 23px/1.5 var(--serif);margin:8px 0 14px}.team-intro p,.juice-story p{font-size:15px;line-height:1.9;color:var(--soft)}.team-intro p+p,.juice-story p+p{margin-top:10px}
+.birthday-collage{min-width:0;position:relative}.memory-photo img{width:100%;height:auto;filter:saturate(.85);opacity:.96;-webkit-mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 91%,transparent 100%)}
+.memory-photo figcaption,.snack-photo figcaption,.juice-photo figcaption{font-size:12px;color:var(--soft);line-height:1.65;margin:3px 0;text-align:right}
+.snack-photo{width:62%;margin:12px 0 0 auto}.snack-photo img{width:100%;height:auto;filter:saturate(.82);opacity:.92;-webkit-mask-image:linear-gradient(#000 0%,#000 92%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 92%,transparent 100%)}
+.juice-story{display:grid;gap:21px;align-items:center;margin:32px 0}.juice-photo{max-width:310px;margin:0 auto}.juice-photo img{width:100%;height:auto;opacity:1;-webkit-mask-image:linear-gradient(#000 0%,#000 96%,transparent 100%);mask-image:linear-gradient(#000 0%,#000 96%,transparent 100%)}
+@media(min-width:600px){.eval-loop{grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}.team-memory{grid-template-columns:.9fr 1.1fr;gap:35px;margin:32px 0}.team-intro h3,.juice-story h3{font-size:25px}.snack-photo{margin-top:-8px;width:56%}.juice-story{grid-template-columns:.85fr 1.15fr;gap:45px}.juice-photo{width:100%;max-width:300px}.supplier-note{display:grid;grid-template-columns:1fr 1.5fr;column-gap:35px;align-items:center}.supplier-note .step-label{grid-column:1}.supplier-note h3{grid-column:1;margin-top:5px}.supplier-note p{grid-column:2;grid-row:1/span 2}.language-opening{margin-bottom:26px}}
+@media(min-width:900px){.team-memory{gap:55px}.team-intro h3,.juice-story h3{font-size:27px}.juice-story{gap:70px;margin:42px 0}.language-record .figure{margin-right:-12px}.language-panel .story{margin-bottom:30px}}
 </style>
 </head>
 <body>
@@ -63,10 +77,27 @@ p,.reflection>span,.product-caption{word-break:normal;overflow-wrap:normal;text-
 </div>
 <div class="reflection"><p>忙是真的，学到东西<span class="word-keep">也是真的。</span></p><span>商务英语终于用在了真实的沟通里。第一次接触外贸，也第一次正式看见商业怎么运转：从找到客户，到跟进订单，再到把<span class="word-keep">货交出去。</span></span></div>
 </section>
-<section aria-labelledby="tab-language" class="panel" hidden="" id="panel-language" role="tabpanel" tabindex="0">
-<div class="secondary-intro"><div><p class="dates">2025.11 — 2026.07 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">把专业带到</span><br/><span class="word-keep">真实业务里</span></h2><p class="intro">语言中心这段实习，围绕翻译、术语和质量评测展开。学了多年的语言，开始和具体的业务<span class="word-keep">需求接上。</span></p></div><figure class="figure"><img alt="虚拟人物操作电脑进行翻译实践" src="assets/sit-03.png"/></figure></div>
-<div class="story story-night"><div class="story-copy"><div class="step-label">工位日常</div><h3><span class="word-keep">做翻译，</span><span class="word-keep">也看质量</span></h3><p>翻译、维护术语、做质量评测。听业务怎么提需求，也看一份译文怎<span class="word-keep">么进产品。</span></p><p>除了把内容译出来，也开始关注专业<span class="word-keep">怎么接上 AI。</span></p></div><figure class="figure"><img alt="虚拟电脑工作场景，非实习现场照片" id="language-night" src="assets/intern-night.png"/></figure></div>
-<div class="reflection"><p>语言还是底子，问题开始<span class="word-keep">变得具体。</span></p><span>不只是在课堂里练听说读写译，也在实际业务里看这些技能怎<span class="word-keep">么被使用。</span></span></div>
+<section aria-labelledby="tab-language" class="panel language-panel" hidden="" id="panel-language" role="tabpanel" tabindex="0">
+<div class="secondary-intro language-opening">
+<div><p class="dates">2025.11 — 2026.07 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">做评测，</span><br/><span class="word-keep">也被大家照顾着</span></h2><p class="intro">在语言中心，评测模型的翻译与翻配能力，也跟进供应商提供的内容。工作里有很多新问题，身边也有一群自信、漂亮、<span class="word-keep">松弛的姐姐。</span></p><p class="private-note">业务涉及保密，这里只记工作方式和<span class="word-keep">团队日常。</span></p></div>
+<figure class="figure"><img alt="语言中心实习的虚拟电脑工作形象" src="assets/sit-03.png"/></figure>
+</div>
+<div class="story language-record">
+<div class="story-copy"><div class="step-label">一个小项目</div><h3><span class="word-keep">拉着伙伴们，</span><br/><span class="word-keep">一起录测试素材</span></h3><p>当时自己跟过一个小评测项目，拉着同组伙伴录制测试集，再送评、看结果、找原因复盘，继续调整<span class="word-keep">录制方式。</span></p><p>从录素材到下一轮再试，第一次把一个小项目一路跟下来，<span class="word-keep">挺有意思。</span></p></div>
+<figure class="figure"><img alt="虚拟场景：伙伴们围桌录制通用素材；不展示真实测试集" id="language-recording" src="assets/language-recording.png"/></figure>
+</div>
+<ol aria-label="脱敏后的工作流程" class="eval-loop"><li><span>录制</span><small>和伙伴一起准备素材</small></li><li><span>送评</span><small>跟进一轮评测</small></li><li><span>复盘</span><small>看结果，找原因</small></li><li><span>调整</span><small>优化下一轮录制</small></li></ol>
+<div class="story story-meeting language-report">
+<figure class="figure"><img alt="虚拟场景：整理评测结果与撰写报告，屏幕不含真实业务信息" id="language-night" src="assets/intern-night.png"/></figure>
+<div class="story-copy"><div class="step-label">看结果，也找原因</div><h3><span class="word-keep">进步看得到，</span><br/><span class="word-keep">新问题也会冒出来</span></h3><p>一轮轮评测下来，看着模型的表现不断进步，也总会遇到新的问题。写报告时，不能只记下结果，还得再往下<span class="word-keep">找找原因。</span></p><p>这段经历练到的，是多看一层、多问一句：<span class="word-keep">为什么会这样？</span></p></div>
+</div>
+<div class="supplier-note"><span class="step-label">另一头的日常</span><h3>把供应商的内容跟好</h3><p>除了评测，也要管理供应商提供的内容，跟进交付、检查和反馈。看模型的表现，也得把内容这一<span class="word-keep">头照顾好。</span></p></div>
+<div class="team-memory">
+<div class="team-intro"><div class="step-label">工位之外</div><h3><span class="word-keep">姐姐们的松弛，</span><br/><span class="word-keep">让我也跟着放松了</span></h3><p>同组的姐姐们自信、漂亮、落落大方，leader 也很美、很有魅力。和她们一起做事，心<span class="word-keep">里很踏实。</span></p><p>会一起去 KTV 唱歌，也会在有人过生日时，偷偷在会议室准备惊喜。工作之外，这些小事<span class="word-keep">我都记得。</span></p></div>
+<div class="birthday-collage"><figure class="memory-photo"><img alt="团队生日合影，全员已动漫化，屏幕和工牌已脱敏" id="language-birthday" src="assets/language-birthday-group.jpg"/><figcaption>会议室里的生日惊喜 · 合影<span class="word-keep">已动漫化</span></figcaption></figure><figure class="snack-photo"><img alt="动漫化的生日点心分享画面" src="assets/language-birthday-snacks.jpg"/><figcaption>开完会，也一<span class="word-keep">起分点心</span></figcaption></figure></div>
+</div>
+<div class="juice-story"><figure class="juice-photo"><img alt="本人生日抱着同事送的NFC果汁的原始照片" id="language-nfc" src="assets/language-nfc.jpg"/><figcaption>这一怀果<span class="word-keep">汁，是真的。</span></figcaption></figure><div class="story-copy"><div class="step-label">一件很小、很幸福的事</div><h3><span class="word-keep">喜欢喝 NFC，</span><br/><span class="word-keep">生日就收到了一打</span></h3><p>那阵子特别喜欢喝 NFC 果汁。生日的时候，一个姐姐直接给我买了一打，抱在怀里都<span class="word-keep">快拿不下。</span></p><p>有人记得你喜欢什么，这种被惦记着的感觉，<span class="word-keep">真的很好。</span></p></div></div>
+<div class="reflection"><p>学到了东西，也过<span class="word-keep">得很幸福。</span></p><span>记得一轮轮评测里的进步和问题，也记得录素材的伙伴、KTV 的歌声，还有生日那<span class="word-keep">一怀果汁。</span></span></div>
 </section>
 <section aria-labelledby="tab-feishu" class="panel" hidden="" id="panel-feishu" role="tabpanel" tabindex="0">
 <div class="secondary-intro"><div><p class="dates">2026.07 — 至今 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">换到客户现场，</span><br/><span class="word-keep">也成了空中飞人</span></h2><p class="intro">从语言中心活水到飞书商业化，做活动 PM 和客户活动。策划、开会、跟进、出差，成了<span class="word-keep">新的日常。</span></p></div><figure class="figure"><img alt="虚拟活动PM人物立绘" src="assets/speak-04.png"/></figure></div>
