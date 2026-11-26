@@ -478,6 +478,24 @@ section[id]{scroll-margin-top:68px}
 .memo-pics{display:flex;gap:16px;align-items:flex-end}
 .memo-pics img{width:calc(50% - 0px);height:340px;object-fit:contain;display:block;background:#fff;padding:6px}
 .memo-foot{margin-top:44px;font-size:11px;letter-spacing:.14em;color:#9C978C}
+
+/* ===== 实习标签切换 ===== */
+.tab-bar{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--line);margin:4px 0 30px}
+.tab-btn{appearance:none;background:none;border:0;font:inherit;cursor:pointer;display:inline-flex;align-items:baseline;gap:7px;padding:12px 18px 11px;color:var(--ink-soft);font-size:13px;letter-spacing:.05em;position:relative;transition:color .25s ease}
+.tab-btn b{font-family:"Cormorant Garamond",serif;font-weight:400;font-size:11px;letter-spacing:.16em;color:var(--accent)}
+.tab-btn::after{content:"";position:absolute;left:18px;right:18px;bottom:-1px;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .28s ease}
+.tab-btn.on{color:var(--ink)}
+.tab-btn.on::after{transform:scaleX(1)}
+.tab-btn:hover{color:var(--ink)}
+.tab-btn:focus-visible{outline:1px dashed rgba(25,26,28,.35);outline-offset:3px}
+.tab-panel{display:none}
+.tab-panel.on{display:block;animation:memoIn .35s ease both}
+.tab-d{font-family:"Cormorant Garamond",serif;font-size:11.5px;letter-spacing:.18em;color:var(--ink-soft);margin:0 0 12px}
+.tab-t{font-family:"Noto Serif SC",serif;font-weight:600;font-size:21px;line-height:1.5;margin:0 0 12px}
+.tab-x{font-size:13.5px;font-weight:300;line-height:2;color:var(--ink-soft);margin:0 0 26px;max-width:620px}
+.tab-panel .memo-pics{margin-top:30px}
+.tab-panel .memo-pics img{width:100%;max-width:520px;height:300px}
+.ph-ph{margin:0;width:100%;max-width:520px;border:1px dashed rgba(25,26,28,.22);background:#fff;height:300px;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:.12em;color:#9C978C}
 @media (max-width:719px){
   .memo-in{padding:0 20px 70px}
   .memo-top{padding:18px 0 14px}
@@ -491,6 +509,13 @@ section[id]{scroll-margin-top:68px}
   .memo-pics{gap:10px}
   .memo-pics img{height:230px;padding:4px}
   .memo-foot{margin-top:30px;font-size:10px}
+  .tab-bar{overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+  .tab-btn{padding:10px 12px;white-space:nowrap;font-size:12.5px}
+  .tab-btn::after{left:12px;right:12px}
+  .tab-t{font-size:18px}
+  .tab-x{font-size:12.5px;line-height:1.9}
+  .tab-panel .memo-pics img{height:230px}
+  .ph-ph{height:230px}
   .path-item{width:88%;gap:14px;margin-bottom:58px}
   .pi-t{font-size:14px;line-height:1.7}
   .pi-x{font-size:11.5px;line-height:1.9;max-width:none}
@@ -1159,13 +1184,48 @@ section[id]{scroll-margin-top:68px}
           <svg class="path-lines" aria-hidden="true"></svg>
         </div>
       </article>
-      <article class="memo-p" data-i="1">
-        <p class="memo-kick">02 — 社会实践 · 实习 · 字节 语言中心 → 飞书商业化</p>
-        <h2 class="memo-t">从语言中心，走到商业化现场</h2>
-        <p class="memo-x">语言中心做翻译、术语和质量评测；后来活水到飞书商业化，做客户活动——向内看专业，也向外看生意。</p>
-        <ul class="memo-list"><li><span>一段</span>语言中心：翻译、术语、质量评测；听业务怎么提需求，看一份译文怎么进产品</li><li><span>转岗</span>活水到飞书商业化，做客户活动与 toB 营销中台</li><li><span>日常</span>策划、开会、跟进、出差——活动 PM，也成了空中飞人；办座谈与分享会，把客户请到台前</li></ul>
-        <div class="memo-pics"><img src="assets/sit-03.png" alt=""><img src="assets/speak-04.png" alt=""></div>
-        <p class="memo-foot">配图暂用站点素材，可换成工位照、活动现场照</p>
+      <article class="memo-p memo-p--tabs" data-i="1">
+        <p class="memo-kick">02 — 社会实践 · 实习</p>
+        <h2 class="memo-t">三段实习，从外语桌走到客户现场</h2>
+        <p class="memo-x">外贸单子、翻译评测、客户活动——三段实习，语言一直是底子，做事的范围越走越向外。</p>
+
+        <div class="tab-bar" role="tablist" aria-label="实习经历切换">
+          <button class="tab-btn on" type="button" role="tab" aria-selected="true" data-t="0"><b>01</b>外贸实习</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-t="1"><b>02</b>语言中心</button>
+          <button class="tab-btn" type="button" role="tab" aria-selected="false" data-t="2"><b>03</b>飞书商业化</button>
+        </div>
+
+        <div class="tab-panel on" data-tp="0" role="tabpanel">
+          <p class="tab-d">大四 · 半年（起止月份待补）</p>
+          <h3 class="tab-t">外贸实习</h3>
+          <p class="tab-x">这段实习做了什么、学到什么，待补充。</p>
+          <ul class="memo-list">
+            <li><span>职责</span>（待补：日常跟进哪些单子、对接什么环节）</li>
+          </ul>
+          <div class="memo-pics"><figure class="ph-ph">配图待补</figure></div>
+        </div>
+
+        <div class="tab-panel" data-tp="1" role="tabpanel">
+          <p class="tab-d">2025.11 – 2026.07</p>
+          <h3 class="tab-t">语言中心：翻译、术语与质量评测</h3>
+          <p class="tab-x">听业务怎么提需求，看一份译文怎么进产品。</p>
+          <ul class="memo-list">
+            <li><span>日常</span>翻译、术语维护、质量评测；跟进需求从提报到译文上线的流程</li>
+          </ul>
+          <div class="memo-pics"><img src="assets/sit-03.png" alt="语言中心工位"></div>
+        </div>
+
+        <div class="tab-panel" data-tp="2" role="tabpanel">
+          <p class="tab-d">2026.07 – 至今</p>
+          <h3 class="tab-t">飞书商业化：活动 PM · 空中飞人</h3>
+          <p class="tab-x">活水到商业化，做客户活动与 toB 营销中台。</p>
+          <ul class="memo-list">
+            <li><span>日常</span>策划、开会、跟进、出差；办座谈与分享会，把客户请到台前</li>
+          </ul>
+          <div class="memo-pics"><img src="assets/speak-04.png" alt="客户活动现场"></div>
+        </div>
+
+        <p class="memo-foot">配图暂用站点素材，可换成工位照、活动现场照；外贸段配图待补</p>
       </article>
     </div>
   </div>
@@ -1450,6 +1510,28 @@ section[id]{scroll-margin-top:68px}
       });
     }
     if(memoBack){ memoBack.addEventListener('click', closeMemo); }
+
+    /* 实习页标签切换 */
+    if(memoPages){
+      var tabBars = memoPages.querySelectorAll('.tab-bar');
+      Array.prototype.forEach.call(tabBars, function(bar){
+        var tBtns = bar.querySelectorAll('.tab-btn');
+        var tPanels = bar.parentNode.querySelectorAll('.tab-panel');
+        Array.prototype.forEach.call(tBtns, function(btn){
+          btn.addEventListener('click', function(){
+            var t = btn.getAttribute('data-t');
+            Array.prototype.forEach.call(tBtns, function(b){
+              var on = b === btn;
+              b.classList.toggle('on', on);
+              b.setAttribute('aria-selected', on ? 'true' : 'false');
+            });
+            Array.prototype.forEach.call(tPanels, function(p){
+              p.classList.toggle('on', p.getAttribute('data-tp') === t);
+            });
+          });
+        });
+      });
+    }
     document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ closeMemo(); } });
 
     /* ===== 起点路线图：足迹连线 ===== */
