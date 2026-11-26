@@ -1,12 +1,13 @@
 <!DOCTYPE html>
+
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
 <title>JASPER 姚斌 · 实习经历</title>
-<meta name="description" content="三段实习，三种工作日常：Chriffer美国市场开拓、字节语言中心、飞书商业化。">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23AE3B2C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='42' fill='%23F3F0E9' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E">
-<link rel="preconnect" href="https://lf-flow-web-cdn.doubao.com" crossorigin>
+<meta content="三段实习，三种工作日常：Chriffer美国市场开拓、字节语言中心、飞书商业化。" name="description"/>
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23AE3B2C'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='42' fill='%23F3F0E9' text-anchor='middle'%3EJ%3C/text%3E%3C/svg%3E" rel="icon"/>
+<link crossorigin="" href="https://lf-flow-web-cdn.doubao.com" rel="preconnect"/>
 <style>
 @font-face{font-family:"Source Han Serif CN";src:url("https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/infinite-canvas/fonts/v1/source-han-serif-cn/source-han-serif-cn-semi-bold.otf") format("opentype");font-weight:600;font-style:normal;font-display:swap}
 @font-face{font-family:"Source Han Sans SC VF";src:url("https://lf-flow-web-cdn.doubao.com/obj/flow-doubao/doubao/infinite-canvas/fonts/v1/source-han-sans-sc-vf/source-han-sans-sc-vf.otf") format("opentype");font-weight:250 900;font-style:normal;font-display:swap}
@@ -26,48 +27,53 @@
 @media(min-width:900px){.head{padding-top:30px}.title{font-size:40px}.chapter-intro{gap:70px}.panel-title{font-size:33px}.story{gap:75px}.story h3{font-size:26px}.figure-call img{height:310px}.story-meeting .figure{margin-left:-12px;margin-right:-10px}.story-night .figure{margin-right:-10px}.figure img{max-height:310px}.brand-study{padding-left:10px}.result strong{font-size:20px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{.topbar,.tab-bar{display:none}.panel[hidden]{display:block!important}.panel{break-before:page}.panel:first-of-type{break-before:auto}.page{background:#fff}.figure img{mask-image:none!important;-webkit-mask-image:none!important}.foot{margin-top:15px}}
+
+/* Keep short phrases and sentence endings together without reducing type size. */
+.word-keep{display:inline!important;white-space:nowrap;font:inherit!important;color:inherit!important;letter-spacing:inherit!important;margin:0!important}
+p,.reflection>span,.product-caption{word-break:normal;overflow-wrap:normal;text-wrap:pretty}
+@media(min-width:600px) and (max-width:899px){.result{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="page" id="intern-page">
 <header class="topbar"><a class="brand" href="https://jaspery-creator.github.io/jasper-yaobin-site/">JASPER 姚斌</a><a class="back" href="https://jaspery-creator.github.io/jasper-yaobin-site/">← 返回旅程站</a></header>
 <main class="wrap">
-<div class="head"><p class="kick">社会实践与实习经历</p><h1 class="title">三段实习，三种工作日常</h1><p class="lead">从第一次做外贸，到翻译评测，再到客户活动。换过几张工位，也慢慢摸清了自己能做什么。</p></div>
-<div class="tab-bar" role="tablist" aria-label="实习经历">
-<button id="tab-trade" class="tab-btn" type="button" role="tab" aria-selected="true" aria-controls="panel-trade" tabindex="0" data-tab="trade"><b>01</b>外贸实习</button>
-<button id="tab-language" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="panel-language" tabindex="-1" data-tab="language"><b>02</b>语言中心</button>
-<button id="tab-feishu" class="tab-btn" type="button" role="tab" aria-selected="false" aria-controls="panel-feishu" tabindex="-1" data-tab="feishu"><b>03</b>飞书商业化</button>
+<div class="head"><p class="kick">社会实践与<span class="word-keep">实习经历</span></p><h1 class="title"><span class="word-keep">三段实习，</span><span class="word-keep">三种工作日常</span></h1><p class="lead">从第一次做外贸，到翻译评测，再到客户活动。换过几张工位，也慢慢摸清了自己<span class="word-keep">能做什么。</span></p></div>
+<div aria-label="实习经历" class="tab-bar" role="tablist">
+<button aria-controls="panel-trade" aria-selected="true" class="tab-btn" data-tab="trade" id="tab-trade" role="tab" tabindex="0" type="button"><b>01</b>外贸实习</button>
+<button aria-controls="panel-language" aria-selected="false" class="tab-btn" data-tab="language" id="tab-language" role="tab" tabindex="-1" type="button"><b>02</b>语言中心</button>
+<button aria-controls="panel-feishu" aria-selected="false" class="tab-btn" data-tab="feishu" id="tab-feishu" role="tab" tabindex="-1" type="button"><b>03</b>飞书商业化</button>
 </div>
-<section id="panel-trade" class="panel" role="tabpanel" aria-labelledby="tab-trade" tabindex="0">
+<section aria-labelledby="tab-trade" class="panel" id="panel-trade" role="tabpanel" tabindex="0">
 <div class="chapter-intro">
-<div><p class="dates">2025.02 — 2025.07 · 大四</p><h2 class="panel-title">第一次做外贸，<br>就遇上<span class="nb">从零开始</span></h2><p class="intro">大四那半年，跟着老板姐姐做公司刚起步的外贸业务，把 Chriffer 的儿童泳具介绍给美国本土的企业客户。产品有了，客户得自己一家家找。</p></div>
-<aside class="brand-study" aria-label="Chriffer儿童泳具"><p class="brand-name">Chriffer</p><p class="product-kind">儿童泳具 · 美国 toB 市场开拓</p><img id="trade-product" class="product-art" src="assets/chriffer-product.png" alt="依据Chriffer恐龙儿童浮力背心参考制作的泳具插画"><p class="product-caption">图示：恐龙浮力背心 · 官网另有泳镜等泳具</p><div style="text-align:right"><a class="source-link" href="https://www.chriffer-sport.com/" target="_blank" rel="noopener noreferrer">品牌官网 ↗</a></div></aside>
+<div><p class="dates">2025.02 — 2025.07 · 大四</p><h2 class="panel-title"><span class="word-keep">第一次做外贸，</span><br/><span class="word-keep">就遇上</span><span class="nb">从零开始</span></h2><p class="intro">大四那半年，跟着老板姐姐做公司刚起步的外贸业务，把 Chriffer 的儿童泳具介绍给美国本土的企业客户。产品有了，客户得自己<span class="word-keep">一家家找。</span></p></div>
+<aside aria-label="Chriffer儿童泳具" class="brand-study"><p class="brand-name">Chriffer</p><p class="product-kind">儿童泳具 · 美国 toB <span class="word-keep">市场开拓</span></p><img alt="依据Chriffer恐龙儿童浮力背心参考制作的泳具插画" class="product-art" id="trade-product" src="assets/chriffer-product.png"/><p class="product-caption">图示：恐龙浮力背心 · 官网另有泳<span class="word-keep">镜等泳具</span></p><div style="text-align:right"><a class="source-link" href="https://www.chriffer-sport.com/" rel="noopener noreferrer" target="_blank">品牌官网 ↗</a></div></aside>
 </div>
 <div class="story story-call">
-<div class="story-copy"><div class="step-label">找客户</div><h3>每天从谷歌地图<br>和客户名单开始</h3><p>研究门店、整理名单，接着打电话、写邮件，再和当地销售代表一起推进。先让潜在客户认识 Chriffer，再争取往下聊。</p><p>一通电话、一封邮件，很多时候都只是开始。</p></div>
-<figure class="figure figure-call"><img id="trade-call" src="assets/trade-01.png" alt="虚拟人物打电话联系客户"><div class="call-notes" aria-hidden="true"><span><small>先找人</small>谷歌地图 / 名单</span><span><small>再联系</small>电话 / 邮件</span><span><small>一起推进</small>当地销售代表</span></div></figure>
+<div class="story-copy"><div class="step-label">找客户</div><h3><span class="word-keep">每天从谷歌地图</span><br/><span class="word-keep">和客户名单开始</span></h3><p>研究门店、整理名单，接着打电话、写邮件，再和当地销售代表一起推进。先让潜在客户认识 Chriffer，再争<span class="word-keep">取往下聊。</span></p><p>一通电话、一封邮件，很多时候都<span class="word-keep">只是开始。</span></p></div>
+<figure class="figure figure-call"><img alt="虚拟人物打电话联系客户" id="trade-call" src="assets/trade-01.png"/><div aria-hidden="true" class="call-notes"><span><small>先找人</small>谷歌地图 / 名单</span><span><small>再联系</small>电话 / 邮件</span><span><small>一起推进</small>当地销售代表</span></div></figure>
 </div>
 <div class="story story-meeting">
-<figure class="figure"><img id="trade-meeting" src="assets/intern-meeting-casual.png" alt="虚拟场景：穿休闲短袖，与老板姐姐一起看资料"></figure>
-<div class="story-copy"><div class="step-label">一起摸索</div><h3>和老板姐姐，<br>边做边琢磨</h3><p>初创公司，大家穿得随意，事情却一点不少。两个人坐下来看看资料、商量下一步，新业务就这么一点点搭起来。</p><p>客户要找，发货、海外仓的货和人员也要管。我第一次做外贸，很多事都是一边问、一边学着上手。</p></div>
+<figure class="figure"><img alt="虚拟场景：穿休闲短袖，与老板姐姐一起看资料" id="trade-meeting" src="assets/intern-meeting-casual.png"/></figure>
+<div class="story-copy"><div class="step-label">一起摸索</div><h3><span class="word-keep">和老板姐姐，</span><br/><span class="word-keep">边做边琢磨</span></h3><p>初创公司，大家穿得随意，事情却一点不少。两个人坐下来看看资料、商量下一步，新业务就这么一点<span class="word-keep">点搭起来。</span></p><p>客户要找，发货、海外仓的货和人员也要管。我第一次做外贸，很多事都是一边问、一边<span class="word-keep">学着上手。</span></p></div>
 </div>
 <div class="story story-night">
-<div class="story-copy"><div class="step-label">等结果</div><h3>toB 的单，<br>真的要等很久</h3><p>打单周期比想象中长。好在，持续跟进终于等来了实际进展。</p><div class="result"><div><strong>一家大型专业连锁<br>运动用品店</strong><small>谈下试单</small></div><div><strong>几家大型商场</strong><small>成为常备供应商</small></div></div></div>
-<figure class="figure"><img id="trade-night" src="assets/intern-night.png" alt="虚拟场景：台灯和电脑前继续处理工作"></figure>
+<div class="story-copy"><div class="step-label">等结果</div><h3><span class="word-keep">toB 的单，</span><br/><span class="word-keep">真的要等很久</span></h3><p>打单周期比想象中长。好在，持续跟进终于等来了<span class="word-keep">实际进展。</span></p><div class="result"><div><strong><span class="word-keep">一家大型专业连锁</span><br/><span class="word-keep">运动用品店</span></strong><small><span class="word-keep">谈下试单</span></small></div><div><strong><span class="word-keep">几家大型商场</span></strong><small>成为常<span class="word-keep">备供应商</span></small></div></div></div>
+<figure class="figure"><img alt="虚拟场景：台灯和电脑前继续处理工作" id="trade-night" src="assets/intern-night.png"/></figure>
 </div>
-<div class="reflection"><p>忙是真的，学到东西也是真的。</p><span>商务英语终于用在了真实的沟通里。第一次接触外贸，也第一次正式看见商业怎么运转：从找到客户，到跟进订单，再到把货交出去。</span></div>
+<div class="reflection"><p>忙是真的，学到东西<span class="word-keep">也是真的。</span></p><span>商务英语终于用在了真实的沟通里。第一次接触外贸，也第一次正式看见商业怎么运转：从找到客户，到跟进订单，再到把<span class="word-keep">货交出去。</span></span></div>
 </section>
-<section id="panel-language" class="panel" role="tabpanel" aria-labelledby="tab-language" tabindex="0" hidden>
-<div class="secondary-intro"><div><p class="dates">2025.11 — 2026.07 · 字节跳动</p><h2 class="panel-title">把专业带到<br>真实业务里</h2><p class="intro">语言中心这段实习，围绕翻译、术语和质量评测展开。学了多年的语言，开始和具体的业务需求接上。</p></div><figure class="figure"><img src="assets/sit-03.png" alt="虚拟人物操作电脑进行翻译实践"></figure></div>
-<div class="story story-night"><div class="story-copy"><div class="step-label">工位日常</div><h3>做翻译，也看质量</h3><p>翻译、维护术语、做质量评测。听业务怎么提需求，也看一份译文怎么进产品。</p><p>除了把内容译出来，也开始关注专业怎么接上 AI。</p></div><figure class="figure"><img id="language-night" src="assets/intern-night.png" alt="虚拟电脑工作场景，非实习现场照片"></figure></div>
-<div class="reflection"><p>语言还是底子，问题开始变得具体。</p><span>不只是在课堂里练听说读写译，也在实际业务里看这些技能怎么被使用。</span></div>
+<section aria-labelledby="tab-language" class="panel" hidden="" id="panel-language" role="tabpanel" tabindex="0">
+<div class="secondary-intro"><div><p class="dates">2025.11 — 2026.07 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">把专业带到</span><br/><span class="word-keep">真实业务里</span></h2><p class="intro">语言中心这段实习，围绕翻译、术语和质量评测展开。学了多年的语言，开始和具体的业务<span class="word-keep">需求接上。</span></p></div><figure class="figure"><img alt="虚拟人物操作电脑进行翻译实践" src="assets/sit-03.png"/></figure></div>
+<div class="story story-night"><div class="story-copy"><div class="step-label">工位日常</div><h3><span class="word-keep">做翻译，</span><span class="word-keep">也看质量</span></h3><p>翻译、维护术语、做质量评测。听业务怎么提需求，也看一份译文怎<span class="word-keep">么进产品。</span></p><p>除了把内容译出来，也开始关注专业<span class="word-keep">怎么接上 AI。</span></p></div><figure class="figure"><img alt="虚拟电脑工作场景，非实习现场照片" id="language-night" src="assets/intern-night.png"/></figure></div>
+<div class="reflection"><p>语言还是底子，问题开始<span class="word-keep">变得具体。</span></p><span>不只是在课堂里练听说读写译，也在实际业务里看这些技能怎<span class="word-keep">么被使用。</span></span></div>
 </section>
-<section id="panel-feishu" class="panel" role="tabpanel" aria-labelledby="tab-feishu" tabindex="0" hidden>
-<div class="secondary-intro"><div><p class="dates">2026.07 — 至今 · 字节跳动</p><h2 class="panel-title">换到客户现场，<br>也成了空中飞人</h2><p class="intro">从语言中心活水到飞书商业化，做活动 PM 和客户活动。策划、开会、跟进、出差，成了新的日常。</p></div><figure class="figure"><img src="assets/speak-04.png" alt="虚拟活动PM人物立绘"></figure></div>
-<div class="story story-meeting"><figure class="figure"><img id="feishu-meeting" src="assets/intern-meeting.png" alt="虚拟项目会议场景，不指代真实同事"></figure><div class="story-copy"><div class="step-label">活动日常</div><h3>从工位，<br>走到活动现场</h3><p>做客户活动与 toB 营销中台，办座谈和分享会，把客户请到台前。策划之外，还要不断开会、跟进和对齐。</p><p>踏出原来的舒适圈，也多了不少在路上的时间。</p></div></div>
-<div class="reflection"><p>还在飞书商业化的工位上，继续学着把事办好。</p><span>这一段还没结束，后面也会继续补上活动里的具体故事。</span></div>
+<section aria-labelledby="tab-feishu" class="panel" hidden="" id="panel-feishu" role="tabpanel" tabindex="0">
+<div class="secondary-intro"><div><p class="dates">2026.07 — 至今 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">换到客户现场，</span><br/><span class="word-keep">也成了空中飞人</span></h2><p class="intro">从语言中心活水到飞书商业化，做活动 PM 和客户活动。策划、开会、跟进、出差，成了<span class="word-keep">新的日常。</span></p></div><figure class="figure"><img alt="虚拟活动PM人物立绘" src="assets/speak-04.png"/></figure></div>
+<div class="story story-meeting"><figure class="figure"><img alt="虚拟项目会议场景，不指代真实同事" id="feishu-meeting" src="assets/intern-meeting.png"/></figure><div class="story-copy"><div class="step-label">活动日常</div><h3><span class="word-keep">从工位，</span><br/><span class="word-keep">走到活动现场</span></h3><p>做客户活动与 toB 营销中台，办座谈和分享会，把客户请到台前。策划之外，还要不断开会、跟<span class="word-keep">进和对齐。</span></p><p>踏出原来的舒适圈，也多了不少在路<span class="word-keep">上的时间。</span></p></div></div>
+<div class="reflection"><p>还在飞书商业化的工位上，继续学着<span class="word-keep">把事办好。</span></p><span>这一段还没结束，后面也会继续补上活动里的<span class="word-keep">具体故事。</span></span></div>
 </section>
-<footer class="foot"><span>经历来自本人 · 人物与工作场景为虚拟演绎</span><a href="https://www.chriffer-sport.com/index.php/product-introduction/" target="_blank" rel="noopener noreferrer">泳具信息参考 Chriffer 官网 ↗</a></footer>
+<footer class="foot"><span>经历来自本人 · 人物与工作场景为<span class="word-keep">虚拟演绎</span></span><a href="https://www.chriffer-sport.com/index.php/product-introduction/" rel="noopener noreferrer" target="_blank">泳具信息<span class="word-keep">参考 Chriffer 官网 ↗</span></a></footer>
 </main>
 </div>
 <script>
