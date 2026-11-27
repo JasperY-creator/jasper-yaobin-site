@@ -896,34 +896,24 @@ section[id]{scroll-margin-top:68px}
 @media(min-width:600px){.memo.intern-mode .memo-in{padding:0 32px 54px}.intern-embedded .wrap{width:100%;padding:0}}
 
 </style>
-<style id="hobbies-island-styles">
-/* ===== 生活小岛：开放文字簇，由中心向外 ===== */
-#interests{padding-top:90px;padding-bottom:30px;font-family:"Source Han Sans SC VF","PingFang SC","Microsoft YaHei",sans-serif}
-#interests .sec-head{margin-bottom:12px}
+<style id="hobbies-island-styles">/* Seven colored regions form one island, not independent cards. */
+#interests{padding-top:84px;padding-bottom:24px;font-family:"Source Han Sans SC VF","PingFang SC",sans-serif}
+#interests .sec-head{margin-bottom:16px}
 #interests .sec-title{font-family:"Source Han Serif CN","Songti SC",serif}
-.island-invite{display:flex;align-items:center;gap:10px;margin-top:20px;font-size:15px;line-height:1.7;color:var(--accent)}
+.island-invite{display:flex;gap:10px;align-items:center;font-size:15px;line-height:1.8;color:var(--accent);margin-top:20px}
 .island-invite svg{width:21px;height:21px;flex:none}
-.life-island{position:relative;width:100%;height:570px;isolation:isolate;margin:0 auto}
-.island-shore{position:absolute;inset:0;width:100%;height:100%;z-index:-1;pointer-events:none;overflow:visible}
-.island-land{fill:rgba(208,208,185,.19);stroke:rgba(133,133,108,.18);stroke-width:1.2}
-.island-coast{fill:none;stroke:rgba(133,133,108,.12);stroke-width:1;vector-effect:non-scaling-stroke}
-.hobby-node{position:absolute;left:var(--x);top:var(--y);transform:translate(-50%,-50%);width:var(--w,120px);min-height:84px;padding:9px 2px;appearance:none;-webkit-appearance:none;background:transparent;border:0;color:var(--ink);cursor:pointer;text-align:center;font:inherit;line-height:1.3;border-radius:6px}
-.hobby-node .hobby-title{display:block;font-family:"Source Han Serif CN","Songti SC",serif;font-weight:600;font-size:var(--size,27px);white-space:nowrap;letter-spacing:.02em;transition:color .18s}
-.hobby-node .hobby-note{display:block;font-size:14px;line-height:1.65;margin-top:9px;color:var(--ink-soft);white-space:nowrap}
-.hobby-node .hobby-open{display:inline-block;width:18px;height:18px;position:relative;vertical-align:middle;margin-left:6px;color:var(--accent);transform:translateY(-2px)}
-.hobby-open::before,.hobby-open::after{content:"";position:absolute;left:3px;right:3px;height:1px;background:currentColor;top:8px}
-.hobby-open::after{transform:rotate(90deg)}
-.hobby-node:hover .hobby-title,.hobby-node:focus-visible .hobby-title{color:var(--accent)}
-.hobby-node:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
-.hobby-node:hover .hobby-open{transform:translateY(-2px) rotate(90deg)}
-.hobby-music{--x:50%;--y:48%;--w:122px;--size:32px}
-.hobby-film{--x:27%;--y:33%;--w:115px;--size:28px}
-.hobby-food{--x:73%;--y:31%;--w:164px;--size:23px}
-.hobby-sport{--x:49%;--y:14%;--w:115px;--size:27px}
-.hobby-cook{--x:50%;--y:83%;--w:110px;--size:27px}
-.hobby-travel{--x:19%;--y:65%;--w:108px;--size:26px}
-.hobby-reading{--x:78%;--y:67%;--w:145px;--size:23px}
-.island-after{font-size:14px;color:var(--ink-soft);margin-top:0;line-height:1.8;text-wrap:pretty}
+#interests .wrap{padding-left:16px;padding-right:16px}
+.life-island{width:100%;max-width:940px;margin:0 auto}
+.island-map{display:block;width:100%;height:auto;overflow:visible}
+.island-map-desktop{display:none}
+.hobby-region{cursor:pointer;outline:none}
+.hobby-region-fill{stroke:var(--bg,#F3F0E9);stroke-width:3;stroke-linejoin:round;transition:filter .18s}
+.hobby-region-title{font-family:"Source Han Serif CN","Songti SC",serif;font-weight:600;fill:#242A2B;pointer-events:none}
+.hobby-region-note{font-family:"Source Han Sans SC VF","PingFang SC",sans-serif;font-size:18px;fill:#394143;pointer-events:none}
+.hobby-region-plus{font:400 24px "Source Han Sans SC VF",sans-serif;fill:#394143;pointer-events:none}
+.hobby-region:hover .hobby-region-fill{filter:brightness(1.05)}
+.hobby-region:focus-visible .hobby-region-fill{stroke:#242A2B;stroke-width:5}
+.island-after{font-size:14px;line-height:1.8;color:var(--ink-soft);margin-top:18px}
 .hobby-dialog{background:var(--bg,#F3F0E9);color:var(--ink,#191A1C);border:1px solid rgba(25,26,28,.14);width:calc(100% - 32px);max-width:620px;max-height:85svh;padding:24px;margin:auto;overflow:auto;font-family:"Source Han Sans SC VF","PingFang SC",sans-serif;box-shadow:0 20px 80px rgba(25,26,28,.15)}
 .hobby-dialog::backdrop{background:rgba(25,26,28,.42)}
 .hobby-dialog-top{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--line,rgba(25,26,28,.16));padding-bottom:12px;margin-bottom:25px}
@@ -933,20 +923,11 @@ section[id]{scroll-margin-top:68px}
 .hobby-dialog p{font-size:16px;line-height:1.95;color:var(--ink-soft,#5C5952);margin:0 0 16px;text-wrap:pretty}
 .hobby-dialog .hobby-empty{padding-top:16px;border-top:1px solid var(--line,rgba(25,26,28,.16));font-size:14px;margin-top:25px}
 .hobby-detail-word{white-space:nowrap}
-@media(min-width:600px){.life-island{height:640px}.hobby-node{min-height:106px;--w:170px}.hobby-node .hobby-title{font-size:34px}.hobby-music .hobby-title{font-size:40px}.hobby-film .hobby-title{font-size:37px}.hobby-food{--w:225px}.hobby-food .hobby-title{font-size:32px}.hobby-reading{--w:220px}.hobby-reading .hobby-title{font-size:31px}.hobby-node .hobby-note{font-size:15px}.hobby-music{--x:50%;--y:49%}.hobby-film{--x:33%;--y:34%}.hobby-food{--x:68%;--y:34%}.hobby-sport{--x:51%;--y:15%}.hobby-cook{--x:50%;--y:75%}.hobby-travel{--x:21%;--y:64%}.hobby-reading{--x:77%;--y:69%}.hobby-dialog{padding:30px 38px}}
-@media(min-width:960px){.life-island{height:630px;max-width:980px}.hobby-node .hobby-title{font-size:39px}.hobby-music .hobby-title{font-size:44px}.hobby-film .hobby-title{font-size:42px}.hobby-food .hobby-title,.hobby-reading .hobby-title{font-size:35px}.island-invite{font-size:16px}}
-@media(max-width:359px){.hobby-food{--w:147px;--size:21px}.hobby-reading{--w:128px;--size:21px}.hobby-node .hobby-note{font-size:14px}.hobby-travel{--x:18%}.hobby-reading{--x:76%}}
-@media(prefers-reduced-motion:reduce){.hobby-node *{transition:none!important}}
 
+@media(min-width:700px){.island-map-mobile{display:none}.island-map-desktop{display:block}#interests .wrap{padding-left:24px;padding-right:24px}.hobby-dialog{padding:30px 38px}.island-invite{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.hobby-region-fill{transition:none}}
 </style>
-<style id="hobbies-spacing">/* Comfortable hit areas, including narrow phones and medium windows. */
-#interests .hobby-music{--y:52%}
-#interests .hobby-film{--y:30%}
-#interests .hobby-food{--y:34%}
-#interests .hobby-cook{--y:86%}
-@media(max-width:899px){#interests .wrap{padding-left:12px;padding-right:12px}#interests .hobby-node{min-height:84px}#interests .hobby-node .hobby-title{font-size:var(--size,27px)}#interests .hobby-music{--x:50%;--y:52%;--w:122px;--size:32px}#interests .hobby-film{--x:27%;--y:30%;--w:115px;--size:28px}#interests .hobby-food{--x:73%;--y:29%;--w:164px;--size:23px}#interests .hobby-cook{--x:50%;--y:85%;--w:110px;--size:27px}#interests .hobby-travel{--x:19%;--y:70%;--w:108px;--size:26px}#interests .hobby-reading{--x:78%;--y:69%;--w:145px;--size:23px}}
-@media(max-width:359px){#interests .hobby-food{--w:148px;--size:21px}#interests .hobby-reading{--x:75%;--w:132px;--size:21px}}
-</style></head>
+</head>
 <body>
 <div class="grain" aria-hidden="true"></div>
 
@@ -1273,23 +1254,10 @@ section[id]{scroll-margin-top:68px}
     <p class="kicker">02 — INTERESTS</p>
     <h2 class="sec-title">生活小岛</h2>
     <p class="sec-sub">工作之外，日子还有这些部分。</p>
-    <p class="island-invite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 10V5a2 2 0 0 1 4 0v8-5a2 2 0 0 1 4 0v5-3a2 2 0 0 1 4 0v7c0 3-2 5-5 5h-2c-2 0-4-1-5-3L3 13a2 2 0 0 1 3-2l1 1"/></svg><span>点开一个爱好，<span class="hobby-detail-word">看看我的日常。</span></span></p>
+    <p class="island-invite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M7 10V5a2 2 0 0 1 4 0v8-5a2 2 0 0 1 4 0v5-3a2 2 0 0 1 4 0v7c0 3-2 5-5 5h-2c-2 0-4-1-5-3L3 13a2 2 0 0 1 3-2l1 1"/></svg><span>每一块颜色，都是一个爱好。<span class="hobby-detail-word">点开看看。</span></span></p>
   </div>
   <div class="wrap">
-    <div class="life-island" aria-label="七个可点开的爱好，音乐与电影靠中心，其他向四周展开">
-      <svg class="island-shore" viewBox="0 0 1000 630" preserveAspectRatio="none" aria-hidden="true">
-        <path class="island-land" d="M482 29C549 18 596 43 622 88C653 130 691 118 742 131C802 146 837 172 842 213C848 255 815 271 847 314C879 358 917 391 896 439C868 488 804 496 741 516C674 539 670 585 598 602C540 619 479 602 443 571C407 542 359 572 313 558C254 539 256 493 210 485C157 477 105 438 108 392C111 345 157 326 157 277C158 227 193 209 240 195C288 180 329 204 359 162C390 117 389 46 482 29Z"/>
-        <path class="island-coast" d="M331 157C347 87 394 19 474 12C546 0 615 34 640 94M866 204C899 262 854 286 880 329C915 373 949 415 923 463C896 507 853 512 800 529M334 584C391 603 417 574 452 595C507 632 574 632 632 610M166 480C98 471 74 423 87 381C96 349 128 333 130 292"/>
-        <path class="island-coast" d="M362 178C398 145 405 88 475 73C536 63 581 97 602 124M788 363C833 402 834 447 780 473C728 497 676 490 640 529M184 365C196 315 230 285 281 276"/>
-      </svg>
-      <button type="button" class="hobby-node hobby-music" data-hobby="music" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">音乐<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">粤语歌与KTV</span></button>
-      <button type="button" class="hobby-node hobby-film" data-hobby="film" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">电影<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">片单与观后感</span></button>
-      <button type="button" class="hobby-node hobby-sport" data-hobby="sport" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">运动<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">动起来的日常</span></button>
-      <button type="button" class="hobby-node hobby-cook" data-hobby="cook" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">下厨<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">给自己做顿饭</span></button>
-      <button type="button" class="hobby-node hobby-travel" data-hobby="travel" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">旅行<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">路上的故事</span></button>
-      <button type="button" class="hobby-node hobby-reading" data-hobby="reading" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">阅读与博客<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">读到的，写下的</span></button>
-      <button type="button" class="hobby-node hobby-food" data-hobby="food" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="hobby-title">美食&amp;探店<i class="hobby-open" aria-hidden="true"></i></span><span class="hobby-note">好吃的，慢慢记</span></button>
-    </div>
+    <div class="life-island" aria-label="音乐在中心，七个爱好由不同颜色区域拼成小岛"><svg class="island-map island-map-desktop" viewBox="0 0 900 650" role="group" aria-label="七色生活小岛，每个色块均可点击"><defs><clipPath id="hobby-clip-desktop"><path d="M444 24C504 12 552 37 581 74C610 109 682 99 725 128C772 160 788 200 781 238C775 271 837 278 844 327C852 370 827 400 836 438C846 482 802 526 748 536C691 549 674 591 618 608C566 626 518 604 478 617C428 637 391 623 355 596C321 571 260 598 222 559C191 530 152 531 122 503C91 475 65 444 73 402C81 361 52 332 76 291C99 250 139 244 158 215C184 178 224 146 273 147C315 148 330 98 364 64C387 39 414 26 444 24Z"/></clipPath></defs><g clip-path="url(#hobby-clip-desktop)"><g class="hobby-region" data-hobby="music" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开音乐"><polygon class="hobby-region-fill" points="484.58,503.16 302.97,354.09 302.37,347.53 412.15,207.35 488.56,208.60 587.25,362.23" fill="#EAB7A5"/><text class="hobby-region-title" x="450" y="324" font-size="40" text-anchor="middle">音乐</text><text class="hobby-region-note" x="450" y="356" text-anchor="middle">粤语歌与KTV</text><text class="hobby-region-plus" x="450" y="390" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="film" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开电影"><polygon class="hobby-region-fill" points="0.00,0.00 273.11,0.00 412.15,207.35 302.37,347.53 0.00,97.16" fill="#B8CBDF"/><text class="hobby-region-title" x="284" y="194" font-size="40" text-anchor="middle">电影</text><text class="hobby-region-note" x="284" y="226" text-anchor="middle">片单与观后感</text><text class="hobby-region-plus" x="284" y="260" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="food" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开美食&amp;探店"><polygon class="hobby-region-fill" points="667.36,0.00 900.00,0.00 900.00,307.89 587.25,362.23 488.56,208.60" fill="#EBCB7C"/><text class="hobby-region-title" x="615" y="218" font-size="31" text-anchor="middle">美食&amp;探店</text><text class="hobby-region-note" x="615" y="250" text-anchor="middle">好吃的，慢慢记</text><text class="hobby-region-plus" x="615" y="284" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="sport" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开运动"><polygon class="hobby-region-fill" points="273.11,0.00 667.36,0.00 488.56,208.60 412.15,207.35" fill="#BACC9A"/><text class="hobby-region-title" x="454" y="80" font-size="40" text-anchor="middle">运动</text><text class="hobby-region-note" x="454" y="112" text-anchor="middle">动起来的日常</text><text class="hobby-region-plus" x="454" y="146" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="cook" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开下厨"><polygon class="hobby-region-fill" points="492.92,650.00 22.43,650.00 302.97,354.09 484.58,503.16" fill="#DEB578"/><text class="hobby-region-title" x="308" y="497" font-size="40" text-anchor="middle">下厨</text><text class="hobby-region-note" x="308" y="529" text-anchor="middle">给自己做顿饭</text><text class="hobby-region-plus" x="308" y="563" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="travel" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开旅行"><polygon class="hobby-region-fill" points="302.37,347.53 302.97,354.09 22.43,650.00 0.00,650.00 0.00,97.16" fill="#A6CFCA"/><text class="hobby-region-title" x="154" y="351" font-size="40" text-anchor="middle">旅行</text><text class="hobby-region-note" x="154" y="383" text-anchor="middle">路上的故事</text><text class="hobby-region-plus" x="154" y="417" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="reading" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开阅读与博客"><polygon class="hobby-region-fill" points="900.00,307.89 900.00,650.00 492.92,650.00 484.58,503.16 587.25,362.23" fill="#CCB5CA"/><text class="hobby-region-title" x="660" y="477" font-size="31" text-anchor="middle">阅读与博客</text><text class="hobby-region-note" x="660" y="509" text-anchor="middle">读到的，写下的</text><text class="hobby-region-plus" x="660" y="543" text-anchor="middle">＋</text></g></g></svg><svg class="island-map island-map-mobile" viewBox="0 0 600 820" role="group" aria-label="七色生活小岛，每个色块均可点击"><defs><clipPath id="hobby-clip-mobile"><path d="M315 28C386 23 441 68 457 133C469 180 526 177 551 233C578 291 542 340 555 384C570 430 571 484 557 533C548 568 554 616 516 650C479 685 455 685 431 729C405 775 358 798 302 791C263 786 226 772 199 740C175 712 126 707 107 662C91 624 55 599 42 548C28 499 64 459 57 414C49 368 50 323 74 284C98 244 121 227 143 190C167 149 155 102 207 72C244 50 264 28 315 28Z"/></clipPath></defs><g clip-path="url(#hobby-clip-mobile)"><g class="hobby-region" data-hobby="music" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开音乐"><polygon class="hobby-region-fill" points="310.79,553.78 250.73,546.42 184.13,387.68 301.77,288.61 435.16,417.17" fill="#EAB7A5"/><text class="hobby-region-title" x="300" y="428" font-size="46" text-anchor="middle">音乐</text><text class="hobby-region-plus" x="300" y="476" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="film" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开电影"><polygon class="hobby-region-fill" points="0.00,0.00 49.65,0.00 303.35,259.13 301.77,288.61 184.13,387.68 0.00,350.04" fill="#B8CBDF"/><text class="hobby-region-title" x="172" y="276" font-size="46" text-anchor="middle">电影</text><text class="hobby-region-plus" x="172" y="324" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="food" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开美食&amp;探店"><polygon class="hobby-region-fill" points="600.00,31.83 600.00,409.84 435.16,417.17 301.77,288.61 303.35,259.13" fill="#EBCB7C"/><text class="hobby-region-title" x="433" y="290" font-size="35" text-anchor="middle">美食&amp;探店</text><text class="hobby-region-plus" x="433" y="338" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="sport" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开运动"><polygon class="hobby-region-fill" points="49.65,0.00 600.00,0.00 600.00,31.83 303.35,259.13" fill="#BACC9A"/><text class="hobby-region-title" x="315" y="136" font-size="46" text-anchor="middle">运动</text><text class="hobby-region-plus" x="315" y="184" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="cook" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开下厨"><polygon class="hobby-region-fill" points="504.81,820.00 0.00,820.00 0.00,735.80 250.73,546.42 310.79,553.78" fill="#DEB578"/><text class="hobby-region-title" x="268" y="689" font-size="46" text-anchor="middle">下厨</text><text class="hobby-region-plus" x="268" y="737" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="travel" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开旅行"><polygon class="hobby-region-fill" points="184.13,387.68 250.73,546.42 0.00,735.80 0.00,350.04" fill="#A6CFCA"/><text class="hobby-region-title" x="126" y="501" font-size="46" text-anchor="middle">旅行</text><text class="hobby-region-plus" x="126" y="549" text-anchor="middle">＋</text></g><g class="hobby-region" data-hobby="reading" role="button" tabindex="0" aria-haspopup="dialog" aria-controls="hobby-dialog" aria-label="点开阅读与博客"><polygon class="hobby-region-fill" points="600.00,409.84 600.00,820.00 504.81,820.00 310.79,553.78 435.16,417.17" fill="#CCB5CA"/><text class="hobby-region-title" x="445" y="560" font-size="35" text-anchor="middle">阅读与博客</text><text class="hobby-region-plus" x="445" y="608" text-anchor="middle">＋</text></g></g></svg></div>
     <p class="island-after">小岛先有了轮廓，<span class="hobby-detail-word">故事慢慢添。</span></p>
   </div>
 </section>
@@ -2215,7 +2183,7 @@ document.querySelectorAll('#main-intern .photo-open').forEach(function(b){b.addE
   }
   function closeHobby(){if(typeof dialog.close==='function')dialog.close();else{dialog.removeAttribute('open');restore();}}
   function restore(){document.body.style.overflow=oldOverflow;if(previous)previous.focus({preventScroll:true});}
-  document.querySelectorAll('[data-hobby]').forEach(function(button){button.addEventListener('click',function(){openHobby(button);});});
+  document.querySelectorAll('[data-hobby]').forEach(function(button){button.addEventListener('click',function(){openHobby(button);});button.addEventListener('keydown',function(e){if(button.tagName.toLowerCase()==='g'&&(e.key==='Enter'||e.key===' ')){e.preventDefault();openHobby(button);}});});
   dialog.querySelector('.hobby-close').addEventListener('click',closeHobby);
   dialog.addEventListener('close',restore);
   dialog.addEventListener('click',function(e){if(e.target!==dialog)return;var r=dialog.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeHobby();});
