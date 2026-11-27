@@ -387,7 +387,7 @@ section[id]{scroll-margin-top:68px}
 .iso-row button:focus-visible{outline:1px dashed rgba(25,26,28,.35);outline-offset:5px}
 .iso-row button.done{opacity:.42}
 .iso-lines.done{padding-bottom:74px;position:relative}
-.hands{position:absolute;left:0;right:0;top:34px;height:0;pointer-events:none}
+.hands{position:absolute;left:0;right:0;top:0;height:0;pointer-events:none}
 .hand{position:absolute;top:0;transform:translateX(-50%);opacity:0;transition:opacity .55s ease}
 .hand.in{opacity:1;animation:handBob 2.4s ease-in-out infinite}
 .hand svg{display:block;width:17px;height:26px}
@@ -1726,8 +1726,36 @@ section[id]{scroll-margin-top:68px}
       }
     }
 
+    function alignHands(){
+      if(!handsBox || !isoRowEl || !linesBox || !isoRowEl.getClientRects().length) return;
+      var origin = linesBox.getBoundingClientRect();
+      var buttons = isoRowEl.querySelectorAll('button');
+      handsBox.querySelectorAll('.hand').forEach(function(hand){
+        var button = buttons[Number(hand.getAttribute('data-i'))];
+        if(!button) return;
+        var rect = button.getBoundingClientRect();
+        hand.style.left = (rect.left + rect.width / 2 - origin.left) + 'px';
+        hand.style.top = (rect.bottom - origin.top + 8) + 'px';
+      });
+    }
+    var handAlignFrame = null;
+    function scheduleHandAlign(){
+      if(handAlignFrame !== null) cancelAnimationFrame(handAlignFrame);
+      handAlignFrame = requestAnimationFrame(function(){
+        handAlignFrame = null; alignHands();
+      });
+    }
+    window.addEventListener('resize', scheduleHandAlign);
+    window.addEventListener('pageshow', scheduleHandAlign);
+    if(window.ResizeObserver && isoRowEl){
+      var handLayoutObserver = new ResizeObserver(scheduleHandAlign);
+      handLayoutObserver.observe(isoRowEl);
+      handLayoutObserver.observe(linesBox);
+    }
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(scheduleHandAlign);
     function showHands(){
-      if(!isoRowEl || handsBox){ return; }
+      if(!isoRowEl) return;
+      if(handsBox){ alignHands(); scheduleHandAlign(); return; }
       var box = document.getElementById('isoLines');
       if(!box){ return; }
       handsBox = document.createElement('div');
@@ -1747,6 +1775,8 @@ section[id]{scroll-margin-top:68px}
         if(visited[k]){ continue; }
         h.classList.add('in');
       }
+      alignHands();
+      scheduleHandAlign();
     }
 
     function openMemo(i){
