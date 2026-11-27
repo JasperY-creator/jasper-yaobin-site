@@ -680,6 +680,12 @@ section[id]{scroll-margin-top:68px}
 #walker .look{display:none!important}
 #walkerSprite{position:static;display:block;width:100%;height:100%;max-width:none;object-fit:contain;transform:none;animation:none;backface-visibility:visible;-webkit-backface-visibility:visible}
 #isoTrack{will-change:auto}
+
+.iso-lines.final-ready:not(.done){padding-bottom:74px;position:relative}
+.iso-lines.final-ready .iso-row{display:flex;align-items:center;justify-content:space-between;gap:0;padding-top:18px}
+.iso-btns{flex-wrap:wrap}
+@media(max-width:559px){.iso-btns{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));width:100%;gap:10px}.iso-btns .iso-btn{min-width:0;min-height:44px;padding:9px 12px}}
+@media(max-width:959px){.iso-lines.final-ready .iso-row{justify-content:center;width:100%}.iso-lines.final-ready .iso-row button{flex:0 1 auto;font-size:13px;white-space:normal;min-width:0;line-height:1.55;justify-content:flex-start}}
 </style>
 <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/lxgw-wenkai-lite-webfont@1.7.0/style.css">
 <style id="main-intern-styles">
@@ -1203,6 +1209,7 @@ section[id]{scroll-margin-top:68px}
           <button class="iso-btn" id="isoPrev" type="button">上一站</button>
         <button class="iso-btn" id="isoPause" type="button">暂停</button>
           <button class="iso-btn" id="isoReplay" type="button">重播</button>
+          <button class="iso-btn" id="isoEnd" type="button">一键到底</button>
         </div>
       </div>
     </div>
@@ -1427,7 +1434,7 @@ section[id]{scroll-margin-top:68px}
 <section aria-labelledby="main-tab-language" class="panel language-panel" hidden="" id="main-panel-language" role="tabpanel" tabindex="0">
 <div class="secondary-intro language-opening">
 <div><p class="dates">2025.11 — 2026.07 · <span class="word-keep">字节跳动</span></p><h2 class="panel-title"><span class="word-keep">做评测，</span><br/><span class="word-keep">也被大家照顾着</span></h2><p class="intro career-bridge" id="main-language-bridge">要去北京读研，我便辞去了外贸的工作。研究生继续学翻译，又赶上 AI 快速发展，就想去大厂看看：这个专业，能怎样用在前沿产品里？于是来到了<span class="word-keep">字节语言中心。</span></p><p class="intro">在语言中心，评测模型的翻译与翻配能力，也跟进供应商提供的内容。工作里有很多新问题，身边也有一群自信、漂亮、<span class="word-keep">松弛的姐姐。</span></p><p class="private-note">业务涉及保密，这里只记工作方式和<span class="word-keep">团队日常。</span></p></div>
-<figure class="figure"><img alt="语言中心实习的虚拟电脑工作形象" src="assets/sit-03.png"/></figure>
+<figure class="figure"><img alt="语言中心工位：坐在办公椅上操作桌前笔记本电脑" id="main-language-opening-desk" src="assets/language-opening-desk.png"/></figure>
 </div>
 <div class="story language-record">
 <div class="story-copy"><div class="step-label">一个小项目</div><h3><span class="word-keep">拉着伙伴们，</span><br/><span class="word-keep">一起录测试素材</span></h3><p>当时自己跟过一个小评测项目，拉着同组伙伴录制测试集，再送评、看结果、找原因复盘，继续调整<span class="word-keep">录制方式。</span></p><p>从录素材到下一轮再试，第一次把一个小项目一路跟下来，<span class="word-keep">挺有意思。</span></p></div>
@@ -1510,6 +1517,8 @@ section[id]{scroll-margin-top:68px}
     var scrollBox = document.getElementById('isoScroll');
     var pauseBtn = document.getElementById('isoPause');
     var replayBtn = document.getElementById('isoReplay');
+    var endBtn = document.getElementById('isoEnd');
+    var skipRequested = false;
     var prevBtn = document.getElementById('isoPrev');
     var box = document.getElementById('isoBox');
     var shadow = document.getElementById('isoShadow');
@@ -1621,7 +1630,12 @@ section[id]{scroll-margin-top:68px}
         sites[k].classList.toggle('past', k < i);
       }
       for(var j=0;j<lines.length;j++){ lines[j].classList.toggle('on', j === i); }
-      if(linesBox){ linesBox.classList.remove('done'); }
+      if(linesBox){
+        linesBox.classList.remove('done');
+        linesBox.classList.toggle('final-ready', i === 4);
+      }
+      if(i === 4){ showHands(); }
+      else if(handsBox){ handsBox.remove(); handsBox = null; }
     }
 
     function setClass(kind){
@@ -1682,13 +1696,6 @@ section[id]{scroll-margin-top:68px}
         el = stopEl; dir = 1; stopEl = null; paused = true;
         if(pauseBtn){ pauseBtn.textContent = '继续'; }
       }
-      var list = stopList();
-      var lastStop = list[list.length - 1].at;
-      if(el < lastStop - 1){
-        if(linesBox){ linesBox.classList.remove('done'); }
-        if(handsBox && handsBox.parentNode){ handsBox.parentNode.removeChild(handsBox); }
-        handsBox = null;
-      }
       syncPrev();
       var acc = 0, idx = -1, t = 0;
       for(var i=0;i<TL.length;i++){
@@ -1738,7 +1745,7 @@ section[id]{scroll-margin-top:68px}
         h.style.top = (bR.bottom - cR.top + 4) + 'px';
         handsBox.appendChild(h);
         if(visited[k]){ continue; }
-        (function(el, d){ setTimeout(function(){ el.classList.add('in'); }, d); })(h, 260 + k * 180);
+        h.classList.add('in');
       }
     }
 
@@ -1770,6 +1777,7 @@ section[id]{scroll-margin-top:68px}
 
     function resetMemo(){
       visited = {};
+      if(linesBox) linesBox.classList.remove('final-ready');
       if(handsBox && handsBox.parentNode){ handsBox.parentNode.removeChild(handsBox); }
       handsBox = null;
       if(isoRowEl){
@@ -2011,7 +2019,20 @@ section[id]{scroll-margin-top:68px}
       if(raf === null){ raf = requestAnimationFrame(tick); }
     }
 
+    function skipToEnd(){
+      skipRequested = true; started = true;
+      cancelAnimationFrame(raf); raf = null;
+      el = TOTAL; dir = 1; stopEl = null; paused = false; last = null;
+      closeMemo();
+      apply(TL[TL.length - 1], 1);
+      frameTo(POS[4][0], true);
+      if(linesBox) linesBox.classList.add('final-ready');
+      finish();
+    }
+    if(endBtn) endBtn.addEventListener('click', skipToEnd);
+
     function begin(){
+      if(skipRequested){ skipToEnd(); return; }
       cancelAnimationFrame(raf); raf = null;
       paused = false; el = 0; last = null; curIdx = -1; litAt = -1; dir = 1; stopEl = null;
       if(pauseBtn){ pauseBtn.textContent = '暂停'; pauseBtn.disabled = false; }
@@ -2043,7 +2064,7 @@ section[id]{scroll-margin-top:68px}
     } else {
       if(pauseBtn){ pauseBtn.addEventListener('click', togglePause); }
       if(prevBtn){ prevBtn.addEventListener('click', seekBack); }
-      if(replayBtn){ replayBtn.addEventListener('click', function(){ resetMemo(); closeMemo(); started = true; preloadThen(begin); }); }
+      if(replayBtn){ replayBtn.addEventListener('click', function(){ skipRequested = false; resetMemo(); closeMemo(); started = true; preloadThen(begin); }); }
       if(box && 'IntersectionObserver' in window){
         var ioIso = new IntersectionObserver(function(entries){
           entries.forEach(function(e){
