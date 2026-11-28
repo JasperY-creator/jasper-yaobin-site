@@ -909,6 +909,57 @@ section[id]{scroll-margin-top:68px}
 .hobby-detail-word{white-space:nowrap}
 
 @media(min-width:720px){.puzzle-mobile-links{display:none}.hobby-dialog{padding:30px 38px}.puzzle-click-hint{font-size:16px}}@media(max-width:559px){#interests{padding-top:66px}.puzzle-click-hint{font-size:14px}}.puzzle-hand-guide{position:absolute;left:36.5%;top:45%;width:40px;height:40px;z-index:2;pointer-events:none;transform:translate(-50%,-50%);animation:puzzle-hand-tap 2.2s ease-in-out infinite;text-align:center}.puzzle-hand-guide::before{content:"";position:absolute;left:50%;top:18px;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:radial-gradient(circle,rgba(255,218,87,.65) 0%,rgba(255,226,116,.42) 43%,rgba(255,234,151,.16) 64%,transparent 75%);box-shadow:0 0 16px 5px rgba(255,221,92,.2);z-index:-1}.puzzle-hand-guide svg{display:block;width:30px;height:40px;margin:0 auto;transform:rotate(135deg);transform-origin:center;filter:drop-shadow(0 2px 2px rgba(25,26,28,.13))}.puzzle-hand-caption{position:absolute;display:block;right:calc(100% + 3px);top:-7px;color:#796126;font:400 14px/1.5 "Source Han Sans SC VF","PingFang SC",sans-serif;letter-spacing:.04em;white-space:nowrap}.puzzle-hand-guide[hidden]{display:none}@keyframes puzzle-hand-tap{0%,100%{transform:translate(-50%,-50%) translate(0,0)}50%{transform:translate(-50%,-50%) translate(4px,4px)}}@media(max-width:559px){.puzzle-hand-guide{left:36.5%;width:32px;height:32px}.puzzle-hand-guide svg{width:24px;height:32px}.puzzle-hand-guide::before{top:15px;width:48px;height:48px}.puzzle-hand-caption{right:calc(100% + 2px);top:-7px}}@media(prefers-reduced-motion:reduce){.puzzle-hand-guide{animation:none}}</style>
+
+<!-- ===== 兴趣 · 音乐子视图样式 ===== -->
+<style id="music-view-styles">
+#view-music{display:none}
+body.music-active #view-music{display:block;min-height:100svh;background:var(--bg)}
+body.music-active .topnav,
+body.music-active header.hero,
+body.music-active footer,
+body.music-active main > *:not(#view-music){display:none !important}
+.music-inner{max-width:1080px;margin:0 auto;padding:72px 24px 64px}
+.music-back{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;letter-spacing:.08em;color:var(--accent);text-decoration:none;margin:0 0 34px}
+.music-back svg{width:15px;height:15px}
+.music-lede{margin-top:14px;color:var(--ink-soft);font-weight:300;max-width:620px;font-size:15.5px;line-height:1.9}
+.music-block{margin:54px 0;display:grid;grid-template-columns:1fr 1.15fr;gap:32px;align-items:start}
+.music-block--alt{grid-template-columns:1.15fr 1fr}
+.music-block--alt .music-text{order:2}
+.music-sub{font-family:"Noto Serif SC","Songti SC",serif;font-weight:600;font-size:21px;line-height:1.5;margin:0 0 14px}
+.music-text p{font-size:15px;line-height:1.95;color:var(--ink-soft);margin:0 0 14px;text-wrap:pretty}
+.music-photos{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.music-photo{margin:0;min-width:0}
+.music-photo-open{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in}
+.music-photo-open img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:2px;display:block}
+.music-photo figcaption{font-size:13px;color:var(--ink-soft);margin:8px 2px 0;line-height:1.6}
+.music-ktv{margin:30px 0 0;max-width:620px;font-size:15px;line-height:1.95;color:var(--ink-soft)}
+.music-photo--me{max-width:360px;margin:54px 0 0 auto}
+.music-list-block{margin:56px 0 0;padding-top:34px;border-top:1px solid var(--line)}
+.music-list{list-style:none;margin:22px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:24px 28px}
+.music-list li{display:flex;flex-direction:column;align-items:center;gap:9px;min-width:72px}
+.music-avatar{width:62px;height:62px;border-radius:50%;overflow:hidden;background:var(--card);display:block}
+.music-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.music-name{font-size:13.5px;color:var(--ink);white-space:nowrap}
+.music-follow{font-size:11px;color:var(--accent);letter-spacing:.04em}
+.music-actions{margin-top:38px}
+.music-qq{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border:1px solid var(--accent);border-radius:2px;color:var(--accent);text-decoration:none;font-size:14px;letter-spacing:.04em}
+.music-qq:hover{background:var(--accent);color:var(--bg)}
+.music-qq svg{width:15px;height:15px}
+.music-back--bottom{margin:44px 0 0}
+.music-photo-dialog{border:0;background:var(--bg);color:var(--ink);padding:22px;width:min(1050px,94vw);max-height:92vh}
+.music-photo-dialog::backdrop{background:rgba(25,26,28,.7)}
+.music-photo-dialog img{width:100%;height:auto;max-height:77vh;object-fit:contain}
+.music-photo-close{display:block;margin:0 0 13px auto;background:none;border:1px solid var(--line);padding:8px 18px;cursor:pointer;font:inherit}
+.music-photo-caption{font-size:13px;color:var(--ink-soft);margin-top:12px}
+@media(max-width:719px){
+  .music-inner{padding:56px 20px 48px}
+  .music-block,.music-block--alt{grid-template-columns:1fr;gap:24px}
+  .music-block--alt .music-text{order:0}
+  .music-photos{gap:12px}
+  .music-photo--me{max-width:300px;margin-left:0}
+  .music-list{gap:20px 18px}
+}
+</style>
 </head>
 <body>
 <div class="grain" aria-hidden="true"></div>
@@ -1211,13 +1262,165 @@ section[id]{scroll-margin-top:68px}
 </section>
 
 <!-- ===== 视图：兴趣 · 生活小岛 ===== -->
-<section id="interests" class="sec"><h2 class="puzzle-sr-only">我的兴趣拼图</h2><div class="puzzle-stage"><img id="hobby-puzzle-image" class="puzzle-image" src="https://jaspery-creator.github.io/jasper-yaobin-site/assets/hobby-puzzle-podcast.png" width="2364" height="1773" alt="我的兴趣拼图：音乐、电影、运动、下厨、旅行、阅读与播客、美食与探店，七块明亮拼图及未完成空位"><svg class="puzzle-hotspots" viewBox="0 0 1000 750" preserveAspectRatio="none" role="group" aria-label="点开拼图中的爱好"><g class="puzzle-piece" role="button" tabindex="0" data-hobby="music" aria-label="点开音乐" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="332,355 455,296 570,350 637,430 538,485 342,454"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="film" aria-label="点开电影" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="180,244 366,159 463,230 395,316 254,366"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="food" aria-label="点开美食&探店" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="455,195 675,211 724,269 615,359 460,303"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="sport" aria-label="点开运动" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="89,388 257,337 331,424 254,492 115,526"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="cook" aria-label="点开下厨" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="257,493 363,453 535,497 499,609 347,650 253,589"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="travel" aria-label="点开旅行" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="532,481 640,425 737,481 690,602 522,644 492,603"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="reading" aria-label="点开阅读与播客" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="635,360 854,333 891,414 801,500 694,539 635,457"/></g></svg><span id="puzzle-hand-guide" class="puzzle-hand-guide" aria-hidden="true"><svg viewBox="0 0 24 32" fill="none" stroke="#7E786B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16V4a2.2 2.2 0 0 1 4.4 0v10-3a2 2 0 0 1 4 0v3-1a2 2 0 0 1 4 0v8c0 5-3 8-7 8h-2c-3 0-5-2-6-5l-4-6a2 2 0 0 1 3-2l3.6 4" fill="#F3F0E9"/></svg><span class="puzzle-hand-caption">点开看看</span></span></div><div class="puzzle-mobile-links" aria-label="七个兴趣快捷入口"><button type="button" data-hobby="music" style="--piece-color:#ACCFD7" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🎵</span><span>音乐</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="film" style="--piece-color:#ABD2E1" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🎬</span><span>电影</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="food" style="--piece-color:#F4DBA0" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🍜</span><span>美食&amp;探店</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="sport" style="--piece-color:#C3D7AC" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🏃</span><span>运动</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="cook" style="--piece-color:#EAC0B5" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🍳</span><span>下厨</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="travel" style="--piece-color:#EFC398" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">✈️</span><span>旅行</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="reading" style="--piece-color:#D2C4DF" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">📖</span><span>阅读与播客</span><span class="puzzle-plus" aria-hidden="true">＋</span></button></div></section>
+<section id="interests" class="sec"><h2 class="puzzle-sr-only">我的兴趣拼图</h2><div class="puzzle-stage"><img id="hobby-puzzle-image" class="puzzle-image" src="https://jaspery-creator.github.io/jasper-yaobin-site/assets/hobby-puzzle-podcast.png" width="2364" height="1773" alt="我的兴趣拼图：音乐、电影、运动、下厨、旅行、阅读与播客、美食与探店，七块明亮拼图及未完成空位"><svg class="puzzle-hotspots" viewBox="0 0 1000 750" preserveAspectRatio="none" role="group" aria-label="点开拼图中的爱好"><g class="puzzle-piece" role="button" tabindex="0" data-hobby="music" aria-label="点开音乐子页" aria-controls="view-music"><polygon points="332,355 455,296 570,350 637,430 538,485 342,454"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="film" aria-label="点开电影" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="180,244 366,159 463,230 395,316 254,366"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="food" aria-label="点开美食&探店" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="455,195 675,211 724,269 615,359 460,303"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="sport" aria-label="点开运动" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="89,388 257,337 331,424 254,492 115,526"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="cook" aria-label="点开下厨" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="257,493 363,453 535,497 499,609 347,650 253,589"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="travel" aria-label="点开旅行" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="532,481 640,425 737,481 690,602 522,644 492,603"/></g><g class="puzzle-piece" role="button" tabindex="0" data-hobby="reading" aria-label="点开阅读与播客" aria-haspopup="dialog" aria-controls="hobby-dialog"><polygon points="635,360 854,333 891,414 801,500 694,539 635,457"/></g></svg><span id="puzzle-hand-guide" class="puzzle-hand-guide" aria-hidden="true"><svg viewBox="0 0 24 32" fill="none" stroke="#7E786B" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 16V4a2.2 2.2 0 0 1 4.4 0v10-3a2 2 0 0 1 4 0v3-1a2 2 0 0 1 4 0v8c0 5-3 8-7 8h-2c-3 0-5-2-6-5l-4-6a2 2 0 0 1 3-2l3.6 4" fill="#F3F0E9"/></svg><span class="puzzle-hand-caption">点开看看</span></span></div><div class="puzzle-mobile-links" aria-label="七个兴趣快捷入口"><button type="button" data-hobby="music" style="--piece-color:#ACCFD7" aria-controls="view-music"><span class="puzzle-emoji" aria-hidden="true">🎵</span><span>音乐</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="film" style="--piece-color:#ABD2E1" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🎬</span><span>电影</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="food" style="--piece-color:#F4DBA0" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🍜</span><span>美食&amp;探店</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="sport" style="--piece-color:#C3D7AC" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🏃</span><span>运动</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="cook" style="--piece-color:#EAC0B5" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">🍳</span><span>下厨</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="travel" style="--piece-color:#EFC398" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">✈️</span><span>旅行</span><span class="puzzle-plus" aria-hidden="true">＋</span></button><button type="button" data-hobby="reading" style="--piece-color:#D2C4DF" aria-haspopup="dialog" aria-controls="hobby-dialog"><span class="puzzle-emoji" aria-hidden="true">📖</span><span>阅读与播客</span><span class="puzzle-plus" aria-hidden="true">＋</span></button></div></section>
+<!-- ===== 视图：兴趣 · 音乐子页（#music） ===== -->
+<section id="view-music" class="music-view" hidden>
+  <div class="music-inner">
+    <a class="music-back" href="#interests" data-music-back>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      返回兴趣
+    </a>
+
+    <header class="music-head">
+      <p class="kicker">MUSIC</p>
+      <h2 class="sec-title">音乐是治愈的解药</h2>
+      <p class="music-lede">工作和日子里攒下的情绪，很多时候是音乐先接住的。戴上耳机把自己安顿下来，是我留给自己最常用的放松方式。</p>
+    </header>
+
+    <div class="music-block">
+      <div class="music-text">
+        <h3 class="music-sub">去现场听</h3>
+        <p>一直很喜欢粤语歌，觉得粤语本身就很好听；几句简单的用语和数数刚学会，也盼着能有广东的朋友多教教我。</p>
+        <p>碰上喜欢的歌手会想去现场，听乐队和人声挤在同一个空间里，和耳机里是两种心情。</p>
+      </div>
+      <div class="music-photos">
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看邓紫棋演唱会照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/VKNxbngRUoOM4GxLbfjccPwvnDg" alt="邓紫棋演唱会：紫色场馆内，手持手机显示演唱会海报" loading="lazy">
+          </button>
+          <figcaption>邓紫棋演唱会</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看Jessie J演唱会照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/O87ObWM1BoRaGLxzy5lcdGD7ny2" alt="Jessie J演唱会：红幕舞台上歌手手持麦克风" loading="lazy">
+          </button>
+          <figcaption>Jessie J演唱会</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看单依纯演唱会照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/W1JkbTf9no7XETxClYrcNEQXnod" alt="单依纯演唱会：暗场大屏与绿调舞台光" loading="lazy">
+          </button>
+          <figcaption>单依纯演唱会</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看黄绮珊演唱会照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/HkRUboJgco5rpqxzPpQcgL3snLd" alt="黄绮珊演唱会：观众席前排的荧光棒与远处舞台" loading="lazy">
+          </button>
+          <figcaption>黄绮珊演唱会</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <p class="music-ktv">和伙伴们去 KTV 唱歌是常有的放松，熟悉的副歌一起接上来，一天的累就散了大半。</p>
+
+    <div class="music-block music-block--alt">
+      <div class="music-text">
+        <h3 class="music-sub">音乐节的白天与夜里</h3>
+        <p>也去音乐节凑热闹。舞台、人群和露天的风凑在一起，歌听到一半，情绪就跟着起来了。</p>
+      </div>
+      <div class="music-photos">
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看音乐节现场照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/ZlgLb4lBNoaPQFxb8uocTixRn0g" alt="音乐节现场：白日舞台上的群舞与彩带" loading="lazy">
+          </button>
+          <figcaption>音乐节现场</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看音乐节现场照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/EQnab8LWMoLmQ0xwwE9czfo7nkc" alt="音乐节现场：白日舞台歌手演唱，前景观众举手" loading="lazy">
+          </button>
+          <figcaption>音乐节现场</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看音乐节现场照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/QNKeb1AKwoJC11x3YeZcK9uBnQd" alt="音乐节现场：夜场舞台歌手近景与台下人群" loading="lazy">
+          </button>
+          <figcaption>音乐节现场</figcaption>
+        </figure>
+        <figure class="music-photo">
+          <button class="music-photo-open" type="button" aria-label="放大查看音乐节现场照片">
+            <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/L6StbyhWvoiz2exA8lhc7Prqnhg" alt="音乐节现场：夜场大屏上的歌手与舞台灯光" loading="lazy">
+          </button>
+          <figcaption>音乐节现场</figcaption>
+        </figure>
+      </div>
+    </div>
+
+    <figure class="music-photo music-photo--me">
+      <button class="music-photo-open" type="button" aria-label="放大查看音乐节本人留影">
+        <img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/RY8nbGxgBokpK4xNcm0cnk5fn1g" alt="音乐节草坪上的本人留影" loading="lazy">
+      </button>
+      <figcaption>音乐节，自己</figcaption>
+    </figure>
+
+    <div class="music-list-block">
+      <h3 class="music-sub">循环里的音乐人</h3>
+      <ul class="music-list">
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/XdnYbp7Tuo6HtSxyI0Tc3P0DnNf" alt="单依纯头像" style="object-position:50% 20%"></span>
+          <span class="music-name">单依纯</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/PpJ8bKCgZoFBWmxhfhQcEovWnvf" alt="邓紫棋头像" style="object-position:50% 25%"></span>
+          <span class="music-name">邓紫棋</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/FIqkbZqaBoXPR2xZUNscIgyunog" alt="黄绮珊头像" style="object-position:40% 30%"></span>
+          <span class="music-name">黄绮珊</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/V1eSb9edkooENYx0dw4cmQfmnu9" alt="林忆莲头像" style="object-position:50% 40%"></span>
+          <span class="music-name">林忆莲</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/RojUbiRnsoIDsGx7CLucDhrpnOb" alt="Tia袁娅维头像" style="object-position:50% 22%"></span>
+          <span class="music-name">Tia袁娅维</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/KlWubJcPqoZRJhxxVWqcxuDtnmh" alt="周兴哲头像" style="object-position:38% 30%"></span>
+          <span class="music-name">周兴哲</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/MN9ebjwCkonXDRxF40dc6Iobneh" alt="陶喆头像" style="object-position:46% 30%"></span>
+          <span class="music-name">陶喆</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/OrtIbI7XNoYKJAxLX0KcIAd1neg" alt="浦玉头像" style="object-position:62% 22%"></span>
+          <span class="music-name">浦玉</span>
+          <span class="music-follow">最近关注</span>
+        </li>
+        <li>
+          <span class="music-avatar"><img src="https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/Aw5gbTIwUoJUdpxR1WWcSCcwnfh" alt="祁紫檀头像" style="object-position:50% 40%"></span>
+          <span class="music-name">祁紫檀</span>
+          <span class="music-follow">最近关注</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="music-actions">
+      <a class="music-qq" href="https://c6.y.qq.com/base/fcgi-bin/u?__=pdCCiUQIqjVk" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        我的QQ音乐
+      </a>
+    </div>
+
+    <a class="music-back music-back--bottom" href="#interests" data-music-back>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      返回兴趣
+    </a>
+  </div>
+</section>
+<dialog class="music-photo-dialog" id="music-photo-dialog" aria-label="音乐照片大图">
+  <button class="music-photo-close" type="button">关闭</button>
+  <img alt="放大查看原图" src="">
+  <p class="music-photo-caption"></p>
+</dialog>
+
 <dialog class="hobby-dialog" id="hobby-dialog" aria-labelledby="hobby-dialog-title">
   <div class="hobby-dialog-top"><span>兴趣拼图</span><button type="button" class="hobby-close">关闭</button></div>
   <div id="hobby-dialog-content"></div>
 </dialog>
 <!-- 每个兴趣的原生内容，后续可独立替换与补充。 -->
-<template id="hobby-content-music"><h2 id="hobby-dialog-title">音乐</h2><p>特别喜欢粤语歌，觉得粤语很好听。现在刚学会几句简单用语和数数，也希望有广东的朋友能教教我。</p><p>也喜欢和伙伴们去KTV，一起唱歌。</p><p class="hobby-empty">喜欢的歌和音乐故事，<span class="hobby-detail-word">慢慢补上。</span></p></template>
 <template id="hobby-content-film"><h2 id="hobby-dialog-title">电影</h2><p>这里留给片单和观后感。</p><p class="hobby-empty">具体电影和想聊的故事，<span class="hobby-detail-word">还在整理。</span></p></template>
 <template id="hobby-content-sport"><h2 id="hobby-dialog-title">运动</h2><p>这里留给运动的日常。</p><p class="hobby-empty">具体项目和运动记录，<span class="hobby-detail-word">慢慢添上。</span></p></template>
 <template id="hobby-content-cook"><h2 id="hobby-dialog-title">下厨</h2><p>自己做饭的记录，和做过的菜，会放在这里。</p><p class="hobby-empty">先留一个位置，<span class="hobby-detail-word">菜和照片以后补。</span></p></template>
@@ -2125,6 +2328,13 @@ document.querySelectorAll('#main-intern .photo-open').forEach(function(b){b.addE
   if(!dialog||!content)return;
   function openHobby(button){
     var name=button.getAttribute('data-hobby');
+    if(name==='music'){
+      previous=button;
+      var guide=document.getElementById('puzzle-hand-guide');
+      if(guide) guide.hidden=true;
+      location.hash='#music';
+      return;
+    }
     var template=document.getElementById('hobby-content-'+name);
     if(!template)return;
     previous=button;
@@ -2146,6 +2356,61 @@ document.querySelectorAll('#main-intern .photo-open').forEach(function(b){b.addE
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&dialog.hasAttribute('open')&&typeof dialog.close!=='function'){e.preventDefault();e.stopImmediatePropagation();closeHobby();}},true);
 })();
 
+</script>
+
+<script id="music-view-behavior">
+(function(){
+  var view=document.getElementById('view-music');
+  if(!view)return;
+  function isMusic(){return location.hash==='#music';}
+  function applyRoute(){
+    var on=isMusic();
+    document.body.classList.toggle('music-active',on);
+    view.hidden=!on;
+    if(on){
+      document.body.style.overflow='hidden';
+      window.scrollTo(0,0);
+    }else if(!document.querySelector('dialog[open]')){
+      document.body.style.overflow='';
+    }
+  }
+  window.addEventListener('load',applyRoute);
+  window.addEventListener('hashchange',applyRoute);
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&isMusic()&&!document.querySelector('dialog[open]')){
+      e.preventDefault();
+      location.hash='#interests';
+    }
+  });
+
+  var d=document.getElementById('music-photo-dialog');
+  if(!d)return;
+  var previous=null;
+  var opens=document.querySelectorAll('.music-photo-open');
+  Array.prototype.forEach.call(opens,function(b){
+    b.addEventListener('click',function(){
+      previous=b;
+      var im=b.querySelector('img');
+      d.querySelector('img').src=im.src;
+      d.querySelector('img').alt=im.alt;
+      var cap=b.parentNode.querySelector('figcaption');
+      d.querySelector('.music-photo-caption').textContent=cap?cap.textContent:'';
+      if(typeof d.showModal==='function')d.showModal();
+      else{d.setAttribute('open','');}
+    });
+  });
+  function closeDialog(){
+    if(typeof d.close==='function')d.close();
+    else d.removeAttribute('open');
+  }
+  d.querySelector('.music-photo-close').addEventListener('click',closeDialog);
+  d.addEventListener('click',function(e){
+    if(e.target!==d)return;
+    var r=d.getBoundingClientRect();
+    if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)closeDialog();
+  });
+  d.addEventListener('close',function(){if(previous)previous.focus({preventScroll:true});});
+})();
 </script>
 </body>
 </html>
