@@ -676,9 +676,10 @@ section[id]{scroll-margin-top:68px}
 }
 
 /* One positive-size image layer; avoid iOS zero-width transformed children. */
-#walker{width:90px;height:150px;bottom:0;transform:translateX(-50%);will-change:auto;backface-visibility:visible;-webkit-backface-visibility:visible;pointer-events:none;overflow:visible}
+#walker{width:180px;height:160px;bottom:0;transform:translateX(-50%);will-change:auto;backface-visibility:visible;-webkit-backface-visibility:visible;pointer-events:none;overflow:hidden}
 #walker .look{display:none!important}
-#walkerSprite{position:static;display:block;width:100%;height:100%;max-width:none;object-fit:contain;transform:none;animation:none;backface-visibility:visible;-webkit-backface-visibility:visible}
+#walkerSprite{position:absolute;left:0;bottom:0;display:block;width:1200%;height:100%;max-width:none;object-fit:fill;transform:translateX(0);animation:none;backface-visibility:visible;-webkit-backface-visibility:visible}
+#walker.walking,#walker.sitting,#walker.cheering,#walker.standing{animation:none}
 #isoTrack{will-change:auto}
 
 .iso-lines.final-ready:not(.done){padding-bottom:74px;position:relative}
@@ -961,6 +962,7 @@ section[id]{scroll-margin-top:68px}
   </div>
 
   <div class="wrap">
+    <p id="journey-load-status" role="status" style="font-size:13px;color:var(--ink-soft);margin:12px 0">人物场景加载中…<button id="journey-load-retry" type="button" class="iso-btn" hidden>重新加载</button></p>
     <div class="iso rv" id="isoBox">
       <div class="iso-scroll" id="isoScroll"><div class="iso-track" id="isoTrack">
                                                         <svg class="iso-svg" id="isoSvg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 60 1200 320" role="img" aria-label="人生线动画：一个男孩从西南科大图书馆起身，穿过北交大校门，在字节工位做翻译审校，到飞书商业化办活动，最后站在脚印延伸的路上眺望远方">
@@ -1150,28 +1152,7 @@ section[id]{scroll-margin-top:68px}
         </svg>
         <div id="isoShadow" class="iso-shadow"></div>
         <div id="walker" class="walker">
-          <img id="walkerSprite" src="assets/read-01.png" width="328" height="520" alt="旅程中的人物" decoding="sync" fetchpriority="high">
-          <div class="look lk-stand1">
-            <img class="f-stand" src="assets/fig-01.png" alt=""><div class="bodybox"><img src="assets/step-01.png" alt=""></div><div class="legbox la"><img src="assets/step-01.png" alt=""></div><div class="legbox lb"><img src="assets/step2-01.png" alt=""></div>
-          </div>
-          <div class="look lk-stand2">
-            <img class="f-stand" src="assets/fig-02.png" alt=""><div class="bodybox"><img src="assets/step-02.png" alt=""></div><div class="legbox la"><img src="assets/step-02.png" alt=""></div><div class="legbox lb"><img src="assets/step2-02.png" alt=""></div>
-          </div>
-          <div class="look lk-stand3">
-            <img class="f-stand" src="assets/fig-03.png" alt=""><div class="bodybox"><img src="assets/step-03.png" alt=""></div><div class="legbox la"><img src="assets/step-03.png" alt=""></div><div class="legbox lb"><img src="assets/step2-03.png" alt=""></div>
-          </div>
-          <div class="look lk-stand4">
-            <img class="f-stand" src="assets/fig-04.png" alt=""><div class="bodybox"><img src="assets/step-04.png" alt=""></div><div class="legbox la"><img src="assets/step-04.png" alt=""></div><div class="legbox lb"><img src="assets/step2-04.png" alt=""></div>
-          </div>
-          <div class="look lk-stand5">
-            <img class="f-stand" src="assets/fig-05.png" alt=""><div class="bodybox"><img src="assets/step-05.png" alt=""></div><div class="legbox la"><img src="assets/step-05.png" alt=""></div><div class="legbox lb"><img src="assets/step2-05.png" alt=""></div>
-          </div>
-          <div class="look lk-read"><img class="p1" src="assets/read-01.png" alt=""><img class="p2" src="assets/read2-01.png" alt=""></div>
-          <div class="look lk-talk2"><img src="assets/talk-02.png" alt=""></div>
-          <div class="look lk-sit1"><img src="assets/sit-01.png" alt=""></div>
-          <div class="look lk-sit3"><img src="assets/sit-03.png" alt=""></div>
-          <div class="look lk-wave"><img src="assets/speak-04.png" alt=""></div>
-          <div class="look lk-look"><img src="assets/look-05.png" alt=""></div>
+          <img id="walkerSprite" src="assets/journey-actions-v2.png" width="6480" height="480" alt="旅程中的人物" decoding="sync" fetchpriority="high">
         </div>
         <div class="bubbles" id="bubbles">
           <span class="bub b1" style="--i:0;--r:-3deg;left:83.5%;top:82%">秋招 / 春招？</span>
@@ -1480,6 +1461,7 @@ section[id]{scroll-margin-top:68px}
 
   /* 导航滚动状态 */
   var nav = document.getElementById('topnav');
+  var sceneAssetsReady = false;
   function onNav(){
     nav.classList.toggle('scrolled', window.scrollY > 24);
   }
@@ -1489,7 +1471,10 @@ section[id]{scroll-margin-top:68px}
   /* 滚动揭示 */
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
-      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      if(e.isIntersecting){
+        if(e.target.id === 'isoBox' && !sceneAssetsReady) return;
+        e.target.classList.add('in'); io.unobserve(e.target);
+      }
     });
   },{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
@@ -1536,58 +1521,51 @@ section[id]{scroll-margin-top:68px}
 
     var sprite = document.getElementById('walkerSprite');
     var poseName = 'lk-read', poseKind = 'read', readSecond = false;
-    var poseCache = {}, lastReady = null, preloadJob = null;
-    function sourceFor(name, kind, second){
-      var box = document.querySelector('#walker .' + name);
-      if(!box) return null;
-      return (kind === 'walk' ? box.querySelector('.bodybox img') : null) ||
-        (name === 'lk-read' ? box.querySelector(second ? '.p2' : '.p1') : box.querySelector('img'));
-    }
-    function sizeSprite(img){
-      if(!sprite || !img || !img.naturalWidth) return;
-      var sceneHeight = isoTrackEl.clientHeight || 320;
-      var fraction = /lk-read|lk-sit/.test(poseName) ? .328 : .447;
-      var height = sceneHeight * fraction;
+    var atlasReady = false, atlasJob = null;
+    var atlasSource = sprite.getAttribute('src');
+    var poseCells = {'lk-stand1':2,'lk-stand2':4,'lk-talk2':4,'lk-sit3':6,'lk-stand3':7,'lk-wave':9,'lk-stand4':9,'lk-look':11};
+    var walkCells = {'lk-stand1':3,'lk-stand2':5,'lk-stand3':8,'lk-stand4':10};
+    function sizeSprite(){
+      var height = (isoTrackEl.clientHeight || 320) / 2;
       walker.style.height = height.toFixed(2) + 'px';
-      walker.style.width = (height * img.naturalWidth / img.naturalHeight).toFixed(2) + 'px';
+      walker.style.width = (height * 540 / 480).toFixed(2) + 'px';
     }
     function renderPose(){
-      var input = sourceFor(poseName, poseKind, readSecond);
-      var entry = input && poseCache[input.getAttribute('src')];
-      if(entry && entry.ready) lastReady = entry.image;
-      var ready = entry && entry.ready ? entry.image : lastReady;
-      if(!ready){ if(sprite.complete && sprite.naturalWidth) ready = sprite; else return; }
-      if(sprite.getAttribute('src') !== ready.getAttribute('src')) sprite.src = ready.getAttribute('src');
-      sizeSprite(ready);
+      var index = poseName === 'lk-read' ? (readSecond ? 1 : 0) :
+        (poseKind === 'walk' ? walkCells[poseName] : poseCells[poseName]);
+      if(typeof index !== 'number') index = 0;
+      sprite.style.transform = 'translateX(' + (-index * 100 / 12) + '%)';
+      sprite.setAttribute('data-pose', poseName);
+      sprite.setAttribute('data-cell', index);
+      sizeSprite();
     }
-    function loadPose(src){
-      if(poseCache[src]) return poseCache[src].promise;
-      var entry = {ready:false,image:new Image(),promise:null};
-      poseCache[src] = entry;
-      entry.promise = new Promise(function(resolve){
-        var retried = false, completed = false, timeout;
+    function loadAtlas(){
+      if(atlasReady) return Promise.resolve(true);
+      if(atlasJob) return atlasJob;
+      atlasJob = new Promise(function(resolve){
+        var completed = false;
         function done(ok){
-          if(completed) return; completed = true; clearTimeout(timeout);
-          if(ok){ entry.ready = true; renderPose(); }
+          if(completed) return; completed = true;
+          sprite.removeEventListener('load', loaded);
+          sprite.removeEventListener('error', failed);
+          atlasReady = ok;
+          if(ok){sceneAssetsReady = true;renderPose();if(box)box.classList.add('in');}
           resolve(ok);
         }
-        entry.image.onload = function(){
-          if(entry.image.decode){ entry.image.decode().then(function(){done(true)},function(){done(entry.image.naturalWidth > 0)}); }
-          else done(true);
-        };
-        entry.image.onerror = function(){
-          if(!retried){ retried = true; entry.image.src = src + (src.indexOf('?') >= 0 ? '&' : '?') + 'pose_retry=1'; }
-          else done(false);
-        };
-        timeout = setTimeout(function(){done(entry.image.complete && entry.image.naturalWidth > 0)},20000);
-        entry.image.src = src;
+        function loaded(){
+          if(sprite.decode) sprite.decode().then(function(){done(true)},function(){done(sprite.complete && sprite.naturalWidth > 0)});
+          else done(sprite.complete && sprite.naturalWidth > 0);
+        }
+        function failed(){done(false);}
+        sprite.addEventListener('load',loaded);
+        sprite.addEventListener('error',failed);
+        if(sprite.complete && sprite.naturalWidth > 0) loaded();
+        else if(sprite.complete) failed();
       });
-      return entry.promise;
+      return atlasJob;
     }
     function setLook(name,kind,second){
       poseName = name; poseKind = kind || 'stand'; readSecond = !!second;
-      var input = sourceFor(name,poseKind,readSecond);
-      if(input) loadPose(input.getAttribute('src'));
       renderPose();
     }
 
@@ -1967,7 +1945,7 @@ section[id]{scroll-margin-top:68px}
     document.addEventListener('visibilitychange', function(){
       last = null;
       if(document.hidden){ cancelAnimationFrame(raf); raf = null; }
-      else { restoreScene(); if(started && !reduce && el < TOTAL && raf === null) raf = requestAnimationFrame(tick); }
+      else { restoreScene(); if(atlasReady && started && !reduce && el < TOTAL && raf === null) raf = requestAnimationFrame(tick); }
     });
     window.addEventListener('load', function(){ setTimeout(drawPaths, 400); renderPose(); frameTo(lastX, true); });
     var __dpT;
@@ -1983,26 +1961,28 @@ section[id]{scroll-margin-top:68px}
     }
     window.addEventListener('load', function(){ setTimeout(openFromHash, 120); });
     window.addEventListener('hashchange', openFromHash);
+    var loadingStatus = document.getElementById('journey-load-status');
+    var retryButton = document.getElementById('journey-load-retry');
     function preloadThen(fn){
-      if(!preloadJob){
-        var urls = [], requests = [];
-        TL.forEach(function(st){
-          var input = sourceFor(st.look,st.k,false);
-          if(input && urls.indexOf(input.getAttribute('src')) < 0) urls.push(input.getAttribute('src'));
-        });
-        var second = sourceFor('lk-read','read',true);
-        if(second && urls.indexOf(second.getAttribute('src')) < 0) urls.push(second.getAttribute('src'));
-        urls.forEach(function(src){requests.push(loadPose(src))});
-        preloadJob = Promise.all(requests);
-      }
-      preloadJob.then(function(){
-        if(lastReady || (sprite.complete && sprite.naturalWidth)) fn();
-        else if(box){
-          box.querySelector('.iso-hint').textContent = '人物图片加载暂未完成，可点击重播重试';
-          started = false; preloadJob = null; poseCache = {};
+      loadAtlas().then(function(ok){
+        if(ok){
+          if(loadingStatus) loadingStatus.hidden = true;
+          fn();
+        }else{
+          if(loadingStatus){loadingStatus.hidden = false;loadingStatus.firstChild.textContent = '人物场景暂未加载，点击重新加载。';}
+          if(retryButton) retryButton.hidden = false;
+          started = false;
         }
       });
     }
+    if(retryButton) retryButton.addEventListener('click',function(){
+      atlasJob = null;
+      if(loadingStatus) loadingStatus.firstChild.textContent = '人物场景加载中…';
+      retryButton.hidden = true;
+      sprite.src = atlasSource + (atlasSource.indexOf('?') >= 0 ? '&' : '?') + 'reload=' + Date.now();
+      started = true;
+      preloadThen(function(){if(reduce){apply(TL[TL.length - 1],1);frameTo(POS[4][0],true);}else begin();});
+    });
 
     /* ===== 回看：时间轴倒放 ===== */
     var dir = 1, stopEl = null, stopsCache = null;
@@ -2065,7 +2045,11 @@ section[id]{scroll-margin-top:68px}
       if(linesBox) linesBox.classList.add('final-ready');
       finish();
     }
-    if(endBtn) endBtn.addEventListener('click', skipToEnd);
+    if(endBtn) endBtn.addEventListener('click', function(){
+      skipRequested = true;
+      if(atlasReady) skipToEnd();
+      else {started = true;preloadThen(skipToEnd);}
+    });
 
     function begin(){
       if(skipRequested){ skipToEnd(); return; }
