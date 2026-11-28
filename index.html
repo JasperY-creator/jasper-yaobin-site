@@ -679,6 +679,11 @@ section[id]{scroll-margin-top:68px}
 #walker{width:180px;height:160px;bottom:0;transform:translateX(-50%);will-change:auto;backface-visibility:visible;-webkit-backface-visibility:visible;pointer-events:none;overflow:hidden}
 #walker .look{display:none!important}
 #walkerSprite{position:absolute;left:0;bottom:0;display:block;width:1200%;height:100%;max-width:none;object-fit:fill;transform:translateX(0);animation:none;backface-visibility:visible;-webkit-backface-visibility:visible}
+.walk-cell{position:absolute;left:0;bottom:0;display:none;width:100%;height:100%;max-width:none;object-fit:fill;backface-visibility:visible;-webkit-backface-visibility:visible}
+.walk-cell.on{display:block}
+#walker.cells-on #walkerSprite{display:none}
+#walker.cells-on .walk-cell{display:none}
+#walker.cells-on .walk-cell.on{display:block}
 #walker.walking,#walker.sitting,#walker.cheering,#walker.standing{animation:none}
 #isoTrack{will-change:auto}
 
@@ -1014,7 +1019,7 @@ body.music-active main > *:not(#view-music){display:none !important}
 
   <div class="wrap">
     <p id="journey-load-status" role="status" style="font-size:13px;color:var(--ink-soft);margin:12px 0">人物场景加载中…<button id="journey-load-retry" type="button" class="iso-btn" hidden>重新加载</button></p>
-    <div class="iso rv" id="isoBox">
+    <div class="iso" id="isoBox">
       <div class="iso-scroll" id="isoScroll"><div class="iso-track" id="isoTrack">
                                                         <svg class="iso-svg" id="isoSvg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 60 1200 320" role="img" aria-label="人生线动画：一个男孩从西南科大图书馆起身，穿过北交大校门，在字节工位做翻译审校，到飞书商业化办活动，最后站在脚印延伸的路上眺望远方">
           <defs>
@@ -1204,6 +1209,18 @@ body.music-active main > *:not(#view-music){display:none !important}
         <div id="isoShadow" class="iso-shadow"></div>
         <div id="walker" class="walker">
           <img id="walkerSprite" src="assets/journey-actions-v2.png" width="6480" height="480" alt="旅程中的人物" decoding="sync" fetchpriority="high">
+          <img class="walk-cell" data-cell="0" src="assets/cell-00.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="1" src="assets/cell-01.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="2" src="assets/cell-02.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="3" src="assets/cell-03.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="4" src="assets/cell-04.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="5" src="assets/cell-05.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="6" src="assets/cell-06.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="7" src="assets/cell-07.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="8" src="assets/cell-08.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="9" src="assets/cell-09.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="10" src="assets/cell-10.png" width="540" height="480" alt="" decoding="async">
+          <img class="walk-cell" data-cell="11" src="assets/cell-11.png" width="540" height="480" alt="" decoding="async">
         </div>
         <div class="bubbles" id="bubbles">
           <span class="bub b1" style="--i:0;--r:-3deg;left:83.5%;top:82%">秋招 / 春招？</span>
@@ -1664,23 +1681,24 @@ body.music-active main > *:not(#view-music){display:none !important}
 
   /* 导航滚动状态 */
   var nav = document.getElementById('topnav');
-  var sceneAssetsReady = false;
   function onNav(){
     nav.classList.toggle('scrolled', window.scrollY > 24);
   }
   window.addEventListener('scroll', onNav, {passive:true});
   onNav();
 
-  /* 滚动揭示 */
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        if(e.target.id === 'isoBox' && !sceneAssetsReady) return;
-        e.target.classList.add('in'); io.unobserve(e.target);
-      }
-    });
-  },{threshold:.12});
-  document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+  /* 滚动揭示（能力保护：不支持 IO 时直接揭示，避免构造异常中断后续逻辑） */
+  var revealEls = document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    },{threshold:.12});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }else{
+    revealEls.forEach(function(el){ el.classList.add('in'); });
+  }
 
 /* ===== 人生线动画：一条自然的路，坐着、起身、走、招手、眺望 ===== */
   var isoSvg = document.getElementById('isoSvg');
@@ -1724,8 +1742,10 @@ body.music-active main > *:not(#view-music){display:none !important}
 
     var sprite = document.getElementById('walkerSprite');
     var poseName = 'lk-read', poseKind = 'read', readSecond = false;
-    var atlasReady = false, atlasJob = null;
+    var atlasReady = false, atlasJob = null, atlasToken = 0;
     var atlasSource = sprite.getAttribute('src');
+    var atlasBackup = 'https://media.doubao.com/space/api/box/stream/download/all_by_mount_point/FtacbH75uoQXOtxvzcXcx4pGnTH';
+    var skinMode = 'atlas';
     var poseCells = {'lk-stand1':2,'lk-stand2':4,'lk-talk2':4,'lk-sit3':6,'lk-stand3':7,'lk-wave':9,'lk-stand4':9,'lk-look':11};
     var walkCells = {'lk-stand1':3,'lk-stand2':5,'lk-stand3':8,'lk-stand4':10};
     function sizeSprite(){
@@ -1733,37 +1753,70 @@ body.music-active main > *:not(#view-music){display:none !important}
       walker.style.height = height.toFixed(2) + 'px';
       walker.style.width = (height * 540 / 480).toFixed(2) + 'px';
     }
-    function renderPose(){
+    function currentCellIndex(){
       var index = poseName === 'lk-read' ? (readSecond ? 1 : 0) :
         (poseKind === 'walk' ? walkCells[poseName] : poseCells[poseName]);
       if(typeof index !== 'number') index = 0;
+      return index;
+    }
+    function renderPose(){
+      var index = currentCellIndex();
       sprite.style.transform = 'translateX(' + (-index * 100 / 12) + '%)';
       sprite.setAttribute('data-pose', poseName);
       sprite.setAttribute('data-cell', index);
+      var cellImgs = walker.querySelectorAll('.walk-cell');
+      for(var c=0;c<cellImgs.length;c++){
+        cellImgs[c].classList.toggle('on', Number(cellImgs[c].getAttribute('data-cell')) === index);
+      }
       sizeSprite();
+    }
+    function applySkin(mode){
+      skinMode = mode;
+      walker.classList.toggle('cells-on', mode === 'cells');
+      renderPose();
+    }
+    function tryAtlasUrl(url){
+      return new Promise(function(resolve){
+        var settled = false, decoded = false;
+        var timer = null;
+        function finish(ok){
+          if(settled) return; settled = true;
+          sprite.removeEventListener('load', onLoad);
+          sprite.removeEventListener('error', onError);
+          if(timer) clearTimeout(timer);
+          resolve(ok);
+        }
+        function onLoad(){
+          var usable = sprite.complete && sprite.naturalWidth > 0;
+          if(usable && sprite.decode){
+            sprite.decode().then(function(){ decoded = true; finish(usable); }, function(){ finish(usable); });
+            setTimeout(function(){ if(!decoded) finish(usable); }, 1200);
+          }else{
+            finish(usable);
+          }
+        }
+        function onError(){ finish(false); }
+        sprite.addEventListener('load', onLoad);
+        sprite.addEventListener('error', onError);
+        timer = setTimeout(function(){ finish(false); }, 3500);
+        if(sprite.getAttribute('src') !== url){ sprite.src = url; }
+        if(sprite.complete && sprite.naturalWidth > 0){ onLoad(); }
+        else if(sprite.complete){ onError(); }
+      });
     }
     function loadAtlas(){
       if(atlasReady) return Promise.resolve(true);
       if(atlasJob) return atlasJob;
-      atlasJob = new Promise(function(resolve){
-        var completed = false;
-        function done(ok){
-          if(completed) return; completed = true;
-          sprite.removeEventListener('load', loaded);
-          sprite.removeEventListener('error', failed);
-          atlasReady = ok;
-          if(ok){sceneAssetsReady = true;renderPose();if(box)box.classList.add('in');}
-          resolve(ok);
-        }
-        function loaded(){
-          if(sprite.decode) sprite.decode().then(function(){done(true)},function(){done(sprite.complete && sprite.naturalWidth > 0)});
-          else done(sprite.complete && sprite.naturalWidth > 0);
-        }
-        function failed(){done(false);}
-        sprite.addEventListener('load',loaded);
-        sprite.addEventListener('error',failed);
-        if(sprite.complete && sprite.naturalWidth > 0) loaded();
-        else if(sprite.complete) failed();
+      var token = ++atlasToken;
+      atlasJob = tryAtlasUrl(atlasSource).then(function(primaryOk){
+        if(token !== atlasToken) return atlasReady;
+        if(!primaryOk && atlasBackup){ return tryAtlasUrl(atlasBackup); }
+        return primaryOk;
+      }).then(function(ok){
+        if(token !== atlasToken) return atlasReady;
+        atlasReady = !!ok;
+        applySkin(atlasReady ? 'atlas' : 'cells');
+        return atlasReady;
       });
       return atlasJob;
     }
@@ -2140,15 +2193,28 @@ body.music-active main > *:not(#view-music){display:none !important}
     }
 
     function restoreScene(){ renderPose(); frameTo(lastX, true); last = null; }
+    function scheduleTick(){
+      if(raf !== null || !started || paused || reduce || el >= TOTAL || skipRequested) return;
+      raf = requestAnimationFrame(tick);
+    }
+    function resumeAfterWake(){
+      last = null;
+      restoreScene();
+      scheduleTick();
+    }
     window.addEventListener('resize', restoreScene);
     window.addEventListener('orientationchange', function(){ setTimeout(restoreScene,120); });
-    window.addEventListener('pageshow', restoreScene);
+    window.addEventListener('pageshow', resumeAfterWake);
+    window.addEventListener('online', function(){ if(!atlasReady){ loadAtlas(); } else { resumeAfterWake(); } });
     if(window.visualViewport) window.visualViewport.addEventListener('resize', restoreScene);
     if(window.ResizeObserver){ new ResizeObserver(restoreScene).observe(scrollBox); }
     document.addEventListener('visibilitychange', function(){
       last = null;
-      if(document.hidden){ cancelAnimationFrame(raf); raf = null; }
-      else { restoreScene(); if(atlasReady && started && !reduce && el < TOTAL && raf === null) raf = requestAnimationFrame(tick); }
+      if(document.hidden){
+        if(raf !== null){ cancelAnimationFrame(raf); raf = null; }
+      }else{
+        resumeAfterWake();
+      }
     });
     window.addEventListener('load', function(){ setTimeout(drawPaths, 400); renderPose(); frameTo(lastX, true); });
     var __dpT;
@@ -2168,23 +2234,22 @@ body.music-active main > *:not(#view-music){display:none !important}
     var retryButton = document.getElementById('journey-load-retry');
     function preloadThen(fn){
       loadAtlas().then(function(ok){
-        if(ok){
-          if(loadingStatus) loadingStatus.hidden = true;
-          fn();
-        }else{
-          if(loadingStatus){loadingStatus.hidden = false;loadingStatus.firstChild.textContent = '人物场景暂未加载，点击重新加载。';}
-          if(retryButton) retryButton.hidden = false;
-          started = false;
-        }
+        if(loadingStatus) loadingStatus.hidden = true;
+        if(retryButton) retryButton.hidden = !!ok;
+        if(typeof fn === 'function') fn();
       });
     }
     if(retryButton) retryButton.addEventListener('click',function(){
-      atlasJob = null;
-      if(loadingStatus) loadingStatus.firstChild.textContent = '人物场景加载中…';
-      retryButton.hidden = true;
-      sprite.src = atlasSource + (atlasSource.indexOf('?') >= 0 ? '&' : '?') + 'reload=' + Date.now();
-      started = true;
-      preloadThen(function(){if(reduce){apply(TL[TL.length - 1],1);frameTo(POS[4][0],true);}else begin();});
+      atlasToken++; atlasJob = null; atlasReady = false;
+      if(loadingStatus){ loadingStatus.hidden = false; loadingStatus.firstChild.textContent = '人物场景加载中…'; }
+      if(retryButton) retryButton.hidden = true;
+      loadAtlas().then(function(ok){
+        if(loadingStatus) loadingStatus.hidden = true;
+        if(retryButton) retryButton.hidden = !!ok;
+        applySkin(ok ? 'atlas' : 'cells');
+        if(!started && !reduce){ started = true; begin(); }
+        else { resumeAfterWake(); }
+      });
     });
 
     /* ===== 回看：时间轴倒放 ===== */
@@ -2250,8 +2315,7 @@ body.music-active main > *:not(#view-music){display:none !important}
     }
     if(endBtn) endBtn.addEventListener('click', function(){
       skipRequested = true;
-      if(atlasReady) skipToEnd();
-      else {started = true;preloadThen(skipToEnd);}
+      skipToEnd();
     });
 
     function begin(){
